@@ -1,4 +1,8 @@
 package cr.ac.ucr.repository;
 
-public interface CourseRepository {
+import cr.ac.ucr.spa.Course;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CourseRepository extends JpaRepository<Course, Integer> {
+
 }
