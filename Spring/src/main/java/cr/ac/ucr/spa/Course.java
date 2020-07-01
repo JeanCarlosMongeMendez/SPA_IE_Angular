@@ -4,16 +4,24 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name="[BS_ISem_2020].[Course]")
+@Table(name="Course",  schema = "BS_ISem_2020")
 public class Course {
 
+    @Column(name="Course_Id")
     private int courseId;
+    @Column(name="Name")
     private String name;
+    @Column(name="State", nullable=true)
     private int state;
+    @Column(name="Semestrer")
     private String semester;
+    @Column(name="Description", nullable=true)
     private String description;
+    @Column(name="Image", nullable=true)
     private String image;
+    @Column(name="Create_By", nullable=true)
     private int createBy;
+    @Column(name="Creation_Date", nullable=true)
     private Date creationDate;
 
     public Course() { }
@@ -55,9 +63,9 @@ public class Course {
 
     public void setImage(String image) {this.image = image;}
 
-    public int getCreatedBy() {return createBy;}
+    public int getCreateBy() {return createBy;}
 
-    public void setCreatedBy(int createdBy) {this.createBy = createdBy;}
+    public void setCreateBy(int createdBy) {this.createBy = createdBy;}
 
     public Date getCreationDate() {return creationDate;}
 

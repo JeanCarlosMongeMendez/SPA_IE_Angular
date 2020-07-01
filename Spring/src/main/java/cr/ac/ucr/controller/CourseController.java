@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@CrossOrigin
 @RestController
+@RequestMapping(path = "/api/course")
 public class CourseController {
 
     @Autowired
@@ -36,8 +38,14 @@ public class CourseController {
 
     @PostMapping("/add")
     public void add(Course course) {
-        //reglas de negocio??
-        courseService.save(course);
+        Course existingCourse=new Course();
+        existingCourse.setCourseId(0);
+        existingCourse = courseService.get(course.getCourseId());
+
+        if(existingCourse.getCourseId()!=0){
+            courseService.save(course);
+        }
+
     }
 
     @PutMapping("/update/{id}")
