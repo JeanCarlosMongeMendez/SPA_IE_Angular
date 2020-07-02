@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-
+/*
 @CrossOrigin
 @RestController
 @RequestMapping(path = "/api/course")
@@ -100,4 +100,4 @@ public class CourseController {
         courseService.delete(id);
     }
 */
-}
+//}

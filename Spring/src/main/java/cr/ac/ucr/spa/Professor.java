@@ -1,5 +1,7 @@
 package cr.ac.ucr.spa;
 
+import org.apache.tomcat.jni.User;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,13 +16,13 @@ public class Professor {
     private String degree;
 
     @Column(name="Id_User_Profile")
-    private String idUserProfile;
+    private int idUserProfile;
 
 
     public Professor() {
     }
 
-    public Professor(int idProfessor, String degree, String idUserProfile) {
+    public Professor(int idProfessor, String degree, int idUserProfile) {
         this.idProfessor = idProfessor;
         this.degree = degree;
         this.idUserProfile = idUserProfile;
@@ -44,11 +46,11 @@ public class Professor {
         this.degree = degree;
     }
 
-    public String getIdUserProfile() {
+    public int getIdUserProfile() {
         return idUserProfile;
     }
 
-    public void setIdUserProfile(String idUserProfile) {
+    public void setIdUserProfile(int idUserProfile) {
         this.idUserProfile = idUserProfile;
     }
 

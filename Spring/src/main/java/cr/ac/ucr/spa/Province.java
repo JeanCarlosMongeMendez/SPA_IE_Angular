@@ -1,27 +1,31 @@
 package cr.ac.ucr.spa;
 
+import org.springframework.lang.Nullable;
+import javax.validation.constraints.NotNull;
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name="Province",  schema = "BS_ISem_2020")
 public class Province {
+    @Id
     @Column(name="Id_Province")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProvince;
 
     @Column(name="Name")
-    private String name;
+    @NotNull
+    private String nameProvince;
 
     public Province() {
     }
 
-    public Province(int idProvince, String name) {
+    public Province(int idProvince, String nameProvince) {
         this.idProvince = idProvince;
-        this.name = name;
+        this.nameProvince = nameProvince;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public int getIdProvince() {
         return idProvince;
     }
@@ -30,11 +34,11 @@ public class Province {
         this.idProvince = idProvince;
     }
 
-    public String getName() {
-        return name;
+    public String getNameProvince() {
+        return nameProvince;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameProvince(String nameProvince) {
+        this.nameProvince = nameProvince;
     }
 }

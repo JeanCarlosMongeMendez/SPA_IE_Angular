@@ -1,30 +1,35 @@
 package cr.ac.ucr.spa;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="District",  schema = "BS_ISem_2020")
 public class District {
 
+    @Id
     @Column(name="Id_District")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int idDistrict;
 
     @Column(name="Id_Canton")
+    @NotNull
     private int idCanton;
 
     @Column(name="Name")
-    private String name;
+    @NotNull
+    private String nameDistrict;
 
     public District() {
     }
 
-    public District(int idDistrict, int idCanton, String name) {
+    public District(int idDistrict, int idCanton, String nameDistrict) {
         this.idDistrict = idDistrict;
         this.idCanton = idCanton;
-        this.name = name;
+        this.nameDistrict = nameDistrict;
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public int getIdDistrict() {
         return idDistrict;
     }
@@ -41,11 +46,11 @@ public class District {
         this.idCanton = idCanton;
     }
 
-    public String getName() {
-        return name;
+    public String getNameDistrict() {
+        return nameDistrict;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameDistrict(String nameDistrict) {
+        this.nameDistrict = nameDistrict;
     }
 }

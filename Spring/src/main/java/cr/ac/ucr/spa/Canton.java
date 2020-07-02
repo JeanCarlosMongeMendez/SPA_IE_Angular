@@ -1,31 +1,35 @@
 package cr.ac.ucr.spa;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+//@NamedStoredProcedureQuery(name = "Canton.getCantonByProvince", procedureName =  "SelectStudentById",resultClasses = Canton.class,parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, name = "Id_Province", type = Integer.class)})
 @Table(name="Canton",  schema = "BS_ISem_2020")
 public class Canton {
-
+    @Id
     @Column(name="Id_Canton")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCanton;
 
     @Column(name="Name")
-    private String name;
+    @NotNull
+    private String nameCanton;
 
     @Column(name="Id_Province")
+    @NotNull
     private int idProvince;
 
     public Canton() {
     }
 
-    public Canton(int idCanton, String name, int idProvince) {
+    public Canton(int idCanton, String nameCanton, int idProvince) {
         this.idCanton = idCanton;
-        this.name = name;
+        this.nameCanton = nameCanton;
         this.idProvince = idProvince;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public int getIdCanton() {
         return idCanton;
     }
@@ -34,12 +38,12 @@ public class Canton {
         this.idCanton = idCanton;
     }
 
-    public String getName() {
-        return name;
+    public String getNameCanton() {
+        return nameCanton;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameCanton(String nameCanton) {
+        this.nameCanton = nameCanton;
     }
 
     public int getIdProvince() {

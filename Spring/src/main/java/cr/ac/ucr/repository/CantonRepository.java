@@ -12,5 +12,5 @@ import java.util.List;
 public interface CantonRepository extends JpaRepository<Canton, Integer> {
 
     @Query(value = "SELECT * FROM BS_ISem_2020.Canton WHERE Id_Province = :idProvince", nativeQuery = true)
-    List<Canton> getCantonByProvince(@Param("idProvince") Integer id);
+    List<Canton> getCantonByProvince(@Param("idProvince") Integer idProvince);
 }
