@@ -46,12 +46,12 @@ public class CourseController {
                           @RequestBody CourseDTO dto) {
         Course entity = converter.toEntity(dto);
         entity.setCourseId(id);
-        return converter.toDto(courseService.save(converter.toEntity(dto)));
+        return converter.toDto(courseService.update(converter.toEntity(dto)));
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
-        service.delete(id);
+        courseService.delete(id);
     }
 
 

@@ -1,6 +1,7 @@
 package cr.ac.ucr.Converter;
 
 import cr.ac.ucr.DTO.CourseDTO;
+import cr.ac.ucr.service.CourseService;
 import cr.ac.ucr.spa.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +16,9 @@ public class CourseConverter implements ConverterInterface<Course, CourseDTO> {
     @Autowired
     ServiceService serviceService;
 */
+    @Autowired
+    CourseService courseService;
+
     @Override
     public Course toEntity(CourseDTO dto){
         Course entity = new Course();

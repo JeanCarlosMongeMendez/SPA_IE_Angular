@@ -1,5 +1,8 @@
 package cr.ac.ucr.spa;
 
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -7,19 +10,28 @@ import java.util.*;
 @Table(name="Course",  schema = "BS_ISem_2020")
 public class Course {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Course_Id")
+    @NotNull
     private int courseId;
     @Column(name="Name")
+    @NotNull
     private String name;
-    @Column(name="State", nullable=true)
+    @Column(name="State")
+    @Nullable
     private int state;
     @Column(name="Semestrer")
+    @Nullable
     private String semester;
-    @Column(name="Description", nullable=true)
+    @Column(name="Description")
+    @NotNull
     private String description;
-    @Column(name="Image", nullable=true)
+    @Column(name="Image")
+    @Nullable
     private String image;
-    @Column(name="Creation_Date", nullable=true)
+    @Column(name="Creation_Date")
+    @Nullable
     private Date creationDate;
 
     public Course() { }
@@ -34,8 +46,6 @@ public class Course {
         this.creationDate = creationDate;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getCourseId() {return courseId;}
 
     public void setCourseId(int courseId) {this.courseId = courseId;}
