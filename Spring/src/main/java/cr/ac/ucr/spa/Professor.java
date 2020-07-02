@@ -1,8 +1,6 @@
 package cr.ac.ucr.spa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -30,6 +28,8 @@ public class Professor {
         this.creationDate = creationDate;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdProfessor() {
         return idProfessor;
     }

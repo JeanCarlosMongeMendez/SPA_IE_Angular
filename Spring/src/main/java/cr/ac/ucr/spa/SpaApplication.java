@@ -18,10 +18,4 @@ public class SpaApplication {
 
         SpringApplication.run(SpaApplication.class, args);
     }
-
-
-    @GetMapping("/greet")
-    public String greet(@RequestParam(value = "myName", defaultValue = "World") String name){
-        return String.format("Hello %s!", name);
-    }
 }

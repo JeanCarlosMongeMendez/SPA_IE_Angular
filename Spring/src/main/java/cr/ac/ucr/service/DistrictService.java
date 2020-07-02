@@ -2,6 +2,7 @@ package cr.ac.ucr.service;
 
 import cr.ac.ucr.repository.CourseRepository;
 import cr.ac.ucr.repository.DistrictRepository;
+import cr.ac.ucr.spa.Canton;
 import cr.ac.ucr.spa.Course;
 import cr.ac.ucr.spa.District;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,6 @@ public class DistrictService {
     public District get(int id){return districtRepository.findById(id).get();}
 
     public void delete(int id){districtRepository.deleteById(id);}
+
+    public List<District> getDistrictsByCanton(Integer id){return districtRepository.getDistrictsByCanton(id);}
 }
