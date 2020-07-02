@@ -15,9 +15,13 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public List<Course> listAll(){return courseRepository.findAll();}
+    public Course save(Course entity){
+        if(courseRepository.existsByName(entity.getName())) throw new NameExistException();
+        entity.setPass(encoder.encode(entity.getPass()));
+        return courseRepository.save(entity);
+    }
 
-    public void save(Course course){courseRepository.save(course);}
+    public List<Course> listAll(){return courseRepository.findAll();}
 
     public Course get(int id){return courseRepository.findById(id).get();}
 

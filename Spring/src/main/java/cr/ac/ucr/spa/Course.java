@@ -19,21 +19,18 @@ public class Course {
     private String description;
     @Column(name="Image", nullable=true)
     private String image;
-    @Column(name="Create_By", nullable=true)
-    private int createBy;
     @Column(name="Creation_Date", nullable=true)
     private Date creationDate;
 
     public Course() { }
 
-    public Course(int courseId, String name, int state, String semester, String description, String image, int createdBy, Date creationDate) {
+    public Course(int courseId, String name, int state, String semester, String description, String image, Date creationDate) {
         this.courseId = courseId;
         this.name = name;
         this.state = state;
         this.semester = semester;
         this.description = description;
         this.image = image;
-        this.createBy = createdBy;
         this.creationDate = creationDate;
     }
 
@@ -62,10 +59,6 @@ public class Course {
     public String getImage() {return image;}
 
     public void setImage(String image) {this.image = image;}
-
-    public int getCreateBy() {return createBy;}
-
-    public void setCreateBy(int createdBy) {this.createBy = createdBy;}
 
     public Date getCreationDate() {return creationDate;}
 

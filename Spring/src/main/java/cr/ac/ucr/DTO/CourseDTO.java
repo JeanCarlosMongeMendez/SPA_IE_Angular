@@ -11,7 +11,6 @@ public class CourseDTO {
     private String semester;
     private String description;
     private String image;
-    private int createBy;
     private Date creationDate;
 
     public int getCourseId() {return courseId;}
@@ -37,10 +36,6 @@ public class CourseDTO {
     public String getImage() {return image;}
 
     public void setImage(String image) {this.image = image;}
-
-    public int getCreateBy() {return createBy;}
-
-    public void setCreateBy(int createBy) {this.createBy = createBy; }
 
     public Date getCreationDate() {return creationDate;}
 
