@@ -22,5 +22,7 @@ public class CantonService {
 
     public Canton get(int id){return cantonRepository.findById(id).get();}
 
+    public List<Canton> getCantonsByProvince(Integer id){return cantonRepository.getCantonByProvince(id);}
+
     public void delete(int id){cantonRepository.deleteById(id);}
 }

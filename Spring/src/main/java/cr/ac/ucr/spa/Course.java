@@ -1,5 +1,8 @@
 package cr.ac.ucr.spa;
 
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -7,38 +10,42 @@ import java.util.*;
 @Table(name="Course",  schema = "BS_ISem_2020")
 public class Course {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Course_Id")
+    @NotNull
     private int courseId;
     @Column(name="Name")
+    @NotNull
     private String name;
-    @Column(name="State", nullable=true)
+    @Column(name="State")
+    @Nullable
     private int state;
     @Column(name="Semestrer")
+    @Nullable
     private String semester;
-    @Column(name="Description", nullable=true)
+    @Column(name="Description")
+    @NotNull
     private String description;
-    @Column(name="Image", nullable=true)
+    @Column(name="Image")
+    @Nullable
     private String image;
-    @Column(name="Create_By", nullable=true)
-    private int createBy;
-    @Column(name="Creation_Date", nullable=true)
+    @Column(name="Creation_Date")
+    @Nullable
     private Date creationDate;
 
     public Course() { }
 
-    public Course(int courseId, String name, int state, String semester, String description, String image, int createdBy, Date creationDate) {
+    public Course(int courseId, String name, int state, String semester, String description, String image, Date creationDate) {
         this.courseId = courseId;
         this.name = name;
         this.state = state;
         this.semester = semester;
         this.description = description;
         this.image = image;
-        this.createBy = createdBy;
         this.creationDate = creationDate;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getCourseId() {return courseId;}
 
     public void setCourseId(int courseId) {this.courseId = courseId;}
@@ -62,10 +69,6 @@ public class Course {
     public String getImage() {return image;}
 
     public void setImage(String image) {this.image = image;}
-
-    public int getCreateBy() {return createBy;}
-
-    public void setCreateBy(int createdBy) {this.createBy = createdBy;}
 
     public Date getCreationDate() {return creationDate;}
 

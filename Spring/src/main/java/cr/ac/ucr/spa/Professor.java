@@ -25,6 +25,7 @@ public class Professor {
         this.degree = degree;
         this.idUserProfile = idUserProfile;
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdProfessor() {
