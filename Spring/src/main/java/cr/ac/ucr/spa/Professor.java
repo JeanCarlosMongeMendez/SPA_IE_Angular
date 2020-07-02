@@ -3,19 +3,25 @@ package cr.ac.ucr.spa;
 import org.apache.tomcat.jni.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 @Table(name="Professor",  schema = "BS_ISem_2020")
-public class Professor {
+public class Professor{
 
+    @Id
     @Column(name="Id_Professor")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int idProfessor;
 
     @Column(name="Degree")
+    @NotNull
     private String degree;
 
     @Column(name="Id_User_Profile")
+    @NotNull
     private int idUserProfile;
 
 
@@ -28,8 +34,6 @@ public class Professor {
         this.idUserProfile = idUserProfile;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdProfessor() {
         return idProfessor;
     }
