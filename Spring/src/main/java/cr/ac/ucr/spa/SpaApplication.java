@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@SpringBootApplication @ComponentScan({"cr.ac.ucr.controller", "cr.ac.ucr.repository", "cr.ac.ucr.service"})
+@SpringBootApplication @ComponentScan({"cr.ac.ucr.controller",
+        "cr.ac.ucr.repository",
+        "cr.ac.ucr.service",
+        "cr.ac.ucr.Converter",
+        "cr.ac.ucr.DTO"})
 @EnableJpaRepositories("cr.ac.ucr.repository")
 public class SpaApplication {
 
