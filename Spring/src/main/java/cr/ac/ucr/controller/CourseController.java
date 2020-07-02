@@ -23,39 +23,67 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+    @Autowired
     private CourseConverter converter;
 
+    /*
     @RequestMapping(path="/", method = RequestMethod.POST)
-    public CourseDTO save(@RequestBody CourseDTO dto){
-        CourseDTO courseDTO=new CourseDTO();
-        Course entity = converter.toEntity(dto);
-        try {
-            courseDTO=converter.toDto(courseService.save(entity));
-            return courseDTO;
-        } catch (LyExceptions.NameExistException e) {
-            e.printStackTrace();
-        }
-        return courseDTO;
+    public Course save(@RequestBody Course entity) throws LyExceptions.NameExistException {
+        return courseService.save(entity);
     }
 
     @RequestMapping(path="/", method = RequestMethod.GET)
     public List<Course> findAll(){
+        return courseService.listAll();
+    }
 
-     /*
-        public List<CourseDTO> findAll(){
-     return courseService.listAll().stream().map(entity -> converter.toDto(entity))
-                .collect(Collectors.toList());*/
-        return courseService.listAll().stream().collect(Collectors.toList());
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Course findById(@PathVariable("id") int id) {
+        return  courseService.get(id);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    public Course update(@PathVariable("id") int id,
+                            @RequestBody Course entity) {
+        entity.setCourseId(id);
+        try {
+            courseService.update(entity);
+            return entity;
+        } catch (LyExceptions.RecordNotFoundException e) {
+            e.printStackTrace();
+        }
+        return entity;
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") int id) {
+        courseService.delete(id);
+    }
+*/
+
+    //CON DTO
+
+    @RequestMapping(path="/", method = RequestMethod.POST)
+    public CourseDTO save(@RequestBody CourseDTO dto) throws LyExceptions.NameExistException {
+        Course entity = converter.toEntity(dto);
+        return converter.toDto(courseService.save(entity));
+    }
+
+    @RequestMapping(path="/", method = RequestMethod.GET)
+    public List<CourseDTO> findAll(){
+        return courseService.listAll().stream().map(it -> converter.toDto(it))
+                .collect(Collectors.toList());
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public CourseDTO findById(@PathVariable("id") int id) {
-        return converter.toDto(courseService.get(id));
+        Course course = courseService.get(id);
+        return  converter.toDto(course);
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
     public CourseDTO update(@PathVariable("id") int id,
-                          @RequestBody CourseDTO dto) {
+                            @RequestBody CourseDTO dto) {
         CourseDTO courseDTO=new CourseDTO();
         Course entity = converter.toEntity(dto);
         entity.setCourseId(id);
@@ -73,7 +101,7 @@ public class CourseController {
         courseService.delete(id);
     }
 
-
+    //SIN ANGULAR
     /*
     @GetMapping("/courses")
     public List<Course> list() {

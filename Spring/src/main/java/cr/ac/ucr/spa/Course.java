@@ -10,8 +10,6 @@ import java.util.*;
 @Table(name="Course",  schema = "BS_ISem_2020")
 public class Course {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Course_Id")
     @NotNull
     private int courseId;
@@ -34,7 +32,8 @@ public class Course {
     @Nullable
     private Date creationDate;
 
-    public Course() { }
+    public Course() {
+    }
 
     public Course(int courseId, String name, int state, String semester, String description, String image, Date creationDate) {
         this.courseId = courseId;
@@ -46,31 +45,61 @@ public class Course {
         this.creationDate = creationDate;
     }
 
-    public int getCourseId() {return courseId;}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getCourseId() {
+        return courseId;
+    }
 
-    public void setCourseId(int courseId) {this.courseId = courseId;}
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
 
-    public String getName() {return name;}
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) {this.name = name;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public int getState() {return state;}
+    public int getState() {
+        return state;
+    }
 
-    public void setState(int state) {this.state = state;}
+    public void setState(int state) {
+        this.state = state;
+    }
 
-    public String getSemester() {return semester;}
+    public String getSemester() {
+        return semester;
+    }
 
-    public void setSemester(String semester) {this.semester = semester; }
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
 
-    public String getDescription() {return description;}
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) {this.description = description;}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public String getImage() {return image;}
+    public String getImage() {
+        return image;
+    }
 
-    public void setImage(String image) {this.image = image;}
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-    public Date getCreationDate() {return creationDate;}
+    public Date getCreationDate() {
+        return creationDate;
+    }
 
-    public void setCreationDate(Date creationDate) {this.creationDate = creationDate;}
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
 }
