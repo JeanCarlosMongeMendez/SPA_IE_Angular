@@ -21,7 +21,7 @@ public class Course {
     @Column(name="State")
     @Nullable
     private int state;
-    @Column(name="Semestrer")
+    @Column(name="Semester")
     @Nullable
     private String semester;
     @Column(name="Description")

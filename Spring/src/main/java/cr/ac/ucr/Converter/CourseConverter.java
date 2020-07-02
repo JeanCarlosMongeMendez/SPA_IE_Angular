@@ -22,6 +22,7 @@ public class CourseConverter implements ConverterInterface<Course, CourseDTO> {
     @Override
     public Course toEntity(CourseDTO dto){
         Course entity = new Course();
+
         entity.setCourseId(dto.getCourseId());
         entity.setName(dto.getName());
         entity.setState(dto.getState());
@@ -35,6 +36,7 @@ public class CourseConverter implements ConverterInterface<Course, CourseDTO> {
     @Override
     public CourseDTO toDto(Course entity){
         CourseDTO dto = new CourseDTO();
+
         dto.setCourseId(entity.getCourseId());
         dto.setName(entity.getName());
         dto.setState(entity.getState());

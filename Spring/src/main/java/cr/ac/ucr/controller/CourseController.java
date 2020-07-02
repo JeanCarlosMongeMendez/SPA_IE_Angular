@@ -2,6 +2,7 @@ package cr.ac.ucr.controller;
 
 import cr.ac.ucr.Converter.CourseConverter;
 import cr.ac.ucr.DTO.CourseDTO;
+import cr.ac.ucr.Exception.LyExceptions;
 import cr.ac.ucr.repository.CourseRepository;
 import cr.ac.ucr.service.CourseService;
 import cr.ac.ucr.spa.Course;
@@ -26,14 +27,25 @@ public class CourseController {
 
     @RequestMapping(path="/", method = RequestMethod.POST)
     public CourseDTO save(@RequestBody CourseDTO dto){
+        CourseDTO courseDTO=new CourseDTO();
         Course entity = converter.toEntity(dto);
-        return converter.toDto(courseService.save(entity));
+        try {
+            courseDTO=converter.toDto(courseService.save(entity));
+            return courseDTO;
+        } catch (LyExceptions.NameExistException e) {
+            e.printStackTrace();
+        }
+        return courseDTO;
     }
 
     @RequestMapping(path="/", method = RequestMethod.GET)
-    public List<CourseDTO> findAll(){
-        return courseService.listAll().stream().map(it -> converter.toDto(it))
-                .collect(Collectors.toList());
+    public List<Course> findAll(){
+
+     /*
+        public List<CourseDTO> findAll(){
+     return courseService.listAll().stream().map(entity -> converter.toDto(entity))
+                .collect(Collectors.toList());*/
+        return courseService.listAll().stream().collect(Collectors.toList());
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
@@ -44,9 +56,16 @@ public class CourseController {
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
     public CourseDTO update(@PathVariable("id") int id,
                           @RequestBody CourseDTO dto) {
+        CourseDTO courseDTO=new CourseDTO();
         Course entity = converter.toEntity(dto);
         entity.setCourseId(id);
-        return converter.toDto(courseService.update(converter.toEntity(dto)));
+        try {
+            courseDTO=converter.toDto(courseService.update(converter.toEntity(dto)));
+            return courseDTO;
+        } catch (LyExceptions.RecordNotFoundException e) {
+            e.printStackTrace();
+        }
+        return courseDTO;
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
