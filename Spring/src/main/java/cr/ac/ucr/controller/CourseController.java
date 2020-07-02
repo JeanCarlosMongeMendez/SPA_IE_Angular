@@ -2,6 +2,7 @@ package cr.ac.ucr.controller;
 
 import cr.ac.ucr.Converter.CourseConverter;
 import cr.ac.ucr.DTO.CourseDTO;
+import cr.ac.ucr.Exception.LyExceptions;
 import cr.ac.ucr.repository.CourseRepository;
 import cr.ac.ucr.service.CourseService;
 import cr.ac.ucr.spa.Course;
@@ -25,7 +26,7 @@ public class CourseController {
     private CourseConverter converter;
 
     @RequestMapping(path="/", method = RequestMethod.POST)
-    public CourseDTO save(@RequestBody CourseDTO dto){
+    public CourseDTO save(@RequestBody CourseDTO dto) throws LyExceptions.NameExistException {
         Course entity = converter.toEntity(dto);
         return converter.toDto(courseService.save(entity));
     }
@@ -43,7 +44,7 @@ public class CourseController {
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
     public CourseDTO update(@PathVariable("id") int id,
-                          @RequestBody CourseDTO dto) {
+                          @RequestBody CourseDTO dto) throws LyExceptions.RecordNotFoundException {
         Course entity = converter.toEntity(dto);
         entity.setCourseId(id);
         return converter.toDto(courseService.update(converter.toEntity(dto)));
