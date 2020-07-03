@@ -19,17 +19,17 @@ public class UserProfile {
     @Column(name="User_Photo")
     private String userPhoto;
 
-    @Column(name="Interests")
-    private String interest;
+    //@Column(name="Interests")
+    //private String interests;
 
     @Column(name="Email")
     private String email;
 
-    @Column(name="Is_Admin")
-    private boolean isAdmin;
+    /*@Column(name="Is_Admin")
+    private boolean admin;*/
 
-    @Column(name="Is_Enable")
-    private boolean isEnable;
+    /*@Column(name="Is_Enable")
+    private boolean isEnable;*/
 
     @Column(name="Id_Canton")
     private int idCanton;
@@ -46,15 +46,15 @@ public class UserProfile {
     public UserProfile() {
     }
 
-    public UserProfile(int idUserProfile, String username, String password, String userPhoto, String interest, String email, boolean isAdmin, boolean isEnable, int idCanton, int idProvince, int idDistrict, Date creationDate) {
+    public UserProfile(int idUserProfile, String username, String password, String userPhoto, String interest, String email, boolean admin, boolean isEnable, int idCanton, int idProvince, int idDistrict, Date creationDate) {
         this.idUserProfile = idUserProfile;
         this.username = username;
         this.password = password;
         this.userPhoto = userPhoto;
-        this.interest = interest;
+        //this.interests = interest;
         this.email = email;
-        this.isAdmin = isAdmin;
-        this.isEnable = isEnable;
+        //this.admin = admin;
+        //this.isEnable = isEnable;
         this.idCanton = idCanton;
         this.idProvince = idProvince;
         this.idDistrict = idDistrict;
@@ -95,13 +95,13 @@ public class UserProfile {
         this.userPhoto = userPhoto;
     }
 
-    public String getInterest() {
-        return interest;
+    /*public String getInterest() {
+        return interests;
     }
 
     public void setInterest(String interest) {
-        this.interest = interest;
-    }
+        this.interests = interest;
+    }*/
 
     public String getEmail() {
         return email;
@@ -111,21 +111,21 @@ public class UserProfile {
         this.email = email;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    /*public boolean isAdmin() {
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
-    }
+        this.admin = admin;
+    }*/
 
-    public boolean isEnable() {
+    /*public boolean isEnable() {
         return isEnable;
     }
 
     public void setEnable(boolean enable) {
         isEnable = enable;
-    }
+    }*/
 
     public int getIdCanton() {
         return idCanton;
