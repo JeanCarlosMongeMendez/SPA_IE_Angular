@@ -5,19 +5,10 @@ import org.apache.tomcat.jni.User;
 
 import javax.persistence.Column;
 
-public class ProfessorDTO {
+public class ProfessorDTO  {
 
-    private int idProfessor;
     private String degree;
     private UserProfile userProfile;
-
-    public int getIdProfessor() {
-        return idProfessor;
-    }
-
-    public void setIdProfessor(int idProfessor) {
-        this.idProfessor = idProfessor;
-    }
 
     public String getDegree() {
         return degree;

@@ -24,13 +24,13 @@ public class UserProfileConverter implements ConverterInterfaceUser <UserProfile
         entity.setUsername(dto.getUsername());
         entity.setPassword(dto.getPassword());
         entity.setUserPhoto(dto.getUserPhoto());
-        entity.setInterest(dto.getInterest());
+        entity.setInterests(dto.getInterest());
         entity.setEmail(dto.getEmail());
         entity.setAdmin(dto.isAdmin());
         entity.setEnable(dto.isEnable());
-        entity.setIdCanton(dto.getCanton().getIdCanton());
-        entity.setIdProvince(dto.getProvince().getIdProvince());
-        entity.setIdDistrict(dto.getDistrict().getIdDistrict());
+        entity.setCanton(dto.getCanton());
+        entity.setProvince(dto.getProvince());
+        entity.setDistrict(dto.getDistrict());
         entity.setCreationDate(dto.getCreationDate());
         return entity;
     }
@@ -42,13 +42,13 @@ public class UserProfileConverter implements ConverterInterfaceUser <UserProfile
         dto.setUsername(entity.getUsername());
         dto.setPassword(entity.getPassword());
         dto.setUserPhoto(entity.getUserPhoto());
-        dto.setInterest(entity.getInterest());
+        dto.setInterest(entity.getInterests());
         dto.setEmail(entity.getEmail());
         dto.setAdmin(entity.isAdmin());
         dto.setEnable(entity.isEnable());
-        dto.setCanton(cantonService.get(entity.getIdCanton()));
-        dto.setProvince(provinceService.get(entity.getIdProvince()));
-        dto.setDistrict(districtService.get(entity.getIdDistrict()));
+        dto.setCanton(entity.getCanton());
+        dto.setProvince(entity.getProvince());
+        dto.setDistrict(entity.getDistrict());
         dto.setCreationDate(entity.getCreationDate());
 
         return dto;

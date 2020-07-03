@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(path = "/api/student")
 public class StudentController {
-
+/*
     @Autowired
     private StudentService studentService;
     @Autowired
@@ -63,5 +63,5 @@ public class StudentController {
     public void delete(@PathVariable("id") int id) {
         studentService.delete(id);
     }
-
+*/
 }

@@ -13,11 +13,12 @@ import java.sql.Date;
 @Service
 @Transactional
 public class StudentConverter {
+    /*
 
     @Autowired
     private StudentService studentService;
 
-    public Student getEntity (StudentDTO dto){
+   // public Student getEntity (StudentDTO dto){
         Student entity = new Student();
         entity.setIdStudent(dto.getIdStudent());
         entity.setIsActive(dto.isActive());
@@ -35,7 +36,7 @@ public class StudentConverter {
         entity.setCreationDate(dto.getCreationDate());
         entity.setEmail(dto.getEmail());
         //entity.setEnable(dto.isEnable());
-        entity.setIdCanton(dto.getIdCanton());
+        entity.set(dto.getIdCanton());
         entity.setIdDistrict(dto.getIdDistrict());
         entity.setIdProvince(dto.getIdProvince());
         entity.setIdUserProfile(dto.getIdUserProfile());
@@ -66,5 +67,5 @@ public class StudentConverter {
         dto.setUsername(profile.getUsername());
         dto.setUserPhoto(profile.getUserPhoto());
         return dto;
-    }
+    }*/
 }

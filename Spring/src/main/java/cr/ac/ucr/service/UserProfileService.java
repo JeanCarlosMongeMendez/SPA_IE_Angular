@@ -14,16 +14,14 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class UserProfileService {
 
     @Autowired
     private UserProfileRepository userProfileRepository;
 
-
     public List<UserProfile> listAll(){return userProfileRepository.findAll();}
 
-    public void save(UserProfile userProfile){userProfileRepository.save(userProfile);}
+    public UserProfile save(UserProfile userProfile){return userProfileRepository.save(userProfile);}
 
     public UserProfile get(int id){return userProfileRepository.findById(id).get();}
 
