@@ -14,14 +14,24 @@ export class UpdateCourseComponent implements OnInit {
   errorMessage: any;
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute,
-    private courseService:CourseService, private router: Router) { }
+    private courseService:CourseService, private router: Router) {
+
+      this.form = this.fb.group({
+        name: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
+        semester: ['', [Validators.required, Validators.pattern('([0-3]){1}')]],
+        description: ['', [Validators.required]],
+        image: ['', [Validators.required]],
+        state: ['', [Validators.required, Validators.pattern('([0-1]){1}')]],
+        creationDate: ['', [Validators.required]]
+      });
+
+     }
 
   ngOnInit(): void {
 
     this.courseService.findById(this.route.snapshot.params['courseId']).subscribe((data: {}) => {
       console.log(data);
       
-
         this.form.patchValue({
           name: data['name'],
           semester: data['semester'],
