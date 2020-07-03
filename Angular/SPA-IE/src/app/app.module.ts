@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { CourseComponent } from './components/course/course.component';
 import { Observable } from 'rxjs';
 import { FormCourseComponent } from './components/form-course/form-course.component';
+import { ListCourseComponent } from './components/list-course/list-course.component';
+import { UpdateCourseComponent } from './components/update-course/update-course.component';
 
 const appRoutes: Routes = [
   {
@@ -17,14 +19,25 @@ const appRoutes: Routes = [
     component: FormCourseComponent,
     data: { title: 'Course Add' }
   },
-
+  {
+    path: 'list-course',
+    component: ListCourseComponent,
+    data: { title: 'List Course' }
+  },
+  {
+    path: 'update-course/:courseId',
+    component: UpdateCourseComponent,
+    data: { title: 'Update Course' }
+  }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
   //  CourseComponent,
-    FormCourseComponent
+    FormCourseComponent,
+  ListCourseComponent,
+  UpdateCourseComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -35,7 +48,9 @@ const appRoutes: Routes = [
     HttpClientModule
   ],
   exports: [
-    FormCourseComponent
+    FormCourseComponent,
+    ListCourseComponent,
+    UpdateCourseComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,45 @@
+<h2>Course List</h2>
+
+<br>
+<div>
+  <button type="button" class="btn btn-dark" (click)="add()">
+    Add Courese
+  </button>
+</div>
+<br>
+
+<table class='table' *ngIf="courses">
+<thead>
+  <tr>
+    <th>CourseId</th>
+    <th>Name</th>
+    <th>Semester</th>
+    <th>Description</th>
+    <th>Image</th>
+    <th>State</th>
+    <th>CreationDate</th>
+    <th></th>
+  </tr>
+
+</thead>
+<tbody>
+
+  <tr *ngFor="let c of courses; let i=index;">
+
+    <td>{{ c.courseId }}</td>
+    <td>{{ c.name }}</td>
+    <td>{{ c.semester }}</td>
+    <td>{{ c.description }}</td>
+    <td>{{ c.image }}</td>
+    <td>{{ c.state }}</td>
+    <td>{{ c.creationDate }}</td>
+
+
+    <td>
+      <a [routerLink]="['/update-course/', c.courseId]"> Edit </a>
+      <a [routerLink]="" (click)="delete(c.courseId)"> Delete </a>
+  
+    </td>
+    </tr>
+
+</tbody>

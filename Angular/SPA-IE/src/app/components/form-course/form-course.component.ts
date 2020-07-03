@@ -73,7 +73,7 @@ export class FormCourseComponent implements OnInit {
   }
 
   cancel(){
-    //this.router.navigate(['/students']);
+    this.router.navigate(['/courses/']);
   }
 
   get name() { return this.form.get('name'); }
