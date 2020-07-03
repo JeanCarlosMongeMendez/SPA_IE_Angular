@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
     providedIn: 'root'
 })
 export class ProfessorService {
-    private _url = 'http://localhost:8282/spa_war/api/professor/';
+    private _url = 'http://localhost:8080/spa_war/api/professor/';
 
     constructor(private http: HttpClient) { }
 

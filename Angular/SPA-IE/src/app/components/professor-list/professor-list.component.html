@@ -2,25 +2,27 @@
 
     <h2>Professors List</h2>
 
-    <div>
-        <button (click)="add()">
-            Add
-        </button>
-    </div>
-
     <br>
 
-    <kendo-grid [kendoGridBinding]="gridData" 
-            [filterable]="true" 
-            [groupable]="true" 
-            [sortable]="true" 
-            [pageSize]="10" 
-            [pageable]="true" 
-            [height]="510">
-    <kendo-grid-column field="userProfile.username" title="Name" [width]="140"></kendo-grid-column>
-    <kendo-grid-column field="userProfile.email" title="Email" [width]="120"></kendo-grid-column>
-    <kendo-grid-column field="userProfile.province.nameProvince" title="Province" [width]="100"></kendo-grid-column>
-    <kendo-grid-column field="degree" title="Degree" [width]="130"></kendo-grid-column>
-</kendo-grid>
+    <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="true" [pageSize]="10"
+        [pageable]="true" [height]="510">
+        <ng-template kendoGridToolbarTemplate>
+            <button ng-click="add()">Add new</button>
+        </ng-template>
+        <kendo-grid-column field="userProfile.username" title="Name" [width]="140"></kendo-grid-column>
+        <kendo-grid-column field="userProfile.email" title="Email" [width]="120"></kendo-grid-column>
+        <kendo-grid-column field="userProfile.province.nameProvince" title="Province" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="degree" title="Degree" [width]="130"></kendo-grid-column>
+
+        <kendo-grid-command-column title="command">
+            <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
+                <a [routerLink]="['/student-detail/', rowIndex.userProfile.idUserProfile]"> Detail </a>
+                <a [routerLink]="['/student-update/', rowIndex.userProfile.idUserProfile]"> Edit </a>
+                <a [routerLink]="['/student-delete/', rowIndex.userProfile.idUserProfile]"> Delete </a> 
+            </ng-template>
+        </kendo-grid-command-column>
+        
+    </kendo-grid>
+
 
 </div>
