@@ -4,12 +4,13 @@ import cr.ac.ucr.DTO.CourseDTO;
 import cr.ac.ucr.service.CourseService;
 import cr.ac.ucr.spa.Course;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.xml.bind.DatatypeConverterInterface;
-import javax.xml.ws.Service;
+import javax.transaction.Transactional;
 
-@org.springframework.stereotype.Service
-public class CourseConverter implements ConverterInterface<Course, CourseDTO> {
+@Service
+@Transactional
+public class CourseConverter {
   /*
     @Autowired
     IssueService issueService;
@@ -17,11 +18,11 @@ public class CourseConverter implements ConverterInterface<Course, CourseDTO> {
     ServiceService serviceService;
 */
     @Autowired
-    CourseService courseService;
+    private CourseService courseService;
 
-    @Override
     public Course toEntity(CourseDTO dto){
         Course entity = new Course();
+
         entity.setCourseId(dto.getCourseId());
         entity.setName(dto.getName());
         entity.setState(dto.getState());
@@ -32,9 +33,9 @@ public class CourseConverter implements ConverterInterface<Course, CourseDTO> {
         return entity;
     }
 
-    @Override
     public CourseDTO toDto(Course entity){
         CourseDTO dto = new CourseDTO();
+
         dto.setCourseId(entity.getCourseId());
         dto.setName(entity.getName());
         dto.setState(entity.getState());
