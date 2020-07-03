@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Student } from "../model/Student";
 import { Observable } from "rxjs";
 
@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 })
 
 export class StudentService {
-  private _url='http://localhost:8282/spa_war/api/student/';
+  private _url='http://localhost:8080/api/student/';
 
   constructor(private http: HttpClient) { }
 
@@ -31,5 +31,17 @@ export class StudentService {
   public delete(id: number): Observable<any>{
       return this.http.delete<any>(this._url + id);
   }
+
+  getProvinces() {
+    return this.http.get(this._url + '/provinces/');
+}
+
+getCantos(id: number) {
+    return this.http.get(this._url + '/cantons/' + id);
+}
+
+getDistricts(id: number) {
+    return this.http.get(this._url + '/districts/' + id);
+}
 
 }

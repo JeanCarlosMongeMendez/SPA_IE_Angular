@@ -12,6 +12,7 @@ import { FormCourseComponent } from './components/form-course/form-course.compon
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentListComponent } from './components/student-list/student-list.component';
+import { StudentAddComponent } from './components/student-add/student-add.component';
 
 
 
@@ -21,15 +22,26 @@ const appRoutes: Routes = [
     component: FormCourseComponent,
     data: { title: 'Course Add' }
   },
+  {
+    path: 'students-list',
+    component: StudentListComponent,
+    data: { title: 'Students List' }
+  },
+  {
+    path: 'student-add',
+    component: StudentAddComponent,
+    data: { title: 'Student Add' }
+  },
 
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-  //  CourseComponent,
+    //  CourseComponent,
     FormCourseComponent,
-  StudentListComponent
+    StudentListComponent,
+    StudentAddComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

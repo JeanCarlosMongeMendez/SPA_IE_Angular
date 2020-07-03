@@ -2,24 +2,21 @@
 
     <h2>Students List</h2>
 
-    <div>
-        <button (click)="add()">
-            Add
-        </button>
-    </div>
-
-    <br>
-
-    <kendo-grid [kendoGridBinding]="gridData" 
-    [filterable]="true" 
-    [groupable]="true" 
-    [sortable]="true"
-    [pageSize]="10" 
-    [pageable]="true" 
-    [height]="510">
+    <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="true" [pageSize]="10"
+        [pageable]="true" [height]="510">
+        <ng-template kendoGridToolbarTemplate>
+            <button ng-click="add()">Add new</button>
+        </ng-template>
         <kendo-grid-column field="userProfile.username" title="Name"></kendo-grid-column>
         <kendo-grid-column field="identificationCard" title="Identification Card"></kendo-grid-column>
         <kendo-grid-column field="userProfile.email" title="Email"></kendo-grid-column>
-        <kendo-grid-column field="userProfile.province.nameProvince" title="Province"></kendo-grid-column>        
+        <kendo-grid-column field="userProfile.province.nameProvince" title="Province"></kendo-grid-column>
+        <kendo-grid-command-column title="command">
+            <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
+                <a [routerLink]="['/student-detail/', rowIndex.userProfile.idUserProfile]"> Detail </a>
+                <a [routerLink]="['/student-update/', rowIndex.userProfile.idUserProfile]"> Edit </a>
+                <a [routerLink]="['/student-delete/', rowIndex.userProfile.idUserProfile]"> Delete </a>
+            </ng-template>
+        </kendo-grid-command-column>
     </kendo-grid>
 </div>
