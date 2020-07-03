@@ -7,12 +7,9 @@ import cr.ac.ucr.repository.CourseRepository;
 import cr.ac.ucr.service.CourseService;
 import cr.ac.ucr.spa.Course;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 /*
 @CrossOrigin
@@ -23,7 +20,45 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+    @Autowired
     private CourseConverter converter;
+
+    /*
+    @RequestMapping(path="/", method = RequestMethod.POST)
+    public Course save(@RequestBody Course entity) throws LyExceptions.NameExistException {
+        return courseService.save(entity);
+    }
+
+    @RequestMapping(path="/", method = RequestMethod.GET)
+    public List<Course> findAll(){
+        return courseService.listAll();
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Course findById(@PathVariable("id") int id) {
+        return  courseService.get(id);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    public Course update(@PathVariable("id") int id,
+                            @RequestBody Course entity) {
+        entity.setCourseId(id);
+        try {
+            courseService.update(entity);
+            return entity;
+        } catch (LyExceptions.RecordNotFoundException e) {
+            e.printStackTrace();
+        }
+        return entity;
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") int id) {
+        courseService.delete(id);
+    }
+*/
+
+    //CON DTO
 
     @RequestMapping(path="/", method = RequestMethod.POST)
     public CourseDTO save(@RequestBody CourseDTO dto) throws LyExceptions.NameExistException {
@@ -39,15 +74,23 @@ public class CourseController {
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public CourseDTO findById(@PathVariable("id") int id) {
-        return converter.toDto(courseService.get(id));
+        Course course = courseService.get(id);
+        return  converter.toDto(course);
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
     public CourseDTO update(@PathVariable("id") int id,
-                          @RequestBody CourseDTO dto) throws LyExceptions.RecordNotFoundException {
+                            @RequestBody CourseDTO dto) {
+        CourseDTO courseDTO=new CourseDTO();
         Course entity = converter.toEntity(dto);
         entity.setCourseId(id);
-        return converter.toDto(courseService.update(converter.toEntity(dto)));
+        try {
+            courseDTO=converter.toDto(courseService.update(converter.toEntity(dto)));
+            return courseDTO;
+        } catch (LyExceptions.RecordNotFoundException e) {
+            e.printStackTrace();
+        }
+        return courseDTO;
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
@@ -55,7 +98,7 @@ public class CourseController {
         courseService.delete(id);
     }
 
-
+    //SIN ANGULAR
     /*
     @GetMapping("/courses")
     public List<Course> list() {

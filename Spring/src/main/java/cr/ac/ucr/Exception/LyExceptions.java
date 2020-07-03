@@ -11,7 +11,6 @@ public class LyExceptions {
 
     public static class NameExistException extends Exception {
         public  NameExistException() {
-
         }
     }
 

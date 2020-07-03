@@ -7,16 +7,24 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+//import { CourseComponent } from './components/course/course.component';
+import { Observable } from 'rxjs';
+import { FormCourseComponent } from './components/form-course/form-course.component';
 
 const appRoutes: Routes = [
+  {
+    path: 'form-course',
+    component: FormCourseComponent,
+    data: { title: 'Course Add' }
+  },
 
-  
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+  //  CourseComponent,
+    FormCourseComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -25,6 +33,9 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
+  ],
+  exports: [
+    FormCourseComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
