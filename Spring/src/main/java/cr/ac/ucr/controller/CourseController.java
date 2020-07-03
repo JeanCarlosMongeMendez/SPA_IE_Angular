@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
-/*
+
 @CrossOrigin
 @RestController
 @RequestMapping(path = "/api/course")
@@ -96,7 +96,7 @@ public class CourseController {
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
         courseService.delete(id);
-    }
+    } }
 
     //SIN ANGULAR
     /*
