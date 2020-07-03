@@ -1,0 +1,45 @@
+<div class="container">
+
+    <h2>Student List</h2>
+
+    <div>
+        <button (click)="add()">
+            Add
+        </button>
+    </div>
+
+    <br>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="studentId">
+            <th mat-header-cell *matHeaderCellDef> StudentId </th>
+            <td mat-cell *matCellDef="let student">{{student.studentId}}</td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let student">{{student.name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let student">{{student.age}}</td>
+        </ng-container>
+        <ng-container matColumnDef="nationality">
+            <th mat-header-cell *matHeaderCellDef> Nationality </th>
+            <td mat-cell *matCellDef="let student">{{student.nationalityName}}</td>
+        </ng-container>
+        <ng-container matColumnDef="major">
+            <th mat-header-cell *matHeaderCellDef> Major </th>
+            <td mat-cell *matCellDef="let student">{{student.majorName}}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action</th>
+            <td mat-cell *matCellDef="let student">
+                <a [routerLink]="['/student-detail/', student.studentId]"> Detail </a>
+                <a [routerLink]="['/student-update/', student.studentId]"> Edit </a>
+                <a [routerLink]="['/student-delete/', student.studentId]"> Delete </a> </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
