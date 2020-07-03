@@ -14,4 +14,9 @@ export class CourseService {
   createCourse(course: Course): Observable<any> {
     return this.http.post<any>(this._url, course);
   }
+
+  public findById(courseId: number): Observable<any>{
+    return this.http.get<any>(this._url+"/"+courseId);
+  }
+
 }

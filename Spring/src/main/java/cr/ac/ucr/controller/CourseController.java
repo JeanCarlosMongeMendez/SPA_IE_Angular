@@ -3,16 +3,12 @@ package cr.ac.ucr.controller;
 import cr.ac.ucr.Converter.CourseConverter;
 import cr.ac.ucr.DTO.CourseDTO;
 import cr.ac.ucr.Exception.LyExceptions;
-import cr.ac.ucr.repository.CourseRepository;
 import cr.ac.ucr.service.CourseService;
 import cr.ac.ucr.spa.Course;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @CrossOrigin

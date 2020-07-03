@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
-import {CourseService} from "../Service/CourseService";
-import {Course} from "../model/course";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CourseService} from "../../Service/CourseService";
+import {Course} from "../../model/course";
 import {Router} from "@angular/router";
-import {Observable} from "rxjs";
+//import {Observable} from "rxjs";
 //import {AuthenticationService} from "../../../../services/authentication.service";
 import swal from "sweetalert2";
-
 
 @Component({
   selector: 'app-form-course',

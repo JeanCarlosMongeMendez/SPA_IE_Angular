@@ -7,9 +7,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CourseComponent } from './course/course.component';
+//import { CourseComponent } from './components/course/course.component';
 import { Observable } from 'rxjs';
-import { FormCourseComponent } from './form-course/form-course.component';
+import { FormCourseComponent } from './components/form-course/form-course.component';
 
 const appRoutes: Routes = [
   {
@@ -17,12 +17,13 @@ const appRoutes: Routes = [
     component: FormCourseComponent,
     data: { title: 'Course Add' }
   },
+
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CourseComponent,
+  //  CourseComponent,
     FormCourseComponent
   ],
   imports: [
@@ -31,9 +32,9 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    CourseComponent,
-    Observable,
+    HttpClientModule
+  ],
+  exports: [
     FormCourseComponent
   ],
   providers: [],
