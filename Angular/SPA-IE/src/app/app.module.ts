@@ -10,6 +10,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { CourseComponent } from './components/course/course.component';
 import { Observable } from 'rxjs';
 import { FormCourseComponent } from './components/form-course/form-course.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProfessorListComponent } from './components/professor-list/professor-list.component';
+
+
 
 const appRoutes: Routes = [
   {
@@ -24,7 +29,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
   //  CourseComponent,
-    FormCourseComponent
+    FormCourseComponent,
+  ProfessorListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -32,7 +38,9 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    GridModule,
+    BrowserAnimationsModule
   ],
   exports: [
     FormCourseComponent
