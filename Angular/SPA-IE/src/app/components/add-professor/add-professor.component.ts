@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { ProfessorService } from '../../Services/professor.service';
 import { RestService } from '../../Services/rest.service';
-import { Professor } from '../../model/Professor'
+import { Professor } from 'src/app/model/professor';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from "rxjs";
 import swal from "sweetalert2";
@@ -24,9 +25,8 @@ export class AddProfessorComponent implements OnInit {
   provinces: any;
   cantons: any;
   districts: any;
-  professorService: ProfessorService;
   constructor(private formBuilder: FormBuilder,
-    private router: Router, private restService: RestService) { 
+    private router: Router, private restService: RestService, private professorService: ProfessorService) { 
       this.form = this.formBuilder.group({
 
         username: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
@@ -52,7 +52,15 @@ export class AddProfessorComponent implements OnInit {
     this.getDistricts(this.cantons[1]);
 
   }
-  /*submit() {
+
+  submit() {
+    let canton = new Canton();
+    canton.idCanton=1
+    let province = new Province();
+    province.idProvince=1;
+    let district = new District();
+    district.idDistrict=1;
+    canton.idCanton=1
     this.error = '';
     this.submitted = true;
     if (this.form.invalid || this.loading) return;
@@ -65,27 +73,26 @@ export class AddProfessorComponent implements OnInit {
     userProfile.interests = this.interests.value;
     userProfile.email = this.email.value;
     userProfile.admin = this.admin.value;
-   /* userProfile.canton = (new Canton().idCanton = this.canton.value);
-    userProfile.province = (new Province().idProvince = this.province.value);
-    userProfile.district = (new District().idDistrict = this.district.value);
+    userProfile.canton = canton;
+    userProfile.province =province;
+    userProfile.district = district;
     userProfile.creationDate = new Date();
     userProfile.enable = true;
     professor.userProfile = userProfile;
     professor.degree = this.degree.value;
- this.professorService.save(professor).subscribe(data => {
+  
+    this.professorService.save(professor).subscribe(data => {
       swal.fire({
         icon: 'success',
-        text: 'Ready'
+        text: 'Success'
       }).finally(() => {
         this.router.navigate(['/professor-list'])
       });
     }, res => {
       this.error = res.error.text;
       this.unBlockForm();
-    }
-    this.router.navigate(['/professor-list'])
-  })*/
-
+    })
+  }
   addProfessor() {
   
     this.professorService.save(this.form.value).subscribe((result) => {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import { ProfessorService } from '../../Services/professor.service';
-import { Professor } from '../../model/Professor'
+
 import { ActivatedRoute, Router } from '@angular/router';
 import {Observable} from "rxjs";
 import swal from "sweetalert2";
@@ -30,6 +30,7 @@ export class ProfessorListComponent implements OnInit {
       this.gridData = data;
     });
   }
+  
 
   add() {
     this.router.navigate(['/professor-add']);
