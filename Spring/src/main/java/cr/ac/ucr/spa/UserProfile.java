@@ -1,68 +1,67 @@
 package cr.ac.ucr.spa;
 
+import com.sun.istack.NotNull;
+import cr.ac.ucr.spa.Canton;
+import cr.ac.ucr.spa.District;
+import cr.ac.ucr.spa.Province;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name="User_Profile",  schema = "BS_ISem_2020")
+@Inheritance (strategy = InheritanceType.JOINED)
 public class UserProfile {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Id_User_Profile")
     private int idUserProfile;
 
     @Column(name="Username")
+    @NotNull
     private String username;
 
     @Column(name="Password")
+    @NotNull
     private String password;
 
     @Column(name="User_Photo")
+    @NotNull
     private String userPhoto;
 
-    //@Column(name="Interests")
-    //private String interests;
+    @Column(name="Interests")
+    @NotNull
+    private String interests;
 
     @Column(name="Email")
+    @NotNull
     private String email;
 
-    /*@Column(name="Is_Admin")
-    private boolean admin;*/
+    @Column(name="Is_Admin")
+    @NotNull
+    private boolean admin;
 
-    /*@Column(name="Is_Enable")
-    private boolean isEnable;*/
+    @Column(name="Is_Enable")
+    @NotNull
+    private boolean isEnable;
 
-    @Column(name="Id_Canton")
-    private int idCanton;
+    @ManyToOne
+    @JoinColumn (name="Id_Canton")
+    private Canton canton = new Canton();
 
-    @Column(name="Id_Province")
-    private int idProvince;
+    @ManyToOne
+    @JoinColumn(name="Id_Province")
+    private Province province = new Province();
 
-    @Column(name="Id_District")
-    private int idDistrict;
+    @ManyToOne
+    @JoinColumn(name="Id_District")
+    private District district= new District();
 
     @Column(name="Creation_Date")
+    @NotNull
     private Date creationDate;
 
-    public UserProfile() {
-    }
 
-    public UserProfile(int idUserProfile, String username, String password, String userPhoto, String interest, String email, boolean admin, boolean isEnable, int idCanton, int idProvince, int idDistrict, Date creationDate) {
-        this.idUserProfile = idUserProfile;
-        this.username = username;
-        this.password = password;
-        this.userPhoto = userPhoto;
-        //this.interests = interest;
-        this.email = email;
-        //this.admin = admin;
-        //this.isEnable = isEnable;
-        this.idCanton = idCanton;
-        this.idProvince = idProvince;
-        this.idDistrict = idDistrict;
-        this.creationDate = creationDate;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdUserProfile() {
         return idUserProfile;
     }
@@ -95,13 +94,13 @@ public class UserProfile {
         this.userPhoto = userPhoto;
     }
 
-    /*public String getInterest() {
+    public String getInterests() {
         return interests;
     }
 
-    public void setInterest(String interest) {
-        this.interests = interest;
-    }*/
+    public void setInterests(String interests) {
+        this.interests = interests;
+    }
 
     public String getEmail() {
         return email;
@@ -111,44 +110,44 @@ public class UserProfile {
         this.email = email;
     }
 
-    /*public boolean isAdmin() {
+    public boolean isAdmin() {
         return admin;
     }
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
-    }*/
+    }
 
-    /*public boolean isEnable() {
+    public boolean isEnable() {
         return isEnable;
     }
 
     public void setEnable(boolean enable) {
         isEnable = enable;
-    }*/
-
-    public int getIdCanton() {
-        return idCanton;
     }
 
-    public void setIdCanton(int idCanton) {
-        this.idCanton = idCanton;
+    public Canton getCanton() {
+        return canton;
     }
 
-    public int getIdProvince() {
-        return idProvince;
+    public void setCanton(Canton canton) {
+        this.canton = canton;
     }
 
-    public void setIdProvince(int idProvince) {
-        this.idProvince = idProvince;
+    public Province getProvince() {
+        return province;
     }
 
-    public int getIdDistrict() {
-        return idDistrict;
+    public void setProvince(Province province) {
+        this.province = province;
     }
 
-    public void setIdDistrict(int idDistrict) {
-        this.idDistrict = idDistrict;
+    public District getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(District district) {
+        this.district = district;
     }
 
     public Date getCreationDate() {

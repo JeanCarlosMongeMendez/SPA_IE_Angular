@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { StudentService } from "../../services/student.service";
-import { Student } from "../../model/Student";
-import { Canton } from '../../model/Canton'
-import { District } from '../../model/District'
-import { Province } from '../../model/Province'
+import { StudentService } from 'src/app/Services/student.service';
 import { Router } from "@angular/router";
-import { UserProfile } from 'src/app/model/UserProfile';
+import swal from "sweetalert2";
+import { Student } from 'src/app/model/Student';
+import { GeneralService } from 'src/app/services/general.service';
 
 
 @Component({
@@ -24,7 +22,8 @@ export class StudentAddComponent implements OnInit {
   cantons: any = [];
   districts: any = [];
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private service: StudentService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, 
+    private service: StudentService, private generalService: GeneralService) {
     this.form = this.formBuilder.group({
       username: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
       password: ['', [Validators.required]],
@@ -48,23 +47,31 @@ export class StudentAddComponent implements OnInit {
     if (this.form.invalid || this.loading) return;
     this.blockForm();
     let student = new Student();
-    let userProfile = new UserProfile();
-    userProfile.username = this.username.value;
-    userProfile.password = this.password.value;
-    userProfile.userPhoto = "image";
-    userProfile.interests = this.interests.value;
-    userProfile.email = this.email.value;
-    userProfile.admin = false;
-    userProfile.canton = (new Canton().idCanton = this.canton.value);
-    userProfile.province = (new Province().idProvince = this.province.value);
-    userProfile.district = (new District().idDistrict = this.district.value);
-    userProfile.creationDate = new Date();
-    userProfile.enable = true;
-    student.userProfile = userProfile;
+    student.username = this.username.value;
+    student.password = this.password.value;
+    student.userPhoto = "image";
+    student.interests = this.interests.value;
+    student.email = this.email.value;
+    student.admin = false;
+    student.idCanton = this.canton.value;
+    student.idProvince = this.province.value;
+    student.idDistrict = this.district.value;
+    student.creationDate = new Date();
+    student.isEnable = true;
     student.identificationCard = this.identificationCard.value;
     student.isAsip = this.isAsip.value;
     student.isActive = false;
-    this.service.save(student);
+    this.service.save(student).subscribe(data => {
+      swal.fire({
+        icon: 'success',
+        text: 'Success'
+      }).finally(() => {
+        this.router.navigate(['/students-list'])
+      });
+    }, res => {
+      this.error = res.error.text;
+      this.unBlockForm();
+    });
       
   }
 
@@ -80,7 +87,7 @@ export class StudentAddComponent implements OnInit {
 
   getProvinces(){
     this.provinces = [];
-    this.service.getProvinces().subscribe((data:{ }) => {
+    this.generalService.getProvinces().subscribe((data:{ }) => {
       console.log(data);
       this.provinces = data;
     })
@@ -92,7 +99,7 @@ export class StudentAddComponent implements OnInit {
 
   getCantons(id: number){
     this.cantons = [];
-    this.service.getCantos(id).subscribe((data:{ }) => {
+    this.generalService.getCantos(id).subscribe((data:{ }) => {
       console.log(data);
       this.cantons = data;
     })
@@ -100,11 +107,20 @@ export class StudentAddComponent implements OnInit {
 
   getDistricts(id: number){
     this.districts = [];
-    this.service.getDistricts(id).subscribe((data:{ }) => {
+    this.generalService.getDistricts(id).subscribe((data:{ }) => {
       console.log(data);
       this.districts = data;
     })
   }
+
+  provinceSelectOnChange(id){
+    this.getCantons(id);
+  }
+
+  cantonSelectOnChange(id){
+    this.getDistricts(id);
+  }
+
   get username() { return this.form.get('username'); }
   get password() { return this.form.get('password'); }
   get email() { return this.form.get('email'); }

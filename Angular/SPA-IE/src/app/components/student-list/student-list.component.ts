@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentService } from '../../Services/student.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
+import { StudentService } from 'src/app/Services/student.service';
 
 @Component({
   selector: 'app-student-list',
