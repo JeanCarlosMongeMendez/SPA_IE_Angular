@@ -16,6 +16,6 @@ export class Student {
     nameDistrict: string;
     creationDate: Date;
     identificationCard: string;
-    isAsip: boolean;
+    asip: boolean;
     isActive: boolean;
 }

@@ -11,8 +11,7 @@ import { FormCourseComponent } from './components/form-course/form-course.compon
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentListComponent } from './components/student-list/student-list.component';
-import { StudentAddComponent } from './components/student-add/student-add.component';
-import { StudentUpdateComponent } from './components/student-update/student-update.component';
+import { StudentFormComponent } from './components/student-form/student-form.component';
 
 
 
@@ -29,14 +28,19 @@ const appRoutes: Routes = [
   },
   {
     path: 'student-add',
-    component: StudentAddComponent,
+    component: StudentFormComponent,
     data: { title: 'Student Add' }
   },
   {
-    path: 'student-update',
-    component: StudentUpdateComponent,
+    path: 'student-update/:idUpdate',
+    component: StudentFormComponent,
     data: { title: 'Student Update' }
   },
+  {
+    path: 'student-detail/:idDetail',
+    component: StudentFormComponent,
+    data: { title: 'Student Details' }
+  }
 
 ];
 
@@ -46,8 +50,7 @@ const appRoutes: Routes = [
     //  CourseComponent,
     FormCourseComponent,
     StudentListComponent,
-    StudentAddComponent,
-    StudentUpdateComponent
+    StudentFormComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

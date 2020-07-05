@@ -2,7 +2,8 @@
 
     <h2>Students List</h2>
 
-    <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="true"
+    <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="true" 
+        [resizable]="true" 
         [pageable]="true">
         <ng-template kendoGridToolbarTemplate>
             <button (click)="add()">Add new</button>
@@ -12,10 +13,10 @@
         <kendo-grid-column field="email" title="Email"></kendo-grid-column>
         <kendo-grid-column field="nameProvince" title="Province"></kendo-grid-column>
         <kendo-grid-command-column title="command">
-            <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
-                <a [routerLink]="['/student-detail/', rowIndex.idUserProfile]"> Detail </a>
-                <a [routerLink]="['/student-update/', rowIndex.idUserProfile]"> Edit </a>
-                <a [routerLink]="['/student-delete/', rowIndex.idUserProfile]"> Delete </a>
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <a [routerLink]="['/student-detail/', dataItem.idUserProfile]">  Detail | </a>
+                <a [routerLink]="['/student-update/', dataItem.idUserProfile]">  Edit | </a>
+                <a [routerLink]="['/student-delete/', dataItem.idUserProfile]">  Delete </a>
             </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>

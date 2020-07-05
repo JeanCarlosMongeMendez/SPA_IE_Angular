@@ -12,7 +12,6 @@ import { StudentService } from 'src/app/Services/student.service';
 export class StudentListComponent implements OnInit {
 
   public gridData: any;
-  public students: any = []
 
   constructor(public service:StudentService, private route: ActivatedRoute, private router: Router) { }
 
@@ -20,10 +19,8 @@ export class StudentListComponent implements OnInit {
     this.getStudents();
   }
   getStudents() {
-    this.students = [];
     this.service.list().subscribe((data: {}) => {
       console.log(data);
-      this.students = data;
       this.gridData = data;
     });
   }

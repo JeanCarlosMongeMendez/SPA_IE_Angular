@@ -1,29 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { StudentService } from 'src/app/Services/student.service';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import swal from "sweetalert2";
 import { Student } from 'src/app/model/Student';
 import { GeneralService } from 'src/app/services/general.service';
 
-
 @Component({
-  selector: 'app-student-add',
-  templateUrl: './student-add.component.html',
-  styleUrls: ['./student-add.component.css']
+  selector: 'app-student-form',
+  templateUrl: './student-form.component.html',
+  styleUrls: ['./student-form.component.css']
 })
-export class StudentAddComponent implements OnInit {
+export class StudentFormComponent implements OnInit {
 
   form: FormGroup;
-  submitted = false;
-  error = '';
-  loading: boolean = false;
   provinces: any = [];
   cantons: any = [];
   districts: any = [];
+  action: string;
 
   constructor(private formBuilder: FormBuilder, private router: Router, 
-    private service: StudentService, private generalService: GeneralService) {
+    private service: StudentService,
+    private route: ActivatedRoute, 
+    private generalService: GeneralService) {
     this.form = this.formBuilder.group({
       username: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
       password: ['', [Validators.required]],
@@ -33,19 +32,29 @@ export class StudentAddComponent implements OnInit {
       province: ['', [Validators.required]],
       district: ['', [Validators.required]],
       identificationCard: ['', [Validators.required]],
-      isAsip: [false]
+      isAsip: ['']
     });
   }
 
   ngOnInit(): void {
+    let idUpdate = this.route.snapshot.params['idUpdate'];
+    let idDetails = this.route.snapshot.params['idDetail'];
+    if(idDetails!=null){
+      this.action = 'DETAILS';
+      this.loadStudent(idDetails);
+      this.blockForm();
+    }else if(idUpdate != null){
+      this.action = 'UPDATE';
+      this.loadStudent(idUpdate);
+    }else{
+      this.action = 'ADD';
+    }
+    console.log(this.action);
     this.getProvinces();
   }
 
   submit() {
-    this.error = '';
-    this.submitted = true;
-    if (this.form.invalid || this.loading) return;
-    this.blockForm();
+    if (this.form.invalid) return;
     let student = new Student();
     student.username = this.username.value;
     student.password = this.password.value;
@@ -59,29 +68,46 @@ export class StudentAddComponent implements OnInit {
     student.creationDate = new Date();
     student.isEnable = true;
     student.identificationCard = this.identificationCard.value;
-    student.isAsip = this.isAsip.value;
+    student.asip = this.isAsip.value;
     student.isActive = false;
-    this.service.save(student).subscribe(data => {
-      swal.fire({
-        icon: 'success',
-        text: 'Success'
-      }).finally(() => {
-        this.router.navigate(['/students-list'])
+    console.log(student);
+    if(this.action == 'ADD'){
+      this.service.save(student).subscribe(data => {
+        swal.fire({
+          icon: 'success',
+          text: 'Success student add'
+        }).finally(() => {
+          this.router.navigate(['/student-list'])
+        });
+      }, res => {
+        swal.fire({
+          icon: 'error',
+          text: 'Failed, please try again'
+        });
       });
-    }, res => {
-      this.error = res.error.text;
-      this.unBlockForm();
-    });
-      
+    }else if(this.action == 'UPDATE'){
+      student.idUserProfile = this.route.snapshot.params['idUpdate'];
+      this.service.update(student).subscribe(data => {
+        swal.fire({
+          icon: 'success',
+          text: 'Success student update'
+        }).finally(() => {
+          this.router.navigate(['/student-list'])
+        });
+      }, res => {
+        swal.fire({
+          icon: 'error',
+          text: 'Failed, please try again'
+        });
+      });
+    }
   }
 
   blockForm() {
-    this.loading = true;
     this.form.disable();
   }
 
   unBlockForm() {
-    this.loading = false;
     this.form.enable();
   }
 
@@ -94,7 +120,7 @@ export class StudentAddComponent implements OnInit {
   }
 
   cancel(){
-    this.router.navigate(['/students-list']);
+    this.router.navigate(['/student-list']);
   }
 
   getCantons(id: number){
@@ -119,6 +145,25 @@ export class StudentAddComponent implements OnInit {
 
   cantonSelectOnChange(id){
     this.getDistricts(id);
+  }
+
+  loadStudent(id: number){
+    let student: any = {};
+    this.service.findById(id).subscribe((data: {}) => {
+      student = data;
+      console.log(data);
+      this.form.controls['username'].setValue(student.username); 
+      this.form.controls['password'].setValue(student.password);
+      this.form.controls['email'].setValue(student.email);
+      this.form.controls['isAsip'].setValue(student.asip);
+      this.form.controls['interests'].setValue(student.interests);
+      this.form.controls['province'].setValue(student.idProvince);
+      this.getCantons(student.idProvince);
+      this.form.controls['canton'].setValue(student.idCanton);
+      this.getDistricts(student.idCanton);
+      this.form.controls['district'].setValue(student.idDistrict);
+      this.form.controls['identificationCard'].setValue(student.identificationCard);
+    });
   }
 
   get username() { return this.form.get('username'); }
