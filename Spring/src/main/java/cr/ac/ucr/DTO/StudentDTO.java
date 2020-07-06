@@ -1,43 +1,27 @@
 package cr.ac.ucr.DTO;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class StudentDTO {
 
-
-    private int idStudent;
-    private String identificationCard;
     private int idUserProfile;
-    private boolean isASIP;
-    private boolean isActive;
-    private int createdBy;
-    private Date creationDate;
     private String username;
     private String password;
     private String userPhoto;
-    private String interest;
+    private String interests;
     private String email;
-    private boolean isAdmin;
+    private boolean admin;
     private boolean isEnable;
     private int idCanton;
+    private String nameCanton;
     private int idProvince;
+    private String nameProvince;
     private int idDistrict;
-
-    public int getIdStudent() {
-        return idStudent;
-    }
-
-    public void setIdStudent(int idStudent) {
-        this.idStudent = idStudent;
-    }
-
-    public String getIdentificationCard() {
-        return identificationCard;
-    }
-
-    public void setIdentificationCard(String identificationCard) {
-        this.identificationCard = identificationCard;
-    }
+    private String nameDistrict;
+    private Date creationDate;
+    private String identificationCard;
+    private boolean isAsip;
+    private boolean isActive;
 
     public int getIdUserProfile() {
         return idUserProfile;
@@ -45,38 +29,6 @@ public class StudentDTO {
 
     public void setIdUserProfile(int idUserProfile) {
         this.idUserProfile = idUserProfile;
-    }
-
-    public boolean isASIP() {
-        return isASIP;
-    }
-
-    public void setASIP(boolean ASIP) {
-        isASIP = ASIP;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public int getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(int createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
     }
 
     public String getUsername() {
@@ -103,12 +55,12 @@ public class StudentDTO {
         this.userPhoto = userPhoto;
     }
 
-    public String getInterest() {
-        return interest;
+    public String getInterests() {
+        return interests;
     }
 
-    public void setInterest(String interest) {
-        this.interest = interest;
+    public void setInterests(String interests) {
+        this.interests = interests;
     }
 
     public String getEmail() {
@@ -120,11 +72,11 @@ public class StudentDTO {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     public boolean isEnable() {
@@ -143,12 +95,28 @@ public class StudentDTO {
         this.idCanton = idCanton;
     }
 
+    public String getNameCanton() {
+        return nameCanton;
+    }
+
+    public void setNameCanton(String nameCanton) {
+        this.nameCanton = nameCanton;
+    }
+
     public int getIdProvince() {
         return idProvince;
     }
 
     public void setIdProvince(int idProvince) {
         this.idProvince = idProvince;
+    }
+
+    public String getNameProvince() {
+        return nameProvince;
+    }
+
+    public void setNameProvince(String nameProvince) {
+        this.nameProvince = nameProvince;
     }
 
     public int getIdDistrict() {
@@ -159,5 +127,43 @@ public class StudentDTO {
         this.idDistrict = idDistrict;
     }
 
+    public String getNameDistrict() {
+        return nameDistrict;
+    }
 
+    public void setNameDistrict(String nameDistrict) {
+        this.nameDistrict = nameDistrict;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public String getIdentificationCard() {
+        return identificationCard;
+    }
+
+    public void setIdentificationCard(String identificationCard) {
+        this.identificationCard = identificationCard;
+    }
+
+    public boolean isAsip() {
+        return isAsip;
+    }
+
+    public void setAsip(boolean asip) {
+        isAsip = asip;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }

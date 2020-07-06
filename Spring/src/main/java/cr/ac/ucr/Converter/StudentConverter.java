@@ -3,68 +3,70 @@ package cr.ac.ucr.Converter;
 import cr.ac.ucr.DTO.StudentDTO;
 import cr.ac.ucr.spa.Student;
 import cr.ac.ucr.service.StudentService;
-import cr.ac.ucr.spa.UserProfile;
+import cr.ac.ucr.spa.Canton;
+import cr.ac.ucr.spa.District;
+import cr.ac.ucr.spa.Province;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.sql.Date;
-
 @Service
-@Transactional
 public class StudentConverter {
 
     @Autowired
     private StudentService studentService;
 
-    public Student getEntity (StudentDTO dto){
+    public Student toEntity (StudentDTO dto){
         Student entity = new Student();
-        entity.setIdStudent(dto.getIdStudent());
-        entity.setIsActive(dto.isActive());
-        //entity.setIsASIP(dto.isASIP());
-        entity.setCreateBy(dto.getCreatedBy());
-        entity.setCreationDate(dto.getCreationDate());
-        entity.setIdentificationCard(dto.getIdentificationCard());
-        entity.setIdUserProfile(dto.getIdUserProfile());
-        return entity;
-    }
+        Province province = new Province();
+        Canton canton = new Canton();
+        District district = new District();
 
-    public UserProfile getUserEntity (StudentDTO dto){
-        UserProfile entity = new UserProfile();
-        //entity.setAdmin(dto.isAdmin());
-        entity.setCreationDate(dto.getCreationDate());
-        entity.setEmail(dto.getEmail());
-        //entity.setEnable(dto.isEnable());
-        entity.setIdCanton(dto.getIdCanton());
-        entity.setIdDistrict(dto.getIdDistrict());
-        entity.setIdProvince(dto.getIdProvince());
+        canton.setIdCanton(dto.getIdCanton());
+        canton.setName(dto.getNameCanton());
+        canton.setIdProvince(dto.getIdProvince());
+        province.setIdProvince(dto.getIdProvince());
+        province.setName(dto.getNameProvince());
+        district.setIdDistrict(dto.getIdDistrict());
+        district.setName(dto.getNameDistrict());
+        district.setIdCanton(dto.getIdCanton());
         entity.setIdUserProfile(dto.getIdUserProfile());
-        //entity.setInterest(dto.getInterest());
+        entity.setIdentificationCard(dto.getIdentificationCard());
+        entity.setCreationDate(dto.getCreationDate());
+        entity.setActive(dto.isActive());
+        entity.setAsip(dto.isAsip());
+        entity.setEmail(dto.getEmail());
         entity.setPassword(dto.getPassword());
         entity.setUsername(dto.getUsername());
         entity.setUserPhoto(dto.getUserPhoto());
+        entity.setAdmin(dto.isAdmin());
+        entity.setEnable(dto.isEnable());
+        entity.setInterests(dto.getInterests());
+        entity.setCanton(canton);
+        entity.setDistrict(district);
+        entity.setProvince(province);
         return entity;
     }
 
-    public StudentDTO getDTO(Student entity, UserProfile profile){
+    public StudentDTO toDTO(Student entity){
         StudentDTO dto = new StudentDTO();
-        //dto.setAdmin(profile.isAdmin());
-        dto.setActive(entity.isIsActive());
-        //dto.setASIP(entity.isASIP());
-        dto.setCreatedBy(entity.getCreateBy());
-        dto.setCreationDate((Date) entity.getCreationDate());
-        dto.setEmail(profile.getEmail());
-        //dto.setEnable(profile.isEnable());
-        dto.setIdCanton(profile.getIdCanton());
-        dto.setIdDistrict(profile.getIdDistrict());
+        dto.setActive(entity.isActive());
+        dto.setCreationDate(entity.getCreationDate());
+        dto.setEmail(entity.getEmail());
+        dto.setIdCanton(entity.getCanton().getIdCanton());
+        dto.setIdDistrict(entity.getDistrict().getIdDistrict());
         dto.setIdentificationCard(entity.getIdentificationCard());
-        dto.setIdProvince(profile.getIdProvince());
-        dto.setIdStudent(entity.getIdStudent());
+        dto.setIdProvince(entity.getProvince().getIdProvince());
         dto.setIdUserProfile(entity.getIdUserProfile());
-        //dto.setInterest(profile.getInterest());
-        dto.setPassword(profile.getPassword());
-        dto.setUsername(profile.getUsername());
-        dto.setUserPhoto(profile.getUserPhoto());
+        dto.setPassword(entity.getPassword());
+        dto.setUsername(entity.getUsername());
+        dto.setUserPhoto(entity.getUserPhoto());
+        dto.setAdmin(entity.isAdmin());
+        dto.setAsip(entity.isAsip());
+        dto.setEnable(entity.isEnable());
+        dto.setInterests(entity.getInterests());
+        dto.setNameCanton(entity.getCanton().getName());
+        dto.setNameDistrict(entity.getDistrict().getName());
+        dto.setNameProvince(entity.getProvince().getName());
         return dto;
     }
 }

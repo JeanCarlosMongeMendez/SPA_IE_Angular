@@ -5,9 +5,11 @@ import cr.ac.ucr.spa.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
@@ -21,9 +23,9 @@ public class StudentService {
     public void delete(int id){studentRepository.deleteById(id);}
 
     public Student update(Student entity) throws Exception {
-        Student entityToUpdate = studentRepository.findById(entity.getIdStudent()).get();
+        Student entityToUpdate = studentRepository.findById(entity.getIdUserProfile()).get();
         if(entityToUpdate != null) {
             return studentRepository.save(entity);
-        } else throw new Exception("Entity not found");
+        } else throw new Exception("Student not found");
     }
 }
