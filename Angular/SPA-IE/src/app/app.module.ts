@@ -12,6 +12,12 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { StudentFormComponent } from './components/student-form/student-form.component';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { LabelModule } from '@progress/kendo-angular-label';
+import { MenuModule } from '@progress/kendo-angular-menu';
+
+
+
 
 
 
@@ -22,7 +28,7 @@ const appRoutes: Routes = [
     data: { title: 'Course Add' }
   },
   {
-    path: 'student-list',
+    path: 'student-list/:action',
     component: StudentListComponent,
     data: { title: 'Student List' }
   },
@@ -50,7 +56,7 @@ const appRoutes: Routes = [
     //  CourseComponent,
     FormCourseComponent,
     StudentListComponent,
-    StudentFormComponent,
+    StudentFormComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -60,7 +66,10 @@ const appRoutes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     GridModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ButtonsModule,
+    LabelModule,
+    MenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

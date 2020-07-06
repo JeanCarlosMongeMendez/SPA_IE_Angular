@@ -12,10 +12,17 @@ import { StudentService } from 'src/app/Services/student.service';
 export class StudentListComponent implements OnInit {
 
   public gridData: any;
+  public action: string;
 
-  constructor(public service:StudentService, private route: ActivatedRoute, private router: Router) { }
+  constructor(public service:StudentService, private route: ActivatedRoute, public router: Router) {
+    route.params.subscribe(val => {
+      this.action = this.route.snapshot.params['action'];
+      this.getStudents();
+    })
+  }
 
   ngOnInit(): void {
+    this.action = this.route.snapshot.params['action'];
     this.getStudents();
   }
   getStudents() {
@@ -23,9 +30,5 @@ export class StudentListComponent implements OnInit {
       console.log(data);
       this.gridData = data;
     });
-  }
-
-  add() {
-    this.router.navigate(['/student-add']);
   }
 }
