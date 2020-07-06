@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CourseService} from "../../Service/CourseService";
 import {Course} from "../../model/course";
-import {Router} from "@angular/router";
+import { ActivatedRoute, Router} from "@angular/router";
 //import {Observable} from "rxjs";
 //import {AuthenticationService} from "../../../../services/authentication.service";
 import swal from "sweetalert2";
@@ -20,7 +20,8 @@ export class FormCourseComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private courseService: CourseService) {
+              private courseService: CourseService,
+              private route: ActivatedRoute) {
 
     this.form = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
