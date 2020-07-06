@@ -1,6 +1,9 @@
 package cr.ac.ucr.spa;
 
 import com.sun.istack.NotNull;
+import cr.ac.ucr.spa.Canton;
+import cr.ac.ucr.spa.District;
+import cr.ac.ucr.spa.Province;
 
 import javax.persistence.*;
 import java.util.Date;

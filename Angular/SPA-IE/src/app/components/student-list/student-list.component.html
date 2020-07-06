@@ -1,0 +1,23 @@
+<div class="container">
+
+    <h2>Students List</h2>
+
+    <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="true" 
+        [resizable]="true" 
+        [pageable]="true">
+        <ng-template kendoGridToolbarTemplate>
+            <button (click)="add()">Add new</button>
+        </ng-template>
+        <kendo-grid-column field="username" title="Name"></kendo-grid-column>
+        <kendo-grid-column field="identificationCard" title="Identification Card"></kendo-grid-column>
+        <kendo-grid-column field="email" title="Email"></kendo-grid-column>
+        <kendo-grid-column field="nameProvince" title="Province"></kendo-grid-column>
+        <kendo-grid-command-column title="command">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <a [routerLink]="['/student-detail/', dataItem.idUserProfile]">  Detail | </a>
+                <a [routerLink]="['/student-update/', dataItem.idUserProfile]">  Edit | </a>
+                <a [routerLink]="['/student-delete/', dataItem.idUserProfile]">  Delete </a>
+            </ng-template>
+        </kendo-grid-command-column>
+    </kendo-grid>
+</div>

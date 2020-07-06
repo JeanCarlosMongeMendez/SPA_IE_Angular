@@ -21,18 +21,23 @@ public class DistrictController {
     @Autowired
     private DistrictService districtService;
 
-    @RequestMapping(path = "/", method = RequestMethod.GET)
+    @RequestMapping(path="/", method = RequestMethod.GET)
     public List<District> list() {
         return districtService.listAll().stream().collect(Collectors.toList());
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public District get(@PathVariable Integer id) {
-        return districtService.get(id);
-    }
+    /*@GetMapping("/districts/{id}")
+    public ResponseEntity<District> get(@PathVariable Integer id) {
+        try {
+            District district = districtService.get(id);
+            return new ResponseEntity<District>(district, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<District>(HttpStatus.NOT_FOUND);
+        }
+    }*/
 
-    @RequestMapping(path = "/ByCanton/{id}", method = RequestMethod.GET)
-    public List<District> getCantonsByCantons(@PathVariable Integer id) {
-        return districtService.getDistrictsByCanton(id).stream().collect(Collectors.toList());
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public List<District> getByProvince(@PathVariable Integer id) {
+        return districtService.getDistrictsByCanton(id);
     }
 }

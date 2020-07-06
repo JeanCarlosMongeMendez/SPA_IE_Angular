@@ -10,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -20,19 +18,24 @@ public class CantonController {
     @Autowired
     private CantonService cantonService;
 
-    @RequestMapping(path = "/", method = RequestMethod.GET)
+    @RequestMapping(path="/", method = RequestMethod.GET)
     public List<Canton> list() {
         return cantonService.listAll().stream().collect(Collectors.toList());
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public Canton get(@PathVariable Integer id) {
-        return cantonService.get(id);
-    }
+    /*@GetMapping("/cantons/{id}")
+    public ResponseEntity<Canton> get(@PathVariable Integer id) {
+        try {
+            Canton canton = cantonService.get(id);
+            return new ResponseEntity<Canton>(canton, HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<Canton>(HttpStatus.NOT_FOUND);
+        }
+    }*/
 
-    @RequestMapping(path = "/ByProvince/{id}", method = RequestMethod.GET)
-    public List<Canton> getCantonsByProvince(@PathVariable Integer id) {
-        return cantonService.getCantonsByProvince(id).stream().collect(Collectors.toList());
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public List<Canton> getByProvince(@PathVariable Integer id) {
+        return cantonService.getCantonsByProvince(id);
     }
 
 
