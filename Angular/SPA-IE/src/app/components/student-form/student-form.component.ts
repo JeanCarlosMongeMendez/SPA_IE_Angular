@@ -120,7 +120,7 @@ export class StudentFormComponent implements OnInit {
   }
 
   cancel(){
-    this.router.navigate(['/student-list']);
+    this.router.navigate(['/']);
   }
 
   getCantons(id: number){

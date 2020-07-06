@@ -14,6 +14,12 @@ import { ProfessorListComponent } from './components/professor-list/professor-li
 import { AddProfessorComponent } from './components/add-professor/add-professor.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { StudentFormComponent } from './components/student-form/student-form.component';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { LabelModule } from '@progress/kendo-angular-label';
+import { MenuModule } from '@progress/kendo-angular-menu';
+
+
+
 
 
 
@@ -33,7 +39,8 @@ const appRoutes: Routes = [
     component: AddProfessorComponent,
     data: { title: 'Add Professor' }
   },
-    path: 'student-list',
+   
+    path: 'student-list/:action',
     component: StudentListComponent,
     data: { title: 'Student List' }
   },
@@ -64,7 +71,7 @@ const appRoutes: Routes = [
     AddProfessorComponent,
    
     StudentListComponent,
-    StudentFormComponent,
+    StudentFormComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -74,7 +81,10 @@ const appRoutes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     GridModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ButtonsModule,
+    LabelModule,
+    MenuModule
   ],
   exports: [
     FormCourseComponent

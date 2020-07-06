@@ -6,17 +6,21 @@
         [resizable]="true" 
         [pageable]="true">
         <ng-template kendoGridToolbarTemplate>
-            <button (click)="add()">Add new</button>
+            <button kendoButton [look]="'outline'" [icon]="'add'" (click)="router.navigate(['/student-add']);">Add new</button>
         </ng-template>
-        <kendo-grid-column field="username" title="Name"></kendo-grid-column>
-        <kendo-grid-column field="identificationCard" title="Identification Card"></kendo-grid-column>
-        <kendo-grid-column field="email" title="Email"></kendo-grid-column>
-        <kendo-grid-column field="nameProvince" title="Province"></kendo-grid-column>
-        <kendo-grid-command-column title="command">
-            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-                <a [routerLink]="['/student-detail/', dataItem.idUserProfile]">  Detail | </a>
-                <a [routerLink]="['/student-update/', dataItem.idUserProfile]">  Edit | </a>
-                <a [routerLink]="['/student-delete/', dataItem.idUserProfile]">  Delete </a>
+        <kendo-grid-column field="username" title="Name" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="identificationCard" title="Identification Card" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="email" title="Email" [width]="150"></kendo-grid-column>
+        <kendo-grid-column field="nameProvince" title="Province" [width]="100"></kendo-grid-column>
+        <kendo-grid-command-column title="Actions" [width]="300">
+            <ng-template *ngIf="action == 'APPROVED'" kendoGridCellTemplate let-dataItem="dataItem">
+                <button kendoButton [look]="'flat'" [icon]="'table-align-middle-center'" (click)="router.navigate(['/student-detail', dataItem.idUserProfile]);">Detail</button>
+                <button kendoButton [look]="'flat'" [icon]="'edit'" (click)="router.navigate(['/student-update', dataItem.idUserProfile]);">Edit</button>
+                <button kendoButton [look]="'flat'" [icon]="'delete'" (click)="router.navigate(['/student-delete', dataItem.idUserProfile]);">Delete</button>
+            </ng-template>
+            <ng-template *ngIf="action == 'DISAPPROVED'" kendoGridCellTemplate let-dataItem="dataItem">
+                <button kendoButton [look]="'flat'" [icon]="'check'" >Approve</button>
+                <button kendoButton [look]="'flat'" [icon]="'close'" >Reject</button>
             </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>
