@@ -31,6 +31,7 @@ export class ListCourseComponent implements OnInit {
   }
 
   delete(id) {
+ 
     swal.fire({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this course file!",
@@ -55,6 +56,8 @@ export class ListCourseComponent implements OnInit {
         )
       }
     })
+
+
   }
 
 }
