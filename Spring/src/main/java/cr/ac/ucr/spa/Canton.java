@@ -14,7 +14,7 @@ public class Canton {
 
     @Column(name="Name")
     @NotNull
-    private String nameCanton;
+    private String name;
 
     @Column(name="Id_Province")
     @NotNull
@@ -23,9 +23,9 @@ public class Canton {
     public Canton() {
     }
 
-    public Canton(int idCanton, String nameCanton, int idProvince) {
+    public Canton(int idCanton, String name, int idProvince) {
         this.idCanton = idCanton;
-        this.nameCanton = nameCanton;
+        this.name = name;
         this.idProvince = idProvince;
     }
 
@@ -38,12 +38,12 @@ public class Canton {
         this.idCanton = idCanton;
     }
 
-    public String getNameCanton() {
-        return nameCanton;
+    public String getName() {
+        return name;
     }
 
-    public void setNameCanton(String nameCanton) {
-        this.nameCanton = nameCanton;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getIdProvince() {

@@ -11,6 +11,7 @@ import cr.ac.ucr.spa.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,12 +27,19 @@ public class ProfessorController {
     @RequestMapping(path = "/", method = RequestMethod.POST)
     public ProfessorDTO save(@RequestBody ProfessorDTO dto) {
         Professor entity = converter.toEntity(dto);
+        entity.setEnable(true);
         return converter.toDto(service.save(entity));
     }
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public List<ProfessorDTO> findAll() {
-        return service.listAll().stream().map(it -> converter.toDto(it))
+        List<Professor> professors= new ArrayList<>();
+        for (Professor professor: service.listAll() ) {
+        if(professor.isEnable()==true){
+            professors.add(professor);
+        }
+        }
+        return professors.stream().map(it -> converter.toDto(it))
                 .collect(Collectors.toList());
     }
 
@@ -45,11 +53,20 @@ public class ProfessorController {
                                  @RequestBody ProfessorDTO dto) throws LyExceptions.RecordNotFoundException {
         Professor entity = converter.toEntity(dto);
         entity.setIdUserProfile(id);
+        dto.getUserProfile().setEnable(true);
         return converter.toDto(service.update(converter.toEntity(dto)));
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
-        service.delete(id);
+        ProfessorDTO dto = new ProfessorDTO();
+        dto= converter.toDto(service.get(id));
+        try {
+            Professor entity =  converter.toEntity(dto);
+            entity.setEnable(false);
+            dto = converter.toDto(service.update(entity));
+        } catch (LyExceptions.RecordNotFoundException e) {
+            e.printStackTrace();         }
+
     }
 }

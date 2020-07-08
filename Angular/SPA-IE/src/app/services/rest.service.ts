@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class RestService {
-    private _url = 'http://localhost:8080/spa_war/api';
+    private _url = 'http://localhost:8282/spa_war/api';
 
     constructor(private http: HttpClient) { }
 

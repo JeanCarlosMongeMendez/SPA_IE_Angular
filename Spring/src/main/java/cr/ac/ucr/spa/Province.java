@@ -15,14 +15,14 @@ public class Province {
 
     @Column(name="Name")
     @NotNull
-    private String nameProvince;
+    private String name;
 
     public Province() {
     }
 
-    public Province(int idProvince, String nameProvince) {
+    public Province(int idProvince, String name) {
         this.idProvince = idProvince;
-        this.nameProvince = nameProvince;
+        this.name = name;
     }
 
 
@@ -34,11 +34,11 @@ public class Province {
         this.idProvince = idProvince;
     }
 
-    public String getNameProvince() {
-        return nameProvince;
+    public String getName() {
+        return name;
     }
 
-    public void setNameProvince(String nameProvince) {
-        this.nameProvince = nameProvince;
+    public void setName(String nameProvince) {
+        this.name = name;
     }
 }

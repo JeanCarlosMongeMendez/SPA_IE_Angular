@@ -1,6 +1,6 @@
 <body>
     <div class="container">
-        <h2>Professor Add </h2>
+        <h2>{{action}} </h2>
         <form [formGroup]="form" (ngSubmit)="submit()" #formDir="ngForm">
             <div class="form-group row">
                 <label class=" control-label col-md-12" for="username">Username</label>
@@ -11,19 +11,16 @@
                     Username is required.
                 </span>
             </div>
-            
             <div class="form-group row">
                 <label class=" control-label col-md-12" for="degree">Degree</label>
                 <div class="col-md-8">
-                    <input class="form-control" type="text" formControlName="degree" placeholder="Degree">
+                    <input class="form-control" type="text" formControlName="degree"
+                        placeholder="Degree">
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'degree') && formDir.submitted">
                     Degree is required.
                 </span>
             </div>
-
-
-
             <div class="form-group row">
                 <label class=" control-label col-md-12" for="password">Password</label>
                 <div class="col-md-4">
@@ -50,14 +47,17 @@
                 <span class="text-danger" *ngIf="form.hasError('required', 'email') && formDir.submitted">
                     Email is required.
                 </span>
+                <span class="text-danger" *ngIf="form.hasError('email', 'email') && formDir.submitted">
+                    Email format required.
+                </span>
             </div>
             <div class="form-group row">
                 <label class="control-label col-md-12" for="province">Province</label>
                 <div class="col-md-4">
-                    <select class="form-control" formControlName="province">
+                    <select class="form-control" formControlName="province" (change)="provinceSelectOnChange($event.target.value)">
                         <option value="" disabled selected>select an option</option>
                         <option *ngFor="let prov of provinces;" [value]="prov.idProvince">
-                            {{prov.nameProvince}}
+                            {{prov.name}}
                         </option>
                     </select>
                 </div>
@@ -68,10 +68,10 @@
             <div class="form-group row">
                 <label class="control-label col-md-12" for="canton">Canton</label>
                 <div class="col-md-4">
-                    <select class="form-control" formControlName="canton">
+                    <select class="form-control" formControlName="canton" (change)="cantonSelectOnChange($event.target.value)">
                         <option value="" disabled selected>select an option</option>
                         <option *ngFor="let cant of cantons;" [value]="cant.idCanton">
-                            {{cant.nameCanton}}
+                            {{cant.name}}
                         </option>
                     </select>
                 </div>
@@ -85,7 +85,7 @@
                     <select class="form-control" formControlName="district">
                         <option value="" disabled selected>select an option</option>
                         <option *ngFor="let dist of districts;" [value]="dist.idDistrict">
-                            {{dist.nameDistrict}}
+                            {{dist.name}}
                         </option>
                     </select>
                 </div>
@@ -93,20 +93,10 @@
                     District is required
                 </span>
             </div>
-            <div class="form-group row">
-                <label class="control-label col-md-12" for="admin">Is administrator</label>
-                <div class="col-md-4">
-                    <input type="checkbox" class="form-control" formControlName="admin">
-                </div>
-            </div>
-            
-
-
-
 
             <div class="form-group row">
                 <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button *ngIf="action == 'ADD' || action == 'UPDATE'" type="submit" class="btn btn-primary">Save</button>
                     <button class="btn btn-secondary col-xs-offset-1" (click)="cancel()">Cancel</button>
                 </div>
             </div>

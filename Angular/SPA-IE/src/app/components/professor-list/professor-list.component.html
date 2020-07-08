@@ -4,22 +4,26 @@
 
     <br>
 
-    <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="true" [pageSize]="10"
-        [pageable]="true" [height]="510">
-        <ng-template kendoGridToolbarTemplate>
-            <button ng-click="add()">Add new</button>
+    <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="true" 
+    [resizable]="true" 
+    [pageable]="true"> 
+    <ng-template kendoGridToolbarTemplate>
+        <button kendoButton [look]="'outline'" [icon]="'add'" (click)="router.navigate(['/professor-add']);">Add new</button>
         </ng-template>
-        <kendo-grid-column field="userProfile.username" title="Name" [width]="140"></kendo-grid-column>
-        <kendo-grid-column field="userProfile.email" title="Email" [width]="120"></kendo-grid-column>
-        <kendo-grid-column field="userProfile.province.nameProvince" title="Province" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="userProfile.username" title="Name" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="userProfile.email" title="Email" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="userProfile.province.name" title="Province" [width]="100"></kendo-grid-column>
         <kendo-grid-column field="degree" title="Degree" [width]="130"></kendo-grid-column>
 
-        <kendo-grid-command-column title="command">
-            <ng-template kendoGridCellTemplate let-rowIndex="rowIndex">
-                <a [routerLink]="['/student-detail/', rowIndex.userProfile.idUserProfile]"> Detail </a>
-                <a [routerLink]="['/student-update/', rowIndex.userProfile.idUserProfile]"> Edit </a>
-                <a [routerLink]="['/student-delete/', rowIndex.userProfile.idUserProfile]"> Delete </a> 
+        <kendo-grid-command-column title="Actions" [width]="300">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <button kendoButton [look]="'flat'" [icon]="'table-align-middle-center'" (click)="router.navigate(['/professor-detail', dataItem.userProfile.idUserProfile]);">Detail</button>
+                <button kendoButton [look]="'flat'" [icon]="'edit'" (click)="router.navigate(['/professor-update', dataItem.userProfile.idUserProfile]);">Edit</button>
+                <button kendoButton [look]="'flat'" [icon]="'delete'" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                [popoverMessage]="popoverMessage" placement="left" (confirm)="delete( dataItem.userProfile.idUserProfile);"
+                (cancel)="cancelClicked = true">Delete</button>
             </ng-template>
+
         </kendo-grid-command-column>
         
     </kendo-grid>

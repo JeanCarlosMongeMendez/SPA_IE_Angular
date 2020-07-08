@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping(path = "/api/student")
 public class StudentController {
-/*
+
     @Autowired
     private StudentService studentService;
     @Autowired
@@ -54,5 +54,5 @@ public class StudentController {
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
         studentService.delete(id);
-    }*/
+    }
 }

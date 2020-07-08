@@ -11,13 +11,14 @@ import { FormCourseComponent } from './components/form-course/form-course.compon
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfessorListComponent } from './components/professor-list/professor-list.component';
-import { AddProfessorComponent } from './components/add-professor/add-professor.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { StudentFormComponent } from './components/student-form/student-form.component';
+import { ProfessorFormComponent } from './components/professor-form/professor-form.component';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { MenuModule } from '@progress/kendo-angular-menu';
 
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 
 
@@ -33,13 +34,22 @@ const appRoutes: Routes = [
     path: 'professor-list',
     component: ProfessorListComponent,
     data: { title: 'Professor List' }
+  }, {
+    path: 'professor-add',
+    component: ProfessorFormComponent,
+    data: { title: 'Professor Add' }
   },
   {
-    path: 'add-professor',
-    component: AddProfessorComponent,
-    data: { title: 'Add Professor' }
+    path: 'professor-update/:idUpdate',
+    component: ProfessorFormComponent,
+    data: { title: 'Professor Update' }
   },
-   
+  {
+    path: 'professor-detail/:idDetail',
+    component: ProfessorFormComponent,
+    data: { title: 'Professor Details' }
+  },
+  {
     path: 'student-list/:action',
     component: StudentListComponent,
     data: { title: 'Student List' }
@@ -68,10 +78,9 @@ const appRoutes: Routes = [
     //  CourseComponent,
     FormCourseComponent,
     ProfessorListComponent,
-    AddProfessorComponent,
-   
     StudentListComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    ProfessorFormComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -84,7 +93,9 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ButtonsModule,
     LabelModule,
-    MenuModule
+    MenuModule,
+    ConfirmationPopoverModule.forRoot({ confirmButtonType:'danger'
+  }),
   ],
   exports: [
     FormCourseComponent

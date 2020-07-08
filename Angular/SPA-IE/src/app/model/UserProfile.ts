@@ -10,9 +10,9 @@ export class UserProfile{
     interests: string;
     email: string;
     admin: boolean;
+    isEnable: boolean;
     canton: Canton;
     province: Province;
     district: District;
     creationDate: Date;
-    enable: boolean;
 }

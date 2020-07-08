@@ -19,15 +19,15 @@ public class District {
 
     @Column(name="Name")
     @NotNull
-    private String nameDistrict;
+    private String name;
 
     public District() {
     }
 
-    public District(int idDistrict, int idCanton, String nameDistrict) {
+    public District(int idDistrict, int idCanton, String name) {
         this.idDistrict = idDistrict;
         this.idCanton = idCanton;
-        this.nameDistrict = nameDistrict;
+        this.name = name;
     }
 
     public int getIdDistrict() {
@@ -46,11 +46,11 @@ public class District {
         this.idCanton = idCanton;
     }
 
-    public String getNameDistrict() {
-        return nameDistrict;
+    public String getName() {
+        return name;
     }
 
-    public void setNameDistrict(String nameDistrict) {
-        this.nameDistrict = nameDistrict;
+    public void setName(String name) {
+        this.name = name;
     }
 }

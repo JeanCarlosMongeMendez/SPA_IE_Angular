@@ -20,6 +20,6 @@ public class ProvinceController {
 
     @RequestMapping(path="/", method = RequestMethod.GET)
     public List<Province> list() {
-        return provinceService.listAll().stream().collect(Collectors.toList());
+        return provinceService.listAll();
     }
 }

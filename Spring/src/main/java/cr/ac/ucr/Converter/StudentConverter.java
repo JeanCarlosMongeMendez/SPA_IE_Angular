@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StudentConverter {
-    /*
+
 
     @Autowired
     private StudentService studentService;
@@ -69,5 +69,5 @@ public class StudentConverter {
         dto.setNameDistrict(entity.getDistrict().getName());
         dto.setNameProvince(entity.getProvince().getName());
         return dto;
-    }*/
+    }
 }

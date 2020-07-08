@@ -9,7 +9,7 @@ import { Professor } from '../model/professor';
     providedIn: 'root'
 })
 export class ProfessorService {
-    private _url = 'http://localhost:8080/spa_war/api/professor/';
+    private _url = 'http://localhost:8282/spa_war/api/professor/';
 
     constructor(private http: HttpClient) { }
 
@@ -30,6 +30,7 @@ export class ProfessorService {
       }
     
       public delete(idUserProfile: number): Observable<any>{
+        console.log(idUserProfile);
           return this.http.delete<any>(this._url + idUserProfile);
       }
 
