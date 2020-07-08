@@ -21,8 +21,12 @@ export class StudentService {
     return this.http.get<any>(this._url + id);
   }
 
-  public list(): Observable<any> {
-    return this.http.get<any>(this._url);
+  public listApproved(): Observable<any> {
+    return this.http.get<any>(this._url + 'approved');
+  }
+
+  public listDisapproved(): Observable<any> {
+    return this.http.get<any>(this._url + 'disapproved');
   }
 
   public update(student: Student): Observable<any> {
@@ -31,5 +35,14 @@ export class StudentService {
 
   public delete(id: number): Observable<any> {
     return this.http.delete<any>(this._url + id);
+  }
+
+  public approve(id: number){
+    let student = new Student();
+    return this.http.put<any>(this._url + 'approve/' + id, student);
+  }
+
+  public reject(id: number){
+    return this.http.delete<any>(this._url + 'reject/' + id);
   }
 }
