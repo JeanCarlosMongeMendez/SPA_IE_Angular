@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import swal from 'sweetalert2';
-import { CourseService } from 'src/app/Service/CourseService';
+
+import {CourseService} from "../../Service/CourseService";
 import { ActivatedRoute, Router } from '@angular/router';
+
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-course',
@@ -20,7 +22,7 @@ export class ListCourseComponent implements OnInit {
 
   getCourses(){
     this.courses=[];
-    this.courseService.list().subscribe((data:{}) =>{
+    this.courseService.getCourses().subscribe((data:{}) =>{
       console.log(data);
       this.courses=data;
     });
@@ -41,7 +43,7 @@ export class ListCourseComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        this.courseService.delete(id)
+        this.courseService.deleteCourse(id)
         .subscribe(res => {
             this.getCourses();
           }, (err) => {

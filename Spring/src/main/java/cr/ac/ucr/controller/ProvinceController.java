@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -19,8 +20,6 @@ public class ProvinceController {
 
     @RequestMapping(path="/", method = RequestMethod.GET)
     public List<Province> list() {
-        //¿reglas de negocio?
-        //if...es admin
         return provinceService.listAll();
     }
 }

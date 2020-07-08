@@ -13,5 +13,5 @@ import java.util.List;
 public interface DistrictRepository extends JpaRepository<District,Integer> {
 
     @Query(value = "SELECT * FROM BS_ISem_2020.District WHERE Id_Canton = :idCanton", nativeQuery = true)
-    List<District> getDistrictsByCanton(@Param("idCanton") Integer id);
+    List<District> getDistrictsByCanton(@Param("idCanton") Integer idCanton);
 }

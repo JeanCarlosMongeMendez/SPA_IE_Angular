@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
+
 export class CourseService {
   private _url='http://localhost:8282/spa_war/api/course/';
 
@@ -18,5 +19,13 @@ export class CourseService {
   public findById(courseId: number): Observable<any>{
     return this.http.get<any>(this._url+"/"+courseId);
   }
+
+  public getCourses(): Observable<any>{
+    return this.http.get(this._url);
+  }
+
+
+
+
 
 }

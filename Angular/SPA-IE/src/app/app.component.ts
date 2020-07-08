@@ -35,6 +35,9 @@ export class AppComponent {
     {
       text:'Sign in',
       path:'/'
+    {
+      text:'List of professors',
+      path:'/professor-list'
     },
   ];
 

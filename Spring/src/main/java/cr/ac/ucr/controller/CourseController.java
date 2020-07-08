@@ -96,7 +96,7 @@ public class CourseController {
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
         courseService.delete(id);
-    }
+    } }
 
     //SIN ANGULAR
     /*
@@ -144,4 +144,4 @@ public class CourseController {
         courseService.delete(id);
     }
 */
-}
+//}
