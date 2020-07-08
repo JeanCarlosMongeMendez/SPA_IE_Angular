@@ -1,0 +1,81 @@
+<h2>Update Course </h2>
+<div style="margin-left: 20px;">
+<form [formGroup]="form" (ngSubmit)="submit()" #formDir="ngForm">
+ 
+      <div class="form-group row">
+          <label class=" control-label col-md-10" for="name">Name</label>
+          <div class="col-md-4">
+            <input class="form-control" type="text" formControlName="name">
+          </div>
+          <span class="text-danger" *ngIf="form.hasError('required', 'name') && formDir.submitted">
+            Name is required.
+          </span>
+          <span class="text-danger" *ngIf="form.hasError('pattern', 'name') && formDir.submitted">
+            Name no admit symbols.
+          </span>
+       </div>
+
+       <div class="form-group row">
+            <label class=" control-label col-md-10" for="semester">Semester</label>
+            <div class="col-md-4">
+            <input class="form-control" type="text" formControlName="semester">
+            </div>
+            <span class="text-danger" *ngIf="form.hasError('required', 'semester') && formDir.submitted">
+                Semester is required.
+            </span>
+            <span class="text-danger" *ngIf="form.hasError('pattern', 'semester') && formDir.submitted">
+                At least one digit required.
+            </span>
+       </div>
+
+       <div class="form-group row">
+            <label class=" control-label col-md-10" for="description">Description</label>
+            <div class="col-md-4">
+            <input class="form-control" type="text" formControlName="description">
+            </div>
+            <span class="text-danger" *ngIf="form.hasError('required', 'description') && formDir.submitted">
+                Description is required.
+            </span>
+        </div>
+
+        <div class="form-group row">
+            <label class=" control-label col-md-10" for="image">Image</label>
+            <div class="col-md-4">
+            <input class="form-control" type="text" formControlName="image">
+            </div>
+            <span class="text-danger" *ngIf="form.hasError('required', 'image') && formDir.submitted">
+                Image is required.
+            </span>
+        </div>
+
+        <div class="form-group row">
+            <label class=" control-label col-md-10" for="state">Semester</label>
+            <div class="col-md-4">
+            <input class="form-control" type="text" formControlName="state">
+            </div>
+            <span class="text-danger" *ngIf="form.hasError('required', 'state') && formDir.submitted">
+                State is required.
+            </span>
+            <span class="text-danger" *ngIf="form.hasError('pattern', 'state') && formDir.submitted">
+                At least one digit required.
+            </span>
+       </div>
+
+       <div class="form-group row">
+            <label class=" control-label col-md-10" for="creationDate">Creation Date</label>
+            <div class="col-md-4">
+            <input class="form-control" type="text" formControlName="creationDate">
+            </div>
+            <span class="text-danger" *ngIf="form.hasError('required', 'creationDate') && formDir.submitted">
+                Creation Date is required.
+            </span>
+        </div>
+
+        <br>
+        <div class="form-group">
+          <button type="submit" class="btn btn-dark">Save</button>
+          <button style="margin-left: 10px;" class="btn btn-dark" (click)="cancel()">Cancel</button>
+        </div>
+  
+</form>
+</div>
