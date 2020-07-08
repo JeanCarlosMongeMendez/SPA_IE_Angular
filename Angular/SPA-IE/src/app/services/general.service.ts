@@ -25,4 +25,8 @@ export class GeneralService {
     return this.http.get(this._url + 'district/' + id);
   }
 
+  singIn(student: Student){
+    return this.http.get(this._url + 'login/student?username=' +student.username+'&password='+student.password);
+  }
+
 }

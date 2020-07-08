@@ -77,6 +77,8 @@ public class StudentController {
     public StudentDTO update(@PathVariable("id") int id,
                             @RequestBody StudentDTO dto) {
         Student entity = studentConverter.toEntity(dto);
+        entity.setActive(true);
+        entity.setEnable(true);
         try {
             Student student = studentService.update(entity);
             return studentConverter.toDTO(student);

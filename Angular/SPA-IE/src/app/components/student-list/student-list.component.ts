@@ -43,9 +43,8 @@ export class StudentListComponent implements OnInit {
   }
 
   approve(id: number) {
-    console.log(id);
     this.service.approve(id).subscribe(res => {
-      this.getStudentsApproved();
+      this.router.navigate(['/student-list/APPROVED']);
     }, (err) => {
       console.log(err);
     });
@@ -53,7 +52,7 @@ export class StudentListComponent implements OnInit {
 
   reject(id: number) {
     this.service.reject(id).subscribe(res => {
-      this.getStudentsDisapproved();
+      this.router.navigate(['/student-list/DISAPPROVED']);
     }, (err) => {
       console.log(err);
     });;

@@ -1,6 +1,7 @@
 
 
 <kendo-menu [items]="items">
+    <label>Welcome {{User}}</label>
     <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
         <a [kendoMenuItemLink]="index" [routerLink]="item.path">
             {{ item.text }}
