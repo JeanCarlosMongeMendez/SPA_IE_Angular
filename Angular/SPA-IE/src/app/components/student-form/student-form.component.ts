@@ -48,8 +48,10 @@ export class StudentFormComponent implements OnInit {
     }else if(idUpdate != null){
       this.action = 'UPDATE';
       this.loadStudent(idUpdate);
-    }else{
+    }else if(this.action = 'ADD'){
       this.action = 'ADD';
+    }else {
+      this.action = 'LOGIN'
     }
     console.log(this.action);
     this.getProvinces();
@@ -91,6 +93,20 @@ export class StudentFormComponent implements OnInit {
           text: 'Success student update'
         }).finally(() => {
           this.router.navigate(['/student-list/APPROVED'])
+        });
+      }, res => {
+        swal.fire({
+          icon: 'error',
+          text: 'Failed, please try again'
+        });
+      });
+    }else {
+      this.service.save(student).subscribe(data => {
+        swal.fire({
+          icon: 'success',
+          text: 'Success student registred'
+        }).finally(() => {
+          this.router.navigate(['/'])
         });
       }, res => {
         swal.fire({

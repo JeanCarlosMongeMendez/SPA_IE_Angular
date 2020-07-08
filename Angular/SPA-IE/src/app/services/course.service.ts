@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 
 export class CourseService {
-  private _url='http://localhost:8282/spa_war/api/course/';
+  private _url='http://localhost:8282/spa_war/api/course';
 
   constructor(private http: HttpClient) { }
 
@@ -23,9 +23,4 @@ export class CourseService {
   public getCourses(): Observable<any>{
     return this.http.get(this._url);
   }
-
-
-
-
-
 }

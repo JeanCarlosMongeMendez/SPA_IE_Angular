@@ -52,7 +52,7 @@ export class StudentListComponent implements OnInit {
 
   reject(id: number) {
     this.service.reject(id).subscribe(res => {
-      this.router.navigate(['/student-list/DISAPPROVED']);
+      this.getStudentsDisapproved();
     }, (err) => {
       console.log(err);
     });;

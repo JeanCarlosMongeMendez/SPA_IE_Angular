@@ -49,16 +49,16 @@ export class UpdateCourseComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-
-    this.courseService.updateCourse(this.form.value).subscribe((result) => {
-      this.router.navigate(['/course/']);
+    console.log(this.form.value);
+    this.courseService.update(this.form.value).subscribe((result) => {
+      this.router.navigate(['/list-course/']);
     }, (err) => {
       console.log(err);
     });
   }
 
   cancel(){
-    this.router.navigate(['/courses']);
+    this.router.navigate(['/list-course']);
   }
 
   get name() { return this.form.get('name'); }
@@ -67,5 +67,4 @@ export class UpdateCourseComponent implements OnInit {
   get image() {return this.form.get('image');}
   get state() {return this.form.get('state');}
   get creationDate() {return this.form.get('creationDate');}
-
 }
