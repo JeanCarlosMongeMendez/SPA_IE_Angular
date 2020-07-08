@@ -1,0 +1,32 @@
+<div class="container">
+
+    <h2>Professors List</h2>
+
+    <br>
+
+    <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="true" 
+    [resizable]="true" 
+    [pageable]="true"> 
+    <ng-template kendoGridToolbarTemplate>
+        <button kendoButton [look]="'outline'" [icon]="'add'" (click)="router.navigate(['/professor-add']);">Add new</button>
+        </ng-template>
+        <kendo-grid-column field="userProfile.username" title="Name" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="userProfile.email" title="Email" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="userProfile.province.name" title="Province" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="degree" title="Degree" [width]="130"></kendo-grid-column>
+
+        <kendo-grid-command-column title="Actions" [width]="300">
+            <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                <button kendoButton [look]="'flat'" [icon]="'table-align-middle-center'" (click)="router.navigate(['/professor-detail', dataItem.userProfile.idUserProfile]);">Detail</button>
+                <button kendoButton [look]="'flat'" [icon]="'edit'" (click)="router.navigate(['/professor-update', dataItem.userProfile.idUserProfile]);">Edit</button>
+                <button kendoButton [look]="'flat'" [icon]="'delete'" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                [popoverMessage]="popoverMessage" placement="left" (confirm)="delete( dataItem.userProfile.idUserProfile);"
+                (cancel)="cancelClicked = true">Delete</button>
+            </ng-template>
+
+        </kendo-grid-command-column>
+        
+    </kendo-grid>
+
+
+</div>

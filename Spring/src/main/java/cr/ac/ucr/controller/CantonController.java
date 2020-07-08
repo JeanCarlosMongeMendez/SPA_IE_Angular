@@ -1,6 +1,7 @@
 package cr.ac.ucr.controller;
 
 import cr.ac.ucr.service.CantonService;
+import cr.ac.ucr.service.ProvinceService;
 import cr.ac.ucr.spa.Canton;
 import cr.ac.ucr.spa.Province;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -19,7 +21,7 @@ public class CantonController {
 
     @RequestMapping(path="/", method = RequestMethod.GET)
     public List<Canton> list() {
-        return cantonService.listAll();
+        return cantonService.listAll().stream().collect(Collectors.toList());
     }
 
     /*@GetMapping("/cantons/{id}")
@@ -36,4 +38,6 @@ public class CantonController {
     public List<Canton> getByProvince(@PathVariable Integer id) {
         return cantonService.getCantonsByProvince(id);
     }
+
+
 }
