@@ -32,14 +32,11 @@ public class StudentConverter {
         entity.setIdUserProfile(dto.getIdUserProfile());
         entity.setIdentificationCard(dto.getIdentificationCard());
         entity.setCreationDate(dto.getCreationDate());
-        entity.setActive(dto.isActive());
         entity.setAsip(dto.isAsip());
         entity.setEmail(dto.getEmail());
         entity.setPassword(dto.getPassword());
         entity.setUsername(dto.getUsername());
         entity.setUserPhoto(dto.getUserPhoto());
-        entity.setAdmin(dto.isAdmin());
-        entity.setEnable(dto.isEnable());
         entity.setInterests(dto.getInterests());
         entity.setCanton(canton);
         entity.setDistrict(district);
@@ -49,7 +46,6 @@ public class StudentConverter {
 
     public StudentDTO toDTO(Student entity){
         StudentDTO dto = new StudentDTO();
-        dto.setActive(entity.isActive());
         dto.setCreationDate(entity.getCreationDate());
         dto.setEmail(entity.getEmail());
         dto.setIdCanton(entity.getCanton().getIdCanton());
@@ -60,9 +56,7 @@ public class StudentConverter {
         dto.setPassword(entity.getPassword());
         dto.setUsername(entity.getUsername());
         dto.setUserPhoto(entity.getUserPhoto());
-        dto.setAdmin(entity.isAdmin());
         dto.setAsip(entity.isAsip());
-        dto.setEnable(entity.isEnable());
         dto.setInterests(entity.getInterests());
         dto.setNameCanton(entity.getCanton().getName());
         dto.setNameDistrict(entity.getDistrict().getName());

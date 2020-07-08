@@ -1,5 +1,6 @@
 package cr.ac.ucr.service;
 
+import cr.ac.ucr.Exception.LyExceptions;
 import cr.ac.ucr.repository.StudentRepository;
 import cr.ac.ucr.spa.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,14 @@ public class StudentService {
 
     public Student get(int id){return studentRepository.findById(id).get();}
 
-    public void delete(int id){studentRepository.deleteById(id);}
+    public void delete(int id){
+        studentRepository.deleteById(id);
+    }
 
-    public Student update(Student entity) throws Exception {
+    public Student update(Student entity) throws LyExceptions.RecordNotFoundException {
         Student entityToUpdate = studentRepository.findById(entity.getIdUserProfile()).get();
         if(entityToUpdate != null) {
             return studentRepository.save(entity);
-        } else throw new Exception("Student not found");
+        } else throw new LyExceptions.RecordNotFoundException(Student.class.getName());
     }
 }

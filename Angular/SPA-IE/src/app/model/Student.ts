@@ -6,8 +6,6 @@ export class Student {
     userPhoto: string;
     interests: string;
     email: string;
-    admin: boolean;
-    isEnable: boolean;
     idCanton: number;
     nameCanton: string;
     idProvince: number;
@@ -17,5 +15,4 @@ export class Student {
     creationDate: Date;
     identificationCard: string;
     asip: boolean;
-    isActive: boolean;
 }

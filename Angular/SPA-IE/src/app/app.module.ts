@@ -15,6 +15,12 @@ import { StudentFormComponent } from './components/student-form/student-form.com
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { MenuModule } from '@progress/kendo-angular-menu';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+
+
+
 
 
 
@@ -69,7 +75,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ButtonsModule,
     LabelModule,
-    MenuModule
+    MenuModule,
+    DropDownsModule,
+    InputsModule,
+    DialogsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
