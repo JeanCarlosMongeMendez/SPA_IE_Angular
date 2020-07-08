@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormCourseComponent } from './components/form-course/form-course.component';
+import { ListCourseComponent } from './components/list-course/list-course.component';
+import { UpdateCourseComponent } from './components/update-course/update-course.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfessorListComponent } from './components/professor-list/professor-list.component';
@@ -45,6 +47,13 @@ const appRoutes: Routes = [
   },
   {
 
+    path: 'list-course',
+    component: ListCourseComponent,
+    data: { title: 'List Course' }
+  },
+  {
+
+
     path: 'professor-list',
     component: ProfessorListComponent,
     data: { title: 'Professor List' }
@@ -64,16 +73,19 @@ const appRoutes: Routes = [
     data: { title: 'Professor Details' }
   },
 
+
     path: 'update-course/:courseId',
     component: UpdateCourseComponent,
     data: { title: 'Update Course' }
   },
   {
+
     path: 'list-course',
     component: ListCourseComponent,
     data: { title: 'List Course' }
   },
   {
+
     path: 'student-list/:action',
     component: StudentListComponent,
     data: { title: 'Student List' }
@@ -99,6 +111,13 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+
+  //  CourseComponent,
+    FormCourseComponent,
+  ListCourseComponent,
+  UpdateCourseComponent
+    //  CourseComponent,
+
     FormCourseComponent,
     ProfessorListComponent,
     StudentListComponent,
@@ -115,6 +134,12 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
+  ],
+  exports: [
+    FormCourseComponent,
+    ListCourseComponent,
+    UpdateCourseComponent
     HttpClientModule,
     GridModule,
     BrowserAnimationsModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CourseService } from 'src/app/Service/CourseService';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {CourseService} from "../../Service/CourseService";
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-course.component.css']
 })
 export class UpdateCourseComponent implements OnInit {
-
   form: FormGroup;
   errorMessage: any;
 
@@ -51,15 +50,15 @@ export class UpdateCourseComponent implements OnInit {
       return;
     }
 
-    this.courseService.update(this.form.value).subscribe((result) => {
-      this.router.navigate(['/list-course/']);
+    this.courseService.updateCourse(this.form.value).subscribe((result) => {
+      this.router.navigate(['/course/']);
     }, (err) => {
       console.log(err);
     });
   }
 
   cancel(){
-    this.router.navigate(['/list-course']);
+    this.router.navigate(['/courses']);
   }
 
   get name() { return this.form.get('name'); }
