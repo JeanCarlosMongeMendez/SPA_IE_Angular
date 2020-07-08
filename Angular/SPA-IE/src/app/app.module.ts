@@ -15,6 +15,7 @@ import { StudentFormComponent } from './components/student-form/student-form.com
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { MenuModule } from '@progress/kendo-angular-menu';
+
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
@@ -27,11 +28,25 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
 
 
 
+import { ListCourseComponent } from './components/list-course/list-course.component';
+import { UpdateCourseComponent } from './components/update-course/update-course.component';
+
+
 const appRoutes: Routes = [
   {
     path: 'form-course',
     component: FormCourseComponent,
     data: { title: 'Course Add' }
+  },
+  {
+    path: 'update-course/:courseId',
+    component: UpdateCourseComponent,
+    data: { title: 'Update Course' }
+  },
+  {
+    path: 'list-course',
+    component: ListCourseComponent,
+    data: { title: 'List Course' }
   },
   {
     path: 'student-list/:action',
@@ -59,10 +74,11 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    //  CourseComponent,
     FormCourseComponent,
     StudentListComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    ListCourseComponent,
+    UpdateCourseComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
