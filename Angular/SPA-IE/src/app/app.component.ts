@@ -23,8 +23,11 @@ export class AppComponent {
     {
       text:'List Courses',
       path:'/list-course'
-    }
-
+    },
+    {
+      text:'List of professors',
+      path:'/professor-list'
+    },
   ];
 
   constructor(public router: ActivatedRoute) {

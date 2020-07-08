@@ -13,6 +13,8 @@ import { GeneralService } from 'src/app/services/general.service';
 })
 export class StudentFormComponent implements OnInit {
 
+  isCantonEnable = false;
+  isDistrictEnable = false;
   form: FormGroup;
   provinces: any = [];
   cantons: any = [];
@@ -61,15 +63,12 @@ export class StudentFormComponent implements OnInit {
     student.userPhoto = "image";
     student.interests = this.interests.value;
     student.email = this.email.value;
-    student.admin = false;
     student.idCanton = this.canton.value;
     student.idProvince = this.province.value;
     student.idDistrict = this.district.value;
     student.creationDate = new Date();
-    student.isEnable = true;
     student.identificationCard = this.identificationCard.value;
     student.asip = this.isAsip.value;
-    student.isActive = false;
     console.log(student);
     if(this.action == 'ADD'){
       this.service.save(student).subscribe(data => {
@@ -77,7 +76,7 @@ export class StudentFormComponent implements OnInit {
           icon: 'success',
           text: 'Success student add'
         }).finally(() => {
-          this.router.navigate(['/student-list'])
+          this.router.navigate(['/student-list/APPROVED'])
         });
       }, res => {
         swal.fire({
@@ -92,7 +91,7 @@ export class StudentFormComponent implements OnInit {
           icon: 'success',
           text: 'Success student update'
         }).finally(() => {
-          this.router.navigate(['/student-list'])
+          this.router.navigate(['/student-list/APPROVED'])
         });
       }, res => {
         swal.fire({
@@ -139,12 +138,14 @@ export class StudentFormComponent implements OnInit {
     })
   }
 
-  provinceSelectOnChange(id){
-    this.getCantons(id);
+  provinceSelectOnChange(value: any){
+    this.getCantons(value);
+    this.isCantonEnable = true;
   }
 
-  cantonSelectOnChange(id){
-    this.getDistricts(id);
+  cantonSelectOnChange(value: any){
+    this.getDistricts(value);
+    this.isDistrictEnable = true;
   }
 
   loadStudent(id: number){
