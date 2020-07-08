@@ -20,6 +20,10 @@ export class AppComponent {
       text:'Disapproved students',
       path:'/student-list/DISAPPROVED'
     },
+    {
+      text:'List of professors',
+      path:'/professor-list'
+    },
   ];
 
   constructor(public router: ActivatedRoute) {

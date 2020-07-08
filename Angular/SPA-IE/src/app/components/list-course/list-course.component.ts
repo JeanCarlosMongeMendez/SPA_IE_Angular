@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {CourseService} from "../../Service/CourseService";
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -16,7 +17,7 @@ export class ListCourseComponent implements OnInit {
   constructor(public courseService:CourseService, private route: ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
-    this.getCourses();
+    this.getCourses(); 
   }
 
   getCourses(){
@@ -28,7 +29,6 @@ export class ListCourseComponent implements OnInit {
   }
 
   add() {
-    //this.router.navigate(['/student-add']);
     this.router.navigate(['/form-course']);
   }
 
@@ -59,8 +59,4 @@ export class ListCourseComponent implements OnInit {
     })
   }
 
-
 }
-
-
-

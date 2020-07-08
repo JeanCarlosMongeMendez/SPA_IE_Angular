@@ -1,18 +1,24 @@
 package cr.ac.ucr.spa;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="District",  schema = "BS_ISem_2020")
 public class District {
 
+    @Id
     @Column(name="Id_District")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int idDistrict;
 
     @Column(name="Id_Canton")
+    @NotNull
     private int idCanton;
 
     @Column(name="Name")
+    @NotNull
     private String name;
 
     public District() {
@@ -23,8 +29,7 @@ public class District {
         this.idCanton = idCanton;
         this.name = name;
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public int getIdDistrict() {
         return idDistrict;
     }

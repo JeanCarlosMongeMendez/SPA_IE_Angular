@@ -1,6 +1,7 @@
 package cr.ac.ucr.controller;
 
 import cr.ac.ucr.service.DistrictService;
+import cr.ac.ucr.service.ProvinceService;
 import cr.ac.ucr.spa.Canton;
 import cr.ac.ucr.spa.District;
 import cr.ac.ucr.spa.Province;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -21,7 +23,7 @@ public class DistrictController {
 
     @RequestMapping(path="/", method = RequestMethod.GET)
     public List<District> list() {
-        return districtService.listAll();
+        return districtService.listAll().stream().collect(Collectors.toList());
     }
 
     /*@GetMapping("/districts/{id}")

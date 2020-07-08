@@ -1,18 +1,23 @@
 package cr.ac.ucr.spa;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+//@NamedStoredProcedureQuery(name = "Canton.getCantonByProvince", procedureName =  "SelectStudentById",resultClasses = Canton.class,parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, name = "Id_Province", type = Integer.class)})
 @Table(name="Canton",  schema = "BS_ISem_2020")
 public class Canton {
-
+    @Id
     @Column(name="Id_Canton")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCanton;
 
     @Column(name="Name")
+    @NotNull
     private String name;
 
     @Column(name="Id_Province")
+    @NotNull
     private int idProvince;
 
     public Canton() {
@@ -24,8 +29,7 @@ public class Canton {
         this.idProvince = idProvince;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     public int getIdCanton() {
         return idCanton;
     }

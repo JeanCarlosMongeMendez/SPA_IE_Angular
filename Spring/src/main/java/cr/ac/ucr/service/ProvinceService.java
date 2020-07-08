@@ -22,4 +22,6 @@ public class ProvinceService {
     public Province get(int id){return provinceRepository.findById(id).get();}
 
     public void delete(int id){provinceRepository.deleteById(id);}
+
+
 }

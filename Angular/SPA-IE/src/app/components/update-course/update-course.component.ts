@@ -9,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-course.component.css']
 })
 export class UpdateCourseComponent implements OnInit {
-  
   form: FormGroup;
   errorMessage: any;
 
@@ -68,6 +67,5 @@ export class UpdateCourseComponent implements OnInit {
   get image() {return this.form.get('image');}
   get state() {return this.form.get('state');}
   get creationDate() {return this.form.get('creationDate');}
-
 
 }
