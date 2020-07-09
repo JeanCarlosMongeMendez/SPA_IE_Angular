@@ -55,7 +55,7 @@ export class FormCourseComponent implements OnInit {
         icon: 'success',
         text: 'El registro fue exitoso'
       }).finally(() => {
-        //this.router.navigate(['/login'])
+        this.router.navigate(['/list-course']);
       });
     }, res => {
       this.error = res.error.text;

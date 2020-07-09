@@ -12,9 +12,10 @@ import swal from 'sweetalert2';
 })
 export class ListCourseComponent implements OnInit {
 
+  public gridData: any;
   courses:any =[];
 
-  constructor(public courseService:CourseService, private route: ActivatedRoute, private router:Router) { }
+  constructor(public courseService:CourseService, private route: ActivatedRoute, public router:Router) { }
 
   ngOnInit(): void {
     this.getCourses(); 
@@ -22,8 +23,9 @@ export class ListCourseComponent implements OnInit {
 
   getCourses(){
     this.courses=[];
-    this.courseService.getCourses().subscribe((data:{}) =>{
+    this.courseService.list().subscribe((data:{}) =>{
       console.log(data);
+      this.gridData = data;
       this.courses=data;
     });
   }
@@ -43,7 +45,7 @@ export class ListCourseComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        this.courseService.deleteCourse(id)
+        this.courseService.delete(id)
         .subscribe(res => {
             this.getCourses();
           }, (err) => {

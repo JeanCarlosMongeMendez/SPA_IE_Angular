@@ -1,15 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormCourseComponent } from './components/form-course/form-course.component';
-import { ListCourseComponent } from './components/list-course/list-course.component';
-import { UpdateCourseComponent } from './components/update-course/update-course.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProfessorListComponent } from './components/professor-list/professor-list.component';
@@ -19,22 +15,9 @@ import { ProfessorFormComponent } from './components/professor-form/professor-fo
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { MenuModule } from '@progress/kendo-angular-menu';
-
-import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
-
-
-
-
-
-
-
-
-
-
 import { ListCourseComponent } from './components/list-course/list-course.component';
 import { UpdateCourseComponent } from './components/update-course/update-course.component';
 
@@ -46,14 +29,11 @@ const appRoutes: Routes = [
     data: { title: 'Course Add' }
   },
   {
-
     path: 'list-course',
     component: ListCourseComponent,
     data: { title: 'List Course' }
   },
   {
-
-
     path: 'professor-list',
     component: ProfessorListComponent,
     data: { title: 'Professor List' }
@@ -72,20 +52,17 @@ const appRoutes: Routes = [
     component: ProfessorFormComponent,
     data: { title: 'Professor Details' }
   },
-
-
+  {
     path: 'update-course/:courseId',
     component: UpdateCourseComponent,
     data: { title: 'Update Course' }
   },
   {
-
     path: 'list-course',
     component: ListCourseComponent,
     data: { title: 'List Course' }
   },
   {
-
     path: 'student-list/:action',
     component: StudentListComponent,
     data: { title: 'Student List' }
@@ -105,26 +82,19 @@ const appRoutes: Routes = [
     component: StudentFormComponent,
     data: { title: 'Student Details' }
   }
-
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-
-  //  CourseComponent,
     FormCourseComponent,
-  ListCourseComponent,
-  UpdateCourseComponent
-    //  CourseComponent,
-
+    ListCourseComponent,
+    UpdateCourseComponent,
     FormCourseComponent,
     ProfessorListComponent,
     StudentListComponent,
     StudentFormComponent,
-
     ProfessorFormComponent,
-   
     ListCourseComponent,
     UpdateCourseComponent
   ],
@@ -134,29 +104,29 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonsModule,
+    BrowserAnimationsModule,
+    InputsModule,
+    LabelModule,
+    DropDownsModule,
+    DialogsModule,
+    GridModule,
+    MenuModule
   ],
   exports: [
     FormCourseComponent,
     ListCourseComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
     HttpClientModule,
     GridModule,
+    DropDownsModule,
+    InputsModule,
+    DialogsModule,
     BrowserAnimationsModule,
     ButtonsModule,
     LabelModule,
     MenuModule,
-
-    ConfirmationPopoverModule.forRoot({ confirmButtonType:'danger'
-  }),
-  ],
-  exports: [
-    FormCourseComponent
-
-    DropDownsModule,
-    InputsModule,
-    DialogsModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

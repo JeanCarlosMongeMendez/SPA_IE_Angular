@@ -1,7 +1,41 @@
 @import url('https://unpkg.com/bootstrap@4.5.0/dist/css/bootstrap.min.css');
 
 
+.menuBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  
+  
+  a, button, label {
+    background-color: #333;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
 
-kendo-menu{
-    align-items: center;
-}
+  label{
+    color: gold;  
+  }
+
+  .active {
+    background-color: #111;
+    color: gold;  
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  a:hover, button:hover, .active {
+    background-color: #111;
+    color: #ffffff;
+  }
+
+  

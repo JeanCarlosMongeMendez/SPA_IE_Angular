@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from "rxjs";
 import swal from "sweetalert2";
 import { ProfessorService } from 'src/app/Services/professor.service';
+import { Professor } from 'src/app/model/professor';
+import { UserProfile } from 'src/app/model/UserProfile';
 
 
 @Component({
@@ -21,6 +23,8 @@ export class ProfessorListComponent implements OnInit {
   public popoverMessage: string = 'Do you want to really delete?';
   public confirmClicked: boolean = false;
   public cancelClicked: boolean = false;
+  public opened = false;
+  public proffesorDelete: Professor;
 
   constructor(public rest: ProfessorService, private route: ActivatedRoute, public router: Router) {
     route.params.subscribe(val => {
@@ -42,11 +46,24 @@ export class ProfessorListComponent implements OnInit {
     });
   }
 
-
-  delete(id: any){   
-       console.log(id);   
-        this.rest.delete(id).subscribe(res => {   
-              this.getProfessors();     }, (err) => {   
-                    console.log(err);     });;   }
+  close(status) {
+    if (status == 'yes') {
+      this.rest.delete(this.proffesorDelete.userProfile.idUserProfile).subscribe(res => {
+        this.getProfessors();
+      }, (err) => {
+        console.log(err);
+      });;
     }
-  
+    this.opened = false;
+  }
+
+
+  delete(id: any) {
+    this.rest.findById(id).subscribe(res => {
+      this.proffesorDelete = res;
+      this.opened = true;
+    }, (err) => {
+      console.log(err);
+    })
+  } 
+}

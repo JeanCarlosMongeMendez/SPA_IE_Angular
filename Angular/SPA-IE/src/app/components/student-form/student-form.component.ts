@@ -26,9 +26,9 @@ export class StudentFormComponent implements OnInit {
     private route: ActivatedRoute, 
     private generalService: GeneralService) {
     this.form = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      interests: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
+      interests: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       canton: ['', [Validators.required]],
       province: ['', [Validators.required]],
@@ -48,8 +48,10 @@ export class StudentFormComponent implements OnInit {
     }else if(idUpdate != null){
       this.action = 'UPDATE';
       this.loadStudent(idUpdate);
-    }else{
+    }else if(this.action = 'ADD'){
       this.action = 'ADD';
+    }else {
+      this.action = 'LOGIN'
     }
     console.log(this.action);
     this.getProvinces();
@@ -69,14 +71,13 @@ export class StudentFormComponent implements OnInit {
     student.creationDate = new Date();
     student.identificationCard = this.identificationCard.value;
     student.asip = this.isAsip.value;
-    console.log(student);
     if(this.action == 'ADD'){
       this.service.save(student).subscribe(data => {
         swal.fire({
           icon: 'success',
           text: 'Success student add'
         }).finally(() => {
-          this.router.navigate(['/student-list/APPROVED'])
+          this.router.navigate(['/student-list/DISAPPROVED'])
         });
       }, res => {
         swal.fire({
@@ -92,6 +93,20 @@ export class StudentFormComponent implements OnInit {
           text: 'Success student update'
         }).finally(() => {
           this.router.navigate(['/student-list/APPROVED'])
+        });
+      }, res => {
+        swal.fire({
+          icon: 'error',
+          text: 'Failed, please try again'
+        });
+      });
+    }else {
+      this.service.save(student).subscribe(data => {
+        swal.fire({
+          icon: 'success',
+          text: 'Success student registred'
+        }).finally(() => {
+          this.router.navigate(['/'])
         });
       }, res => {
         swal.fire({

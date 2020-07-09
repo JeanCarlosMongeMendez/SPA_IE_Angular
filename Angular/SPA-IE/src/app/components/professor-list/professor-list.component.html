@@ -1,9 +1,6 @@
 <div class="container">
 
     <h2>Professors List</h2>
-
-    <br>
-
     <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="true" 
     [resizable]="true" 
     [pageable]="true"> 
@@ -19,9 +16,7 @@
             <ng-template kendoGridCellTemplate let-dataItem="dataItem">
                 <button kendoButton [look]="'flat'" [icon]="'table-align-middle-center'" (click)="router.navigate(['/professor-detail', dataItem.userProfile.idUserProfile]);">Detail</button>
                 <button kendoButton [look]="'flat'" [icon]="'edit'" (click)="router.navigate(['/professor-update', dataItem.userProfile.idUserProfile]);">Edit</button>
-                <button kendoButton [look]="'flat'" [icon]="'delete'" mwlConfirmationPopover [popoverTitle]="popoverTitle"
-                [popoverMessage]="popoverMessage" placement="left" (confirm)="delete( dataItem.userProfile.idUserProfile);"
-                (cancel)="cancelClicked = true">Delete</button>
+                <button kendoButton [look]="'flat'" [icon]="'delete'" (click)="delete(dataItem.userProfile.idUserProfile)">Delete</button>
             </ng-template>
 
         </kendo-grid-command-column>
@@ -30,3 +25,12 @@
 
 
 </div>
+
+
+<kendo-dialog title="Please confirm" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+    <p style="margin: 30px; text-align: center;">Are you sure you want to delete {{proffesorDelete.userProfile.username}}?</p>
+    <kendo-dialog-actions>
+        <button kendoButton (click)="close('no')">No</button>
+        <button kendoButton (click)="close('yes')" primary="true">Yes</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
