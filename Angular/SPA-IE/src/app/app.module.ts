@@ -15,6 +15,11 @@ import { ProfessorFormComponent } from './components/professor-form/professor-fo
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { MenuModule } from '@progress/kendo-angular-menu';
+
+//import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+
+//import { DialogsModule } from '@progress/kendo-angular-dialog';
+
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
@@ -109,12 +114,21 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     InputsModule,
     LabelModule,
+    MenuModule//,
+
+   // ConfirmationPopoverModule.forRoot({ confirmButtonType:'danger'}),
+  ],
+  exports: [
+    FormCourseComponent,
+
+    DropDownsModule,
+    InputsModule,
+    //DialogsModule
+
     DropDownsModule,
     DialogsModule,
     GridModule,
-    MenuModule
-  ],
-  exports: [
+    MenuModule,
     FormCourseComponent,
     ListCourseComponent,
     UpdateCourseComponent,

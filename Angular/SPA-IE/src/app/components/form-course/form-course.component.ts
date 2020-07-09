@@ -26,7 +26,7 @@ export class FormCourseComponent implements OnInit {
               private professorService: ProfessorService) {
 
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
+      name: ['', [Validators.required]],
       semester: ['', [Validators.required, Validators.pattern('([0-3]){1}')]],
       description: ['', [Validators.required]],
       image: ['', [Validators.required]],

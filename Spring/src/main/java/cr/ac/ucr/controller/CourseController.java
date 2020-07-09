@@ -9,6 +9,7 @@ import cr.ac.ucr.spa.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,14 +63,22 @@ public class CourseController {
 
     @RequestMapping(path="/", method = RequestMethod.POST)
     public CourseDTO save(@RequestBody CourseDTO dto) throws LyExceptions.NameExistException {
+        dto.setState(1);
         Course entity = converter.toEntity(dto);
         return converter.toDto(courseService.save(entity));
     }
 
     @RequestMapping(path="/", method = RequestMethod.GET)
     public List<CourseDTO> findAll(){
-        return courseService.listAll().stream().map(it -> converter.toDto(it))
-                .collect(Collectors.toList());
+        List<CourseDTO> list= new ArrayList<>();
+        for (CourseDTO dto :courseService.listAll().stream().map(it -> converter.toDto(it))
+                .collect(Collectors.toList())
+             ) {
+            if(dto.getState()==1){
+                list.add(dto);
+            }
+        }
+        return list;
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
@@ -95,8 +104,18 @@ public class CourseController {
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
-        courseService.delete(id);
-    } }
+        CourseDTO dto=new CourseDTO();
+        dto= converter.toDto(courseService.get(id));
+        dto.setState(0);
+        try {
+            dto=converter.toDto(courseService.update(converter.toEntity(dto)));
+
+        } catch (LyExceptions.RecordNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     //SIN ANGULAR
     /*
@@ -144,4 +163,4 @@ public class CourseController {
         courseService.delete(id);
     }
 */
-//}
+}
