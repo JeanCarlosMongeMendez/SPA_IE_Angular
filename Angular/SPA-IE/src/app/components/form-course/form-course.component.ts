@@ -24,11 +24,11 @@ export class FormCourseComponent implements OnInit {
               private route: ActivatedRoute) {
 
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
+      name: ['', [Validators.required]],
       semester: ['', [Validators.required, Validators.pattern('([0-3]){1}')]],
       description: ['', [Validators.required]],
       image: ['', [Validators.required]],
-      state: ['', [Validators.required, Validators.pattern('([0-1]){1}')]],
+      //state: ['', [Validators.required, Validators.pattern('([0-1]){1}')]],
       creationDate: ['', [Validators.required]]
     });
   }
@@ -47,7 +47,7 @@ export class FormCourseComponent implements OnInit {
     course.semester = this.semester.value;
     course.description = this.description.value;
     course.image = this.image.value;
-    course.state = this.state.value;
+  //  course.state = this.state.value;
     course.creationDate = this.creationDate.value;
 
     this.courseService.createCourse(course).subscribe(data => {
@@ -83,7 +83,7 @@ export class FormCourseComponent implements OnInit {
   get semester() {return this.form.get('semester');}
   get description() {return this.form.get('description');}
   get image() {return this.form.get('image');}
-  get state() {return this.form.get('state');}
+  //get state() {return this.form.get('state');}
   get creationDate() {return this.form.get('creationDate');}
 
 

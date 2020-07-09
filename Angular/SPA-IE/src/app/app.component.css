@@ -1,6 +1,9 @@
 @import url('https://unpkg.com/bootstrap@4.5.0/dist/css/bootstrap.min.css');
 
 
+kendo-menu{
+    align-items: center;
+}
 .menuBar {
     list-style-type: none;
     margin: 0;

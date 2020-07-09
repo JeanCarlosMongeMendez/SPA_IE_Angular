@@ -20,7 +20,9 @@ public class CourseService {
         return courseRepository.save(entity);
     }
 
-    public List<Course> listAll(){return courseRepository.findAll();}
+    public List<Course> listAll(){
+        return courseRepository.findAll();
+    }
 
     public Course get(int id){return courseRepository.findById(id).get();}
 
