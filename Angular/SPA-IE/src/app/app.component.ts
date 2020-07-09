@@ -17,7 +17,14 @@ export class AppComponent {
   public User: string;
   public userType: string;
   public ACTIVE_USER: any;
-  items: Item[] = [];
+  items: Item[] = [{
+    text: 'List of news',
+    path: '/news-list'
+  },
+  {
+    text: 'List of comments',
+    path: '/comment-news-list'
+  }];
 
 
   constructor(public router: ActivatedRoute,public route: Router, private formBuilder: FormBuilder, private generalService: GeneralService) {
@@ -66,6 +73,14 @@ export class AppComponent {
               text: 'List Courses',
               path: '/list-course'
             },
+            {
+              text: 'List of news',
+              path: '/news-list'
+            },
+            {
+              text: 'List of comments',
+              path: '/comment-news-list'
+            }
           ];
         }
       }

@@ -8589,23 +8589,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Valeria\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\JeanC\\.nuget\\packages\\": {},
+    "D:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Valeria\\Downloads\\ProyectoAPI\\SPA_API\\SPA_API\\SPA_API.csproj",
+      "projectUniqueName": "D:\\Jean\\Repositorios\\SPA_IE_Angular\\SPA_IE_Angular\\SPA_API\\SPA_API\\SPA_API.csproj",
       "projectName": "SPA_API",
-      "projectPath": "C:\\Users\\Valeria\\Downloads\\ProyectoAPI\\SPA_API\\SPA_API\\SPA_API.csproj",
-      "packagesPath": "C:\\Users\\Valeria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Valeria\\Downloads\\ProyectoAPI\\SPA_API\\SPA_API\\obj\\",
+      "projectPath": "D:\\Jean\\Repositorios\\SPA_IE_Angular\\SPA_IE_Angular\\SPA_API\\SPA_API\\SPA_API.csproj",
+      "packagesPath": "C:\\Users\\JeanC\\.nuget\\packages\\",
+      "outputPath": "D:\\Jean\\Repositorios\\SPA_IE_Angular\\SPA_IE_Angular\\SPA_API\\SPA_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "D:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Valeria\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JeanC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -8667,7 +8667,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
       }
     }
   }
