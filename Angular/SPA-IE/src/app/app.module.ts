@@ -19,8 +19,10 @@ import { LabelModule } from '@progress/kendo-angular-label';
 import { MenuModule } from '@progress/kendo-angular-menu';
 
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { NewsFormComponent } from './components/news-form/news-form.component';
 import { NewsListComponent } from './components/news-list/news-list.component';
+import { NewsFormComponent } from './components/news-form/news-form.component';
+import { CommentNewsListComponent } from './components/comment-news-list/comment-news-list.component';
+import { CommentNewsFormComponent } from './components/comment-news-form/comment-news-form.component';
 
 
 
@@ -74,7 +76,42 @@ const appRoutes: Routes = [
     path: 'news-list',
     component: NewsListComponent,
     data: { title: 'News List' }
-  }
+  },
+  {
+    path: 'news-add',
+    component: NewsFormComponent,
+    data: { title: 'News Add' }
+  },
+  {
+    path: 'news-update/:idUpdate',
+    component: NewsFormComponent,
+    data: { title: 'News Update' }
+  },
+  {
+    path: 'news-detail/:idDetail',
+    component: NewsFormComponent,
+    data: { title: 'News Details' }
+  },
+  {
+    path: 'comment-news-list',
+    component: CommentNewsListComponent,
+    data: { title: 'Comment List' }
+  },
+  {
+    path: 'comment-news-add',
+    component: CommentNewsFormComponent,
+    data: { title: 'Comment Add' }
+  },
+  {
+    path: 'comment-news-update/:idUpdate',
+    component: CommentNewsFormComponent,
+    data: { title: 'Comment Update' }
+  },
+  {
+    path: 'comment-news-detail/:idDetail',
+    component: CommentNewsFormComponent,
+    data: { title: 'Comment Details' }
+  },
 
 ];
 
@@ -87,8 +124,10 @@ const appRoutes: Routes = [
     StudentListComponent,
     StudentFormComponent,
     ProfessorFormComponent,
+    NewsListComponent,
     NewsFormComponent,
-    NewsListComponent
+    CommentNewsListComponent,
+    CommentNewsFormComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

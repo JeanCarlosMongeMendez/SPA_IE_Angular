@@ -34,8 +34,8 @@ export class NewsService {
   }
 
 
-  /*getNewsById(id): Observable<any> {
-    return this.http.get(endpoint + 'news/GetNews/' + id).pipe(
+  getNewsById(id): Observable<any> {
+    return this.http.get(endpoint + 'GetNews/' + id).pipe(
       map(this.extractData),
       catchError(this.handleError<any>('getNewsById'))
       );
@@ -43,26 +43,28 @@ export class NewsService {
 
   addNews (news): Observable<any> {
     console.log(news);
-    return this.http.post<any>(endpoint + 'news/PostNews/', JSON.stringify(news), httpOptions).pipe(
+    return this.http.post<any>(endpoint + 'PostNews/', JSON.stringify(news), httpOptions).pipe(
       tap((news) => console.log('added news')),
       catchError(this.handleError<any>('addNews'))
     );
   }
 
+
+
   deleteNews (id): Observable<any> {
-    return this.http.delete<any>(endpoint + 'news/DeleteNews/' + id, httpOptions).pipe(
+    return this.http.delete<any>(endpoint + 'DeleteNews/' + id, httpOptions).pipe(
       tap(_ => console.log(`deleted news id=${id}`)),
       catchError(this.handleError<any>('deleteNews'))
     );
   }
 
   updateNews (news): Observable<any> {
-    return this.http.put(endpoint + 'news/PutNews', JSON.stringify(news), httpOptions).pipe(
+    return this.http.put(endpoint + 'PutNews', JSON.stringify(news), httpOptions).pipe(
       tap((news) => console.log('updated news')),
       catchError(this.handleError<any>('updateNews'))
     );
   }
-*/
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   

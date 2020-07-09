@@ -28,6 +28,10 @@ export class AppComponent {
       text:'List of news',
       path:'/news-list'
     },
+    {
+      text:'List of comment',
+      path:'/comment-news-list'
+    },
   ];
 
   constructor(public router: ActivatedRoute) {
