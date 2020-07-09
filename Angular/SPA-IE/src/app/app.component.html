@@ -10,7 +10,7 @@
     </kendo-menu>
     <button class="col-md-1" kendoButton (click)="singIn('student')">Sign as student</button>
     <button class="col-md-1" kendoButton (click)="singIn('proffesor')">Sign as proffesor</button>
-    <button class="col-md-1" kendoButton (click)="route.navigate(['/student-add']);">Login</button>
+    <button class="col-md-1" kendoButton (click)="route.navigate(['/student-add']);">Register</button>
 </div>
 
 <kendo-dialog title="Sign In" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">

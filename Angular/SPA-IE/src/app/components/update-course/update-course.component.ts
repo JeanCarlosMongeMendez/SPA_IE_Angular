@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {CourseService} from "../../Service/CourseService";
 import { ActivatedRoute, Router } from '@angular/router';
+import { Course } from 'src/app/model/course';
 
 @Component({
   selector: 'app-update-course',
   templateUrl: './update-course.component.html',
   styleUrls: ['./update-course.component.css']
 })
+
 export class UpdateCourseComponent implements OnInit {
   form: FormGroup;
   errorMessage: any;
@@ -50,7 +52,15 @@ export class UpdateCourseComponent implements OnInit {
       return;
     }
     console.log(this.form.value);
-    this.courseService.update(this.form.value).subscribe((result) => {
+    let course = new Course();
+    course.courseId = this.route.snapshot.params['courseId'];
+    course.creationDate = this.creationDate.value;
+    course.description = this.description.value;
+    course.image = this.image.value;
+    course.name = this.name.value;
+    course.semester = this.semester.value;
+    course.state = this.state.value;
+    this.courseService.update(course).subscribe((result) => {
       this.router.navigate(['/list-course/']);
     }, (err) => {
       console.log(err);

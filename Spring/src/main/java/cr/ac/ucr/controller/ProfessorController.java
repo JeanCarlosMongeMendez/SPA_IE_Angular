@@ -7,9 +7,12 @@ import cr.ac.ucr.DTO.UserProfileDTO;
 import cr.ac.ucr.Exception.LyExceptions;
 import cr.ac.ucr.service.ProfessorService;
 import cr.ac.ucr.spa.Professor;
+import cr.ac.ucr.spa.Student;
 import cr.ac.ucr.spa.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,5 +71,23 @@ public class ProfessorController {
         } catch (LyExceptions.RecordNotFoundException e) {
             e.printStackTrace();         }
 
+    }
+
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    public Object login(@RequestParam("username") String username,
+                           @RequestParam("password") String password) {
+        Professor proffesorLogin = null;
+        List<Professor> proffessorsList = service.listAll();
+        for (Professor professor: proffessorsList) {
+            if(professor.getUsername().equals(username) &&
+                    professor.getPassword().equals(password) &&
+                    professor.isEnable()){
+                proffesorLogin = professor;
+            }
+        }
+        if(proffesorLogin != null)
+            return converter.toDto(proffesorLogin);
+        else
+            return new HttpClientErrorException(HttpStatus.NOT_FOUND, "Proffesor not found");
     }
 }

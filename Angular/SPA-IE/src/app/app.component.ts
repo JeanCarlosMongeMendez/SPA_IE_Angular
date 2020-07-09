@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Item } from './model/Item';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import swal from "sweetalert2";
 import { GeneralService } from './services/general.service';
 
 @Component({
@@ -17,27 +16,9 @@ export class AppComponent {
   public opened = false;
   public User: string;
   public userType: string;
-  items: Item[] = [
-    {
-      text: 'List of students',
-      path: '/student-list/APPROVED'
-    },
+  public ACTIVE_USER: any;
+  items: Item[] = [];
 
-    {
-      text: 'Disapproved students',
-      path: '/student-list/DISAPPROVED'
-    },
-
-    {
-      text: 'List of professors',
-      path: '/professor-list'
-    },
-
-    {
-      text: 'List Courses',
-      path: '/list-course'
-    },
-  ];
 
   constructor(public router: ActivatedRoute,public route: Router, private formBuilder: FormBuilder, private generalService: GeneralService) {
     this.form = this.formBuilder.group({
@@ -48,15 +29,49 @@ export class AppComponent {
 
   singIn(type: string) {
     this.userType = type;
+    this.form.controls['username'].setValue(''); 
+    this.form.controls['password'].setValue('');
     this.opened = true;
   }
 
   submit(){
     if (this.form.invalid) return;
     this.generalService.singIn(this.form.value, this.userType).subscribe(res => {
-      this.User = res['username'];
+      console.log(res);
+      if(this.userType == 'student'){this.User = res['username'];}
+      else{
+        let userProfile: any;
+        userProfile = res['userProfile'];
+        console.log(userProfile);
+        this.User = userProfile.username;
+        this.ACTIVE_USER = res;
+        if(userProfile.admin == true){
+          this.items = [
+            {
+              text: 'List of students',
+              path: '/student-list/APPROVED'
+            },
+        
+            {
+              text: 'Disapproved students',
+              path: '/student-list/DISAPPROVED'
+            },
+        
+            {
+              text: 'List of professors',
+              path: '/professor-list'
+            },
+        
+            {
+              text: 'List Courses',
+              path: '/list-course'
+            },
+          ];
+        }
+      }
       close();
     }, (err) => {
+      this.User = '';
       this.form.controls['username'].setValue(''); 
       this.form.controls['password'].setValue('');
     })

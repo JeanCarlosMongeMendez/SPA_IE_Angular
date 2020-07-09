@@ -123,12 +123,14 @@ public class StudentController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
-    public Object findById(@RequestParam("username") String username,
+    public Object login(@RequestParam("username") String username,
                            @RequestParam("password") String password) {
         Student studentLogin = null;
         List<Student> students = studentService.listAll();
         for (Student student: students) {
-            if(student.getUsername().equals(username) && student.getPassword().equals(password)){
+            if(student.getUsername().equals(username) &&
+                    student.getPassword().equals(password) && student.isActive() &&
+                    student.isEnable()){
                 studentLogin = student;
             }
         }
