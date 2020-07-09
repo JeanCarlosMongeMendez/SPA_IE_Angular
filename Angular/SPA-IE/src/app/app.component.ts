@@ -25,6 +25,32 @@ export class AppComponent {
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
+  this.items = [
+    {
+      text:'List of students',
+      path:'/student-list/APPROVED'
+    },
+
+    {
+      text:'Disapproved students',
+      path:'/student-list/DISAPPROVED'
+    },
+    {
+      text:'List of professors',
+      path:'/professor-list'
+    },
+    {
+      text:'List of news',
+      path:'/news-list'
+    },
+    {
+      text:'List of comment',
+      path:'/comment-news-list'
+    },
+  ];
+
+  constructor(public router: ActivatedRoute) {
+    
   }
 
   singIn(type: string) {

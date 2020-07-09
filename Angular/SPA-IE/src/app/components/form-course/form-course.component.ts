@@ -53,7 +53,7 @@ export class FormCourseComponent implements OnInit {
     this.courseService.createCourse(course).subscribe(data => {
       swal.fire({
         icon: 'success',
-        text: 'El registro fue exitoso'
+        text: 'El registro fue éxitoso'
       }).finally(() => {
         this.router.navigate(['/list-course']);
       });
@@ -77,6 +77,7 @@ export class FormCourseComponent implements OnInit {
 
     this.router.navigate(['/courses/']);
 
+    //this.router.navigate(['/students']);
   }
 
   get name() { return this.form.get('name'); }

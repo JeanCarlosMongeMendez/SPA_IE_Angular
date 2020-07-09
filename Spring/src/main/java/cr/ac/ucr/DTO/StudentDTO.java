@@ -10,6 +10,8 @@ public class StudentDTO {
     private String userPhoto;
     private String interests;
     private String email;
+    private boolean admin;
+    private boolean isEnable;
     private int idCanton;
     private String nameCanton;
     private int idProvince;
@@ -19,6 +21,7 @@ public class StudentDTO {
     private Date creationDate;
     private String identificationCard;
     private boolean isAsip;
+    private boolean isActive;
 
     public int getIdUserProfile() {
         return idUserProfile;
@@ -66,6 +69,22 @@ public class StudentDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public boolean isEnable() {
+        return isEnable;
+    }
+
+    public void setEnable(boolean enable) {
+        isEnable = enable;
     }
 
     public int getIdCanton() {
@@ -138,5 +157,13 @@ public class StudentDTO {
 
     public void setAsip(boolean asip) {
         isAsip = asip;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

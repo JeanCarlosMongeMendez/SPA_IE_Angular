@@ -25,6 +25,14 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { ListCourseComponent } from './components/list-course/list-course.component';
 import { UpdateCourseComponent } from './components/update-course/update-course.component';
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { NewsListComponent } from './components/news-list/news-list.component';
+import { NewsFormComponent } from './components/news-form/news-form.component';
+import { CommentNewsListComponent } from './components/comment-news-list/comment-news-list.component';
+import { CommentNewsFormComponent } from './components/comment-news-form/comment-news-form.component';
+
+
+
 
 
 const appRoutes: Routes = [
@@ -86,12 +94,54 @@ const appRoutes: Routes = [
     path: 'student-detail/:idDetail',
     component: StudentFormComponent,
     data: { title: 'Student Details' }
-  }
+  
+  }, {
+    path: 'news-list',
+    component: NewsListComponent,
+    data: { title: 'News List' }
+  },
+  {
+    path: 'news-add',
+    component: NewsFormComponent,
+    data: { title: 'News Add' }
+  },
+  {
+    path: 'news-update/:idUpdate',
+    component: NewsFormComponent,
+    data: { title: 'News Update' }
+  },
+  {
+    path: 'news-detail/:idDetail',
+    component: NewsFormComponent,
+    data: { title: 'News Details' }
+  },
+  {
+    path: 'comment-news-list',
+    component: CommentNewsListComponent,
+    data: { title: 'Comment List' }
+  },
+  {
+    path: 'comment-news-add',
+    component: CommentNewsFormComponent,
+    data: { title: 'Comment Add' }
+  },
+  {
+    path: 'comment-news-update/:idUpdate',
+    component: CommentNewsFormComponent,
+    data: { title: 'Comment Update' }
+  },
+  {
+    path: 'comment-news-detail/:idDetail',
+    component: CommentNewsFormComponent,
+    data: { title: 'Comment Details' }
+  },
+
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    //  CourseComponent,
     FormCourseComponent,
     ListCourseComponent,
     UpdateCourseComponent,
@@ -101,7 +151,11 @@ const appRoutes: Routes = [
     StudentFormComponent,
     ProfessorFormComponent,
     ListCourseComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
+    NewsListComponent,
+    NewsFormComponent,
+    CommentNewsListComponent,
+    CommentNewsFormComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -141,6 +195,9 @@ const appRoutes: Routes = [
     ButtonsModule,
     LabelModule,
     MenuModule,
+    MenuModule,
+    ConfirmationPopoverModule.forRoot({ confirmButtonType:'danger'
+  })
   ],
   providers: [],
   bootstrap: [AppComponent]
