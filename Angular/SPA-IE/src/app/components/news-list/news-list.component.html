@@ -1,0 +1,26 @@
+<div class="container">
+
+    <h2>Newss List</h2>
+
+    <kendo-grid [kendoGridBinding]="gridData" [filterable]="true" [groupable]="true" [sortable]="{
+        allowUnsort: true,
+        mode: 'multiple'
+    }" [resizable]="true" [pageable]="true">
+        <ng-template kendoGridToolbarTemplate>
+            <button kendoButton [look]="'outline'" [icon]="'add'" (click)="router.navigate(['/news-add']);">Add
+                new</button>
+        </ng-template>
+        <kendo-grid-column field="idNews" title="Id" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="username" title="Creador" [width]="100"></kendo-grid-column>
+        <kendo-grid-column field="description" title="Descripcion" [width]="150"></kendo-grid-column>
+        <kendo-grid-column field="newsType" title="News Type" [width]="100"></kendo-grid-column>
+        <kendo-grid-command-column title="Actions" [width]="300">
+            <ng-template  kendoGridCellTemplate let-dataItem="dataItem">
+                <button kendoButton [look]="'flat'" [icon]="'table-align-middle-center'" (click)="router.navigate(['/news-detail', dataItem.idNews]);">Detail</button>
+                <button kendoButton [look]="'flat'" [icon]="'edit'" (click)="router.navigate(['/news-update', dataItem.idNews]);">Edit</button>
+                <button kendoButton [look]="'flat'" [icon]="'delete'" (click)="delete( dataItem.idNews);">Delete</button>
+
+            </ng-template>
+        </kendo-grid-command-column>
+    </kendo-grid>
+</div>

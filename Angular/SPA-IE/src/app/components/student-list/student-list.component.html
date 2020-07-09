@@ -16,20 +16,12 @@
             <ng-template *ngIf="action == 'APPROVED'" kendoGridCellTemplate let-dataItem="dataItem">
                 <button kendoButton [look]="'flat'" [icon]="'table-align-middle-center'" (click)="router.navigate(['/student-detail', dataItem.idUserProfile]);">Detail</button>
                 <button kendoButton [look]="'flat'" [icon]="'edit'" (click)="router.navigate(['/student-update', dataItem.idUserProfile]);">Edit</button>
-                <button kendoButton [look]="'flat'" [icon]="'delete'" (click)="delete(dataItem.idUserProfile)">Delete</button>
+                <button kendoButton [look]="'flat'" [icon]="'delete'" (click)="router.navigate(['/student-delete', dataItem.idUserProfile]);">Delete</button>
             </ng-template>
             <ng-template *ngIf="action == 'DISAPPROVED'" kendoGridCellTemplate let-dataItem="dataItem">
-                <button kendoButton [look]="'flat'" [icon]="'check'" (click)="approve(dataItem.idUserProfile)">Approve</button>
-                <button kendoButton [look]="'flat'" [icon]="'close'" (click)="reject(dataItem.idUserProfile)">Reject</button>
+                <button kendoButton [look]="'flat'" [icon]="'check'" >Approve</button>
+                <button kendoButton [look]="'flat'" [icon]="'close'" >Reject</button>
             </ng-template>
         </kendo-grid-command-column>
     </kendo-grid>
 </div>
-
-<kendo-dialog title="Please confirm" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
-    <p style="margin: 30px; text-align: center;">Are you sure you want to delete {{studentDelete.username}}?</p>
-    <kendo-dialog-actions>
-        <button kendoButton (click)="close('no')">No</button>
-        <button kendoButton (click)="close('yes')" primary="true">Yes</button>
-    </kendo-dialog-actions>
-</kendo-dialog>
