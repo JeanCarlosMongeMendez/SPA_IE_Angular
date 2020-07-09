@@ -1,11 +1,11 @@
 <body>
     <div class="container">
         <h2>{{action}} </h2>
-        <form [formGroup]="form" (ngSubmit)="submit()" #formDir="ngForm">
+        <form  [formGroup]="form" (ngSubmit)="submit()" #formDir="ngForm">
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="Username" class="col-md-8">
-                        <input kendoTextBox formControlName="username" />
+                        <input id="idUsername" kendoTextBox formControlName="username" />
                     </kendo-floatinglabel>
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'username') && formDir.submitted">
@@ -15,7 +15,7 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="Identification Card" class="col-md-8">
-                        <input kendoTextBox formControlName="identificationCard" />
+                        <input id="idCard" kendoTextBox formControlName="identificationCard" />
                     </kendo-floatinglabel>
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'identificationCard') && formDir.submitted">
@@ -25,7 +25,7 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="Password" class="col-md-8">
-                        <input kendoTextBox type="password" formControlName="password" />
+                        <input id="idPassword" kendoTextBox type="password" formControlName="password" />
                     </kendo-floatinglabel>
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'password') && formDir.submitted">
@@ -35,7 +35,7 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="Interests" class="col-md-8">
-                        <input kendoTextBox formControlName="interests" />
+                        <input id="idInterest" kendoTextBox formControlName="interests" />
                     </kendo-floatinglabel>
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'interests') && formDir.submitted">
@@ -45,7 +45,7 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="Email" class="col-md-8">
-                        <input kendoTextBox type="email" formControlName="email" />
+                        <input id="idEmail" kendoTextBox type="email" formControlName="email" />
                     </kendo-floatinglabel>
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'email') && formDir.submitted">
@@ -58,7 +58,7 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="Province" class="col-md-8">
-                        <kendo-dropdownlist formControlName="province" (valueChange)="provinceSelectOnChange($event)" [valuePrimitive]="true"
+                        <kendo-dropdownlist id="idProvince" formControlName="province" (valueChange)="provinceSelectOnChange($event)" [valuePrimitive]="true"
                             [data]="provinces" [textField]="'name'" [valueField]="'idProvince'">
                         </kendo-dropdownlist>
                     </kendo-floatinglabel>
@@ -70,7 +70,7 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="Canton" class="col-md-8">
-                        <kendo-dropdownlist formControlName="canton" (valueChange)="cantonSelectOnChange($event)" [valuePrimitive]="true"
+                        <kendo-dropdownlist  id="idCanton" formControlName="canton" (valueChange)="cantonSelectOnChange($event)" [valuePrimitive]="true"
                             [data]="cantons" [disabled]="isCantonEnable == false" [textField]="'name'"
                             [valueField]="'idCanton'">
                         </kendo-dropdownlist>
@@ -83,7 +83,7 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="District" class="col-md-8">
-                        <kendo-dropdownlist formControlName="district" [data]="districts" [valuePrimitive]="true"
+                        <kendo-dropdownlist  id="idDistrict" formControlName="district" [data]="districts" [valuePrimitive]="true"
                             [disabled]="isDistrictEnable == false" [textField]="'name'" [valueField]="'idDistrict'"> 
                         </kendo-dropdownlist>
                     </kendo-floatinglabel>
@@ -95,13 +95,13 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-label class="k-checkbox-label" [for]="cbxIsAsip" text="Is ASIP?"></kendo-label>
-                    <input type="checkbox" #cbxIsAsip kendoCheckBox formControlName="isAsip" />
+                    <input id="idAsip" type="checkbox" #cbxIsAsip kendoCheckBox formControlName="isAsip" />
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-md-8">
-                    <button kendoButton [look]="'flat'" [icon]="'check'" *ngIf="action == 'ADD' || action == 'UPDATE'" type="submit">Save</button>
+                    <button id="btnSubmit" kendoButton [look]="'flat'" [icon]="'check'" *ngIf="action == 'ADD' || action == 'UPDATE'" type="submit">Save</button>
                     <button kendoButton [look]="'flat'" [icon]="'close'" (click)="cancel()">Cancel</button>
                 </div>
             </div>

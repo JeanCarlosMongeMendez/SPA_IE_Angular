@@ -5,7 +5,7 @@
     [resizable]="true" 
     [pageable]="true"> 
     <ng-template kendoGridToolbarTemplate>
-        <button kendoButton [look]="'outline'" [icon]="'add'" (click)="router.navigate(['/professor-add']);">Add new</button>
+        <button id="btnAddProfessor" kendoButton [look]="'outline'" [icon]="'add'" (click)="router.navigate(['/professor-add']);">Add new</button>
         </ng-template>
         <kendo-grid-column field="userProfile.username" title="Name" [width]="100"></kendo-grid-column>
         <kendo-grid-column field="userProfile.email" title="Email" [width]="100"></kendo-grid-column>

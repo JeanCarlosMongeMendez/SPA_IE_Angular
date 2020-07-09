@@ -5,7 +5,7 @@
             <div class="form-group row">
                 <label class=" control-label col-md-12" for="username">Username</label>
                 <div class="col-md-8">
-                    <input class="form-control" type="text" formControlName="username" placeholder="Username">
+                    <input id="idUsername" class="form-control" type="text" formControlName="username" placeholder="Username">
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'username') && formDir.submitted">
                     Username is required.
@@ -14,7 +14,7 @@
             <div class="form-group row">
                 <label class=" control-label col-md-12" for="degree">Degree</label>
                 <div class="col-md-8">
-                    <input class="form-control" type="text" formControlName="degree"
+                    <input id="idDegree" class="form-control" type="text" formControlName="degree"
                         placeholder="Degree">
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'degree') && formDir.submitted">
@@ -24,7 +24,7 @@
             <div class="form-group row">
                 <label class=" control-label col-md-12" for="password">Password</label>
                 <div class="col-md-4">
-                    <input class="form-control" type="password" formControlName="password" placeholder="Password">
+                    <input id="idPassword" class="form-control" type="password" formControlName="password" placeholder="Password">
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'password') && formDir.submitted">
                     Password is required.
@@ -33,7 +33,7 @@
             <div class="form-group row">
                 <label class=" control-label col-md-12" for="interests">Interests</label>
                 <div class="col-md-4">
-                    <input class="form-control" type="text" formControlName="interests" placeholder="Interests">
+                    <input id="idInterest" class="form-control" type="text" formControlName="interests" placeholder="Interests">
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'interests') && formDir.submitted">
                     Interests are required.
@@ -42,7 +42,7 @@
             <div class="form-group row">
                 <label class=" control-label col-md-12" for="email">Email</label>
                 <div class="col-md-4">
-                    <input class="form-control" type="email" formControlName="email" placeholder="Email">
+                    <input id="idEmail" class="form-control" type="email" formControlName="email" placeholder="Email">
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'email') && formDir.submitted">
                     Email is required.
@@ -54,7 +54,7 @@
             <div class="form-group row">
                 <label class="control-label col-md-12" for="province">Province</label>
                 <div class="col-md-4">
-                    <select class="form-control" formControlName="province" (change)="provinceSelectOnChange($event.target.value)">
+                    <select id="idProvince" class="form-control" formControlName="province" (change)="provinceSelectOnChange($event.target.value)">
                         <option value="" disabled selected>select an option</option>
                         <option *ngFor="let prov of provinces;" [value]="prov.idProvince">
                             {{prov.name}}
@@ -68,7 +68,7 @@
             <div class="form-group row">
                 <label class="control-label col-md-12" for="canton">Canton</label>
                 <div class="col-md-4">
-                    <select class="form-control" formControlName="canton" (change)="cantonSelectOnChange($event.target.value)">
+                    <select id="idCanton" class="form-control" formControlName="canton" (change)="cantonSelectOnChange($event.target.value)">
                         <option value="" disabled selected>select an option</option>
                         <option *ngFor="let cant of cantons;" [value]="cant.idCanton">
                             {{cant.name}}
@@ -82,7 +82,7 @@
             <div class="form-group row">
                 <label class="control-label col-md-12" for="district">District</label>
                 <div class="col-md-4">
-                    <select class="form-control" formControlName="district">
+                    <select id="idDistrict" class="form-control" formControlName="district">
                         <option value="" disabled selected>select an option</option>
                         <option *ngFor="let dist of districts;" [value]="dist.idDistrict">
                             {{dist.name}}
@@ -96,7 +96,7 @@
 
             <div class="form-group row">
                 <div class="col-md-4">
-                    <button *ngIf="action == 'ADD' || action == 'UPDATE'" type="submit" class="btn btn-primary">Save</button>
+                    <button id="btnSubmit" *ngIf="action == 'ADD' || action == 'UPDATE'" type="submit" class="btn btn-primary">Save</button>
                     <button class="btn btn-secondary col-xs-offset-1" (click)="cancel()">Cancel</button>
                 </div>
             </div>

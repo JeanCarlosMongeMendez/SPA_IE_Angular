@@ -8,8 +8,8 @@
             </a>
         </ng-template>
     </kendo-menu>
-    <button class="col-md-1" kendoButton (click)="singIn('student')">Sign as student</button>
-    <button class="col-md-1" kendoButton (click)="singIn('proffesor')">Sign as proffesor</button>
+    <button id="btnSignStudent" class="col-md-1" kendoButton (click)="singIn('student')">Sign as student</button>
+    <button id="btnSignProfessor" class="col-md-1" kendoButton (click)="singIn('proffesor')">Sign as proffesor</button>
     <button class="col-md-1" kendoButton (click)="route.navigate(['/student-add']);">Register</button>
 </div>
 
@@ -18,19 +18,19 @@
         <form [formGroup]="form" >
             <div class="form-group">
                 <kendo-floatinglabel text="Username">
-                    <input kendoTextBox formControlName="username" />
+                    <input id="idImpUsername" kendoTextBox formControlName="username" />
                 </kendo-floatinglabel>
             </div>
             <div class="form-group">
                 <kendo-floatinglabel text="Password">
-                    <input kendoTextBox type="password" formControlName="password" />
+                    <input id="idImpPassword" kendoTextBox type="password" formControlName="password" />
                 </kendo-floatinglabel>
             </div>
         </form>
     </div>
     <kendo-dialog-actions>
         <button kendoButton (click)="close()">Cancel</button>
-        <button kendoButton [primary]="true" [disabled]="!form.valid" (click)="submit()">Submit</button>
+        <button id="btnSubmitLogin" kendoButton [primary]="true" [disabled]="!form.valid" (click)="submit()">Submit</button>
     </kendo-dialog-actions>
 </kendo-dialog>
 
