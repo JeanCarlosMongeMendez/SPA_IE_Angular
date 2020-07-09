@@ -15,6 +15,9 @@ import { District } from 'src/app/model/District';
   styleUrls: ['./professor-form.component.css']
 })
 export class ProfessorFormComponent implements OnInit {
+  
+  isCantonEnable = false;
+  isDistrictEnable = false;
   form: FormGroup;
   provinces: any = [];
   cantons: any = [];
@@ -35,13 +38,9 @@ export class ProfessorFormComponent implements OnInit {
       district: ['', [Validators.required]],
       degree: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
     });
-
-
-
   }
 
   ngOnInit(): void {
-
     let idUpdate = this.route.snapshot.params['idUpdate'];
     let idDetails = this.route.snapshot.params['idDetail'];
     if (idDetails != null) {
@@ -56,8 +55,8 @@ export class ProfessorFormComponent implements OnInit {
     }
     console.log(this.action);
     this.getProvinces();
-
   }
+
   submit() {
     if (this.form.invalid) return;
     let professor = new Professor();
@@ -114,8 +113,6 @@ export class ProfessorFormComponent implements OnInit {
     }
   }
 
-
-
   blockForm() {
     this.form.disable();
   }
@@ -152,12 +149,14 @@ export class ProfessorFormComponent implements OnInit {
     })
   }
 
-  provinceSelectOnChange(id) {
-    this.getCantons(id);
+  provinceSelectOnChange(value: any){
+    this.getCantons(value);
+    this.isCantonEnable = true;
   }
 
-  cantonSelectOnChange(id) {
-    this.getDistricts(id);
+  cantonSelectOnChange(value: any){
+    this.getDistricts(value);
+    this.isDistrictEnable = true;
   }
 
   loadProfessor(id: number) {
@@ -177,6 +176,7 @@ export class ProfessorFormComponent implements OnInit {
       this.form.controls['degree'].setValue(professor.degree);
     });
   }
+
   get username() { return this.form.get('username'); }
   get password() { return this.form.get('password'); }
   get email() { return this.form.get('email'); }

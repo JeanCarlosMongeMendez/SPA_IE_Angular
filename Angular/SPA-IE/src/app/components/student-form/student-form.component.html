@@ -52,42 +52,37 @@
                 </span>
             </div>
             <div class="form-group row">
-                <label class="control-label col-md-12" for="province">Province</label>
-                <div class="col-md-4">
-                    <select class="form-control" formControlName="province" (change)="provinceSelectOnChange($event.target.value)">
-                        <option value="" disabled selected>select an option</option>
-                        <option *ngFor="let prov of provinces;" [value]="prov.idProvince">
-                            {{prov.name}}
-                        </option>
-                    </select>
+                <div class="col-md-8">
+                    <kendo-floatinglabel text="Province" class="col-md-8">
+                        <kendo-dropdownlist formControlName="province" (valueChange)="provinceSelectOnChange($event)"
+                            [valuePrimitive]="true" [data]="provinces" [textField]="'name'" [valueField]="'idProvince'">
+                        </kendo-dropdownlist>
+                    </kendo-floatinglabel>
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'province') && formDir.submitted">
                     Province is required
                 </span>
             </div>
             <div class="form-group row">
-                <label class="control-label col-md-12" for="canton">Canton</label>
-                <div class="col-md-4">
-                    <select class="form-control" formControlName="canton" (change)="cantonSelectOnChange($event.target.value)">
-                        <option value="" disabled selected>select an option</option>
-                        <option *ngFor="let cant of cantons;" [value]="cant.idCanton">
-                            {{cant.name}}
-                        </option>
-                    </select>
+                <div class="col-md-8">
+                    <kendo-floatinglabel text="Canton" class="col-md-8">
+                        <kendo-dropdownlist formControlName="canton" (valueChange)="cantonSelectOnChange($event)"
+                            [valuePrimitive]="true" [data]="cantons" [disabled]="isCantonEnable == false"
+                            [textField]="'name'" [valueField]="'idCanton'">
+                        </kendo-dropdownlist>
+                    </kendo-floatinglabel>
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'canton') && formDir.submitted">
                     Canton is required
                 </span>
             </div>
             <div class="form-group row">
-                <label class="control-label col-md-12" for="district">District</label>
-                <div class="col-md-4">
-                    <select class="form-control" formControlName="district">
-                        <option value="" disabled selected>select an option</option>
-                        <option *ngFor="let dist of districts;" [value]="dist.idDistrict">
-                            {{dist.name}}
-                        </option>
-                    </select>
+                <div class="col-md-8">
+                    <kendo-floatinglabel text="District" class="col-md-8">
+                        <kendo-dropdownlist formControlName="district" [data]="districts" [valuePrimitive]="true"
+                            [disabled]="isDistrictEnable == false" [textField]="'name'" [valueField]="'idDistrict'">
+                        </kendo-dropdownlist>
+                    </kendo-floatinglabel>
                 </div>
                 <span class="text-danger" *ngIf="form.hasError('required', 'district') && formDir.submitted">
                     District is required
@@ -101,9 +96,10 @@
             </div>
 
             <div class="form-group row">
-                <div class="col-md-4">
-                    <button *ngIf="action == 'ADD' || action == 'UPDATE'" type="submit" class="btn btn-primary">Save</button>
-                    <button class="btn btn-secondary col-xs-offset-1" (click)="cancel()">Cancel</button>
+                <div class="col-md-8">
+                    <button kendoButton [look]="'flat'" [icon]="'check'" *ngIf="action == 'ADD' || action == 'UPDATE'"
+                        type="submit">Save</button>
+                    <button kendoButton [look]="'flat'" [icon]="'close'" (click)="cancel()">Cancel</button>
                 </div>
             </div>
         </form>

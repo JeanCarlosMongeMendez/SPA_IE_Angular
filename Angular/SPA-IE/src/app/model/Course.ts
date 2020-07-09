@@ -7,4 +7,5 @@ export class Course {
     description: string;
     image: string;
     creationDate: Date;
+    idProfessor: number;
   }
