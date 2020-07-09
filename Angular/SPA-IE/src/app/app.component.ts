@@ -24,6 +24,10 @@ export class AppComponent {
       text:'List of professors',
       path:'/professor-list'
     },
+    {
+      text:'List of news',
+      path:'/news-list'
+    },
   ];
 
   constructor(public router: ActivatedRoute) {

@@ -19,6 +19,8 @@ import { LabelModule } from '@progress/kendo-angular-label';
 import { MenuModule } from '@progress/kendo-angular-menu';
 
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { NewsFormComponent } from './components/news-form/news-form.component';
+import { NewsListComponent } from './components/news-list/news-list.component';
 
 
 
@@ -68,6 +70,10 @@ const appRoutes: Routes = [
     path: 'student-detail/:idDetail',
     component: StudentFormComponent,
     data: { title: 'Student Details' }
+  }, {
+    path: 'news-list',
+    component: NewsListComponent,
+    data: { title: 'News List' }
   }
 
 ];
@@ -80,7 +86,9 @@ const appRoutes: Routes = [
     ProfessorListComponent,
     StudentListComponent,
     StudentFormComponent,
-    ProfessorFormComponent
+    ProfessorFormComponent,
+    NewsFormComponent,
+    NewsListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
