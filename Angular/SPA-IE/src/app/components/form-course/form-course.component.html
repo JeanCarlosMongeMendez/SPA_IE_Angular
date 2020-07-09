@@ -41,6 +41,18 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-8">
+                    <kendo-floatinglabel text="Professor" class="col-md-8">
+                        <kendo-dropdownlist formControlName="professor"
+                            [valuePrimitive]="true" [data]="professors" [textField]="'userProfile.username'" [valueField]="'userProfile.idUserProfile'">
+                        </kendo-dropdownlist>
+                    </kendo-floatinglabel>
+                </div>
+                <span class="text-danger" *ngIf="form.hasError('required', 'professor') && formDir.submitted">
+                    Province is required
+                </span>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-8">
                     <kendo-floatinglabel text="Image" class="col-md-8">
                         <input kendoTextBox formControlName="image" />
                     </kendo-floatinglabel>

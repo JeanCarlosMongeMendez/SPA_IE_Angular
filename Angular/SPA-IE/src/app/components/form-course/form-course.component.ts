@@ -3,25 +3,27 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CourseService} from "../../Service/CourseService";
 import {Course} from "../../model/course";
 import { ActivatedRoute, Router} from "@angular/router";
-//import {Observable} from "rxjs";
-//import {AuthenticationService} from "../../../../services/authentication.service";
 import swal from "sweetalert2";
+import { ProfessorService } from 'src/app/Services/professor.service';
 
 @Component({
   selector: 'app-form-course',
   templateUrl: './form-course.component.html',
   styleUrls: ['./form-course.component.css']
 })
+
 export class FormCourseComponent implements OnInit {
+
   form: FormGroup;
   submitted = false;
   error = '';
   loading: boolean = false;
+  professors: any = [];
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private courseService: CourseService,
-              private route: ActivatedRoute) {
+              private professorService: ProfessorService) {
 
     this.form = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$')]],
@@ -29,12 +31,13 @@ export class FormCourseComponent implements OnInit {
       description: ['', [Validators.required]],
       image: ['', [Validators.required]],
       state: ['', [Validators.required, Validators.pattern('([0-1]){1}')]],
-      creationDate: ['', [Validators.required]]
+      creationDate: ['', [Validators.required]],
+      professor: ['', [Validators.required]]
     });
   }
 
   ngOnInit(): void {
-
+    this.getProfessors();
   }
 
   submit(){
@@ -48,8 +51,8 @@ export class FormCourseComponent implements OnInit {
     course.description = this.description.value;
     course.image = this.image.value;
     course.state = this.state.value;
+    course.idProfessor = this.professor.value;
     course.creationDate = this.creationDate.value;
-
     this.courseService.createCourse(course).subscribe(data => {
       swal.fire({
         icon: 'success',
@@ -74,9 +77,15 @@ export class FormCourseComponent implements OnInit {
   }
 
   cancel(){
-
     this.router.navigate(['/courses/']);
+  }
 
+  getProfessors(){
+    this.professors = [];
+    this.professorService.listAll().subscribe((data:{ }) => {
+      console.log(data);
+      this.professors = data;
+    })
   }
 
   get name() { return this.form.get('name'); }
@@ -85,6 +94,5 @@ export class FormCourseComponent implements OnInit {
   get image() {return this.form.get('image');}
   get state() {return this.form.get('state');}
   get creationDate() {return this.form.get('creationDate');}
-
-
+  get professor() {return this.form.get('professor');}
 }

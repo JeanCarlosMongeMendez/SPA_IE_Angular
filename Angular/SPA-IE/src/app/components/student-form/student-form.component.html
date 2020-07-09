@@ -58,8 +58,8 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="Province" class="col-md-8">
-                        <kendo-dropdownlist formControlName="province" (valueChange)="provinceSelectOnChange($event)" [valuePrimitive]="true"
-                            [data]="provinces" [textField]="'name'" [valueField]="'idProvince'">
+                        <kendo-dropdownlist formControlName="province" (valueChange)="provinceSelectOnChange($event)"
+                            [valuePrimitive]="true" [data]="provinces" [textField]="'name'" [valueField]="'idProvince'">
                         </kendo-dropdownlist>
                     </kendo-floatinglabel>
                 </div>
@@ -70,9 +70,9 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <kendo-floatinglabel text="Canton" class="col-md-8">
-                        <kendo-dropdownlist formControlName="canton" (valueChange)="cantonSelectOnChange($event)" [valuePrimitive]="true"
-                            [data]="cantons" [disabled]="isCantonEnable == false" [textField]="'name'"
-                            [valueField]="'idCanton'">
+                        <kendo-dropdownlist formControlName="canton" (valueChange)="cantonSelectOnChange($event)"
+                            [valuePrimitive]="true" [data]="cantons" [disabled]="isCantonEnable == false"
+                            [textField]="'name'" [valueField]="'idCanton'">
                         </kendo-dropdownlist>
                     </kendo-floatinglabel>
                 </div>
@@ -84,7 +84,7 @@
                 <div class="col-md-8">
                     <kendo-floatinglabel text="District" class="col-md-8">
                         <kendo-dropdownlist formControlName="district" [data]="districts" [valuePrimitive]="true"
-                            [disabled]="isDistrictEnable == false" [textField]="'name'" [valueField]="'idDistrict'"> 
+                            [disabled]="isDistrictEnable == false" [textField]="'name'" [valueField]="'idDistrict'">
                         </kendo-dropdownlist>
                     </kendo-floatinglabel>
                 </div>
@@ -101,7 +101,8 @@
 
             <div class="form-group row">
                 <div class="col-md-8">
-                    <button kendoButton [look]="'flat'" [icon]="'check'" *ngIf="action == 'ADD' || action == 'UPDATE'" type="submit">Save</button>
+                    <button kendoButton [look]="'flat'" [icon]="'check'" *ngIf="action == 'ADD' || action == 'UPDATE'"
+                        type="submit">Save</button>
                     <button kendoButton [look]="'flat'" [icon]="'close'" (click)="cancel()">Cancel</button>
                 </div>
             </div>
