@@ -23,44 +23,67 @@ public class Schedule {
     private Date startTime;
 
     @Column(name="Final_Time")
-    private Date endTime;
+    private Date finalTime;
 
     public Schedule() {
     }
 
-    public Schedule(int idSchedule, int idCourse, int idProfessor, Date day, Date startTime, Date endTime) {
+    public Schedule(int idSchedule, int idCourse, int idProfessor, Date day, Date startTime, Date finalTime) {
         this.idSchedule = idSchedule;
         this.idCourse = idCourse;
         this.idProfessor = idProfessor;
         this.day = day;
         this.startTime = startTime;
-        this.endTime = endTime;
+        this.finalTime = finalTime;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getIdSchedule() { return idSchedule; }
+    public int getIdSchedule() {
+        return idSchedule;
+    }
 
-    public void setIdSchedule(int idSchedule) { this.idSchedule = idSchedule; }
+    public void setIdSchedule(int idSchedule) {
+        this.idSchedule = idSchedule;
+    }
 
-    public int getIdCourse() { return idCourse; }
+    public int getIdCourse() {
+        return idCourse;
+    }
 
-    public void setIdCourse(int idCourse) { this.idCourse = idCourse; }
+    public void setIdCourse(int idCourse) {
+        this.idCourse = idCourse;
+    }
 
-    public int getIdProfessor() { return idProfessor; }
+    public int getIdProfessor() {
+        return idProfessor;
+    }
 
-    public void setIdProfessor(int idProfessor) { this.idProfessor = idProfessor; }
+    public void setIdProfessor(int idProfessor) {
+        this.idProfessor = idProfessor;
+    }
 
-    public Date getDay() { return day; }
+    public Date getDay() {
+        return day;
+    }
 
-    public void setDay(Date day) { this.day = day; }
+    public void setDay(Date day) {
+        this.day = day;
+    }
 
-    public Date getStartTime() { return startTime; }
+    public Date getStartTime() {
+        return startTime;
+    }
 
-    public void setStartTime(Date startTime) { this.startTime = startTime; }
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
 
-    public Date getEndTime() { return endTime; }
+    public Date getFinalTime() {
+        return finalTime;
+    }
 
-    public void setEndTime(Date endTime) { this.endTime = endTime; }
-
+    public void setFinalTime(Date finalTime) {
+        this.finalTime = finalTime;
+    }
 }

@@ -6,16 +6,27 @@ import javax.persistence.*;
 @Table(name="Appointment",  schema = "BS_ISem_2020")
 public class Appointment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Id_Appointment")
     private int idAppoitment;
-    @Column(name="Id_Professor")
-    private int idProfessor;
-    @Column(name="Id_Student")
-    private int idStudent;
-    @Column(name="Id_Course")
-    private int idCourse;
-    @Column(name="Id_Schedule")
-    private int idSchedule;
+
+    @ManyToOne
+    @JoinColumn(name="Id_Professor")
+    private Professor Professor=new Professor();
+
+    @ManyToOne
+    @JoinColumn(name="Id_Student")
+    private Student student= new Student();
+
+    @ManyToOne
+    @JoinColumn(name="Id_Course")
+    private Course course= new Course();
+
+    @OneToOne
+    @JoinColumn(name="Id_Schedule")
+    private Schedule schedule= new Schedule();
+
     @Column(name="Status_Approved_Disapproved")
     private boolean statusApprovedDisapproved;
     @Column(name="Virtual_On_Site")
@@ -28,54 +39,87 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(int idAppoitment, int idProfessor, int idStudent, int idCourse, int idSchedule, boolean statusApprovedDisapproved, boolean virtualOnSite, String reasonForAppointment, String professorResponse) {
+    public Appointment(int idAppoitment, cr.ac.ucr.spa.Professor professor, Student student, Course course, Schedule schedule, boolean statusApprovedDisapproved, boolean virtualOnSite, String reasonForAppointment, String professorResponse) {
         this.idAppoitment = idAppoitment;
-        this.idProfessor = idProfessor;
-        this.idStudent = idStudent;
-        this.idCourse = idCourse;
-        this.idSchedule = idSchedule;
+        Professor = professor;
+        this.student = student;
+        this.course = course;
+        this.schedule = schedule;
         this.statusApprovedDisapproved = statusApprovedDisapproved;
         this.virtualOnSite = virtualOnSite;
         this.reasonForAppointment = reasonForAppointment;
         this.professorResponse = professorResponse;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getIdAppoitment() { return idAppoitment; }
+    public int getIdAppoitment() {
+        return idAppoitment;
+    }
 
-    public void setIdAppoitment(int idAppoitment) { this.idAppoitment = idAppoitment; }
+    public void setIdAppoitment(int idAppoitment) {
+        this.idAppoitment = idAppoitment;
+    }
 
-    public int getIdProfessor() { return idProfessor; }
+    public cr.ac.ucr.spa.Professor getProfessor() {
+        return Professor;
+    }
 
-    public void setIdProfessor(int idProfessor) { this.idProfessor = idProfessor; }
+    public void setProfessor(cr.ac.ucr.spa.Professor professor) {
+        Professor = professor;
+    }
 
-    public int getIdStudent() { return idStudent; }
+    public Student getStudent() {
+        return student;
+    }
 
-    public void setIdStudent(int idStudent) { this.idStudent = idStudent; }
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
-    public int getIdCourse() { return idCourse; }
+    public Course getCourse() {
+        return course;
+    }
 
-    public void setIdCourse(int idCourse) { this.idCourse = idCourse; }
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
-    public int getIdSchedule() { return idSchedule; }
+    public Schedule getSchedule() {
+        return schedule;
+    }
 
-    public void setIdSchedule(int idSchedule) { this.idSchedule = idSchedule; }
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
 
-    public boolean isStatusApprovedDisapproved() { return statusApprovedDisapproved; }
+    public boolean isStatusApprovedDisapproved() {
+        return statusApprovedDisapproved;
+    }
 
-    public void setStatusApprovedDisapproved(boolean statusApprovedDisapproved) { this.statusApprovedDisapproved = statusApprovedDisapproved; }
+    public void setStatusApprovedDisapproved(boolean statusApprovedDisapproved) {
+        this.statusApprovedDisapproved = statusApprovedDisapproved;
+    }
 
-    public boolean isVirtualOnSite() { return virtualOnSite; }
+    public boolean isVirtualOnSite() {
+        return virtualOnSite;
+    }
 
-    public void setVirtualOnSite(boolean virtualOnSite) { this.virtualOnSite = virtualOnSite; }
+    public void setVirtualOnSite(boolean virtualOnSite) {
+        this.virtualOnSite = virtualOnSite;
+    }
 
-    public String getReasonForAppointment() { return reasonForAppointment; }
+    public String getReasonForAppointment() {
+        return reasonForAppointment;
+    }
 
-    public void setReasonForAppointment(String reasonForAppointment) { this.reasonForAppointment = reasonForAppointment; }
+    public void setReasonForAppointment(String reasonForAppointment) {
+        this.reasonForAppointment = reasonForAppointment;
+    }
 
-    public String getProfessorResponse() { return professorResponse; }
+    public String getProfessorResponse() {
+        return professorResponse;
+    }
 
-    public void setProfessorResponse(String professorResponse) { this.professorResponse = professorResponse; }
-
+    public void setProfessorResponse(String professorResponse) {
+        this.professorResponse = professorResponse;
+    }
 }

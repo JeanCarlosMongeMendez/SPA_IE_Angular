@@ -14,6 +14,11 @@ public class LyExceptions {
         }
     }
 
-
+    public static class NotPosibleDeleteException extends Exception {
+        public NotPosibleDeleteException(String msg) {
+            super(msg+"\n" +
+                    "It is not allowed to delete this record.");
+        }
+    }
 
 }

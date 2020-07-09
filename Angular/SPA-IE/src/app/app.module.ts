@@ -18,18 +18,11 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { MenuModule } from '@progress/kendo-angular-menu';
 
-import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+//import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { InputsModule } from '@progress/kendo-angular-inputs';
-import { DialogsModule } from '@progress/kendo-angular-dialog';
-
-
-
-
-
-
-
+//import { DialogsModule } from '@progress/kendo-angular-dialog';
 
 
 
@@ -63,7 +56,7 @@ const appRoutes: Routes = [
     component: ProfessorFormComponent,
     data: { title: 'Professor Details' }
   },
-
+  {
     path: 'update-course/:courseId',
     component: UpdateCourseComponent,
     data: { title: 'Update Course' }
@@ -120,17 +113,16 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     ButtonsModule,
     LabelModule,
-    MenuModule,
+    MenuModule//,
 
-    ConfirmationPopoverModule.forRoot({ confirmButtonType:'danger'
-  }),
+   // ConfirmationPopoverModule.forRoot({ confirmButtonType:'danger'}),
   ],
   exports: [
-    FormCourseComponent
+    FormCourseComponent,
 
     DropDownsModule,
-    InputsModule,
-    DialogsModule
+    InputsModule//,
+    //DialogsModule
 
   ],
   providers: [],
