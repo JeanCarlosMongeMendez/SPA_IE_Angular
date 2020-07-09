@@ -114,7 +114,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     InputsModule,
     LabelModule,
-    MenuModule//,
+    MenuModule,
+    GridModule,
+    DropDownsModule,
+    DialogsModule//,
 
    // ConfirmationPopoverModule.forRoot({ confirmButtonType:'danger'}),
   ],
