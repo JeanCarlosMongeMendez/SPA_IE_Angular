@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Course} from "../model/course";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
+import { map, catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +25,11 @@ export class CourseService {
   }
 
   public update(course: Course): Observable<any> {
+    console.log(course);
     return this.http.put<any>(this._url + course.courseId, course);
   }
 
   public delete(id: number): Observable<any> {
     return this.http.delete<any>(this._url + id);
   }
-
-
 }

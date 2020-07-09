@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CourseService } from 'src/app/Service/CourseService';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {CourseService} from "../../Service/CourseService";
 import { ActivatedRoute, Router } from '@angular/router';
+import { Course } from 'src/app/model/course';
 
 @Component({
   selector: 'app-update-course',
   templateUrl: './update-course.component.html',
   styleUrls: ['./update-course.component.css']
 })
-export class UpdateCourseComponent implements OnInit {
 
+export class UpdateCourseComponent implements OnInit {
   form: FormGroup;
   errorMessage: any;
 
@@ -50,8 +51,16 @@ export class UpdateCourseComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-
-    this.courseService.update(this.form.value).subscribe((result) => {
+    console.log(this.form.value);
+    let course = new Course();
+    course.courseId = this.route.snapshot.params['courseId'];
+    course.creationDate = this.creationDate.value;
+    course.description = this.description.value;
+    course.image = this.image.value;
+    course.name = this.name.value;
+    course.semester = this.semester.value;
+    course.state = this.state.value;
+    this.courseService.update(course).subscribe((result) => {
       this.router.navigate(['/list-course/']);
     }, (err) => {
       console.log(err);
@@ -68,5 +77,4 @@ export class UpdateCourseComponent implements OnInit {
   get image() {return this.form.get('image');}
   get state() {return this.form.get('state');}
   get creationDate() {return this.form.get('creationDate');}
-
 }

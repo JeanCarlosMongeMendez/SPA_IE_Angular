@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import swal from 'sweetalert2';
-import { CourseService } from 'src/app/Service/CourseService';
+
+import {CourseService} from "../../Service/CourseService";
 import { ActivatedRoute, Router } from '@angular/router';
+
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-course',
@@ -10,9 +12,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ListCourseComponent implements OnInit {
 
+  public gridData: any;
   courses:any =[];
 
-  constructor(public courseService:CourseService, private route: ActivatedRoute, private router:Router) { }
+  constructor(public courseService:CourseService, private route: ActivatedRoute, public router:Router) { }
 
   ngOnInit(): void {
     this.getCourses(); 
@@ -22,6 +25,7 @@ export class ListCourseComponent implements OnInit {
     this.courses=[];
     this.courseService.list().subscribe((data:{}) =>{
       console.log(data);
+      this.gridData = data;
       this.courses=data;
     });
   }

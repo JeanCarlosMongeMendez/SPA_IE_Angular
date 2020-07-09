@@ -25,4 +25,11 @@ export class GeneralService {
     return this.http.get(this._url + 'district/' + id);
   }
 
+  singIn(values, type){
+    if(type == 'student'){
+      return this.http.get(this._url + 'student/login?username=' +values.username+'&password='+values.password);
+    }else{
+      return this.http.get(this._url + 'professor/login?username=' +values.username+'&password='+values.password);
+    }
+  }
 }

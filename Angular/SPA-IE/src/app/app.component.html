@@ -1,10 +1,42 @@
 
+<div class="row menuBar">
+    <label class="col-md-2">Welcome {{User}}</label>
+    <kendo-menu class="col-md-7" [items]="items">
+        <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+            <a [kendoMenuItemLink]="index" [routerLink]="item.path">
+                {{ item.text }}
+            </a>
+        </ng-template>
+    </kendo-menu>
+    <button class="col-md-1" kendoButton (click)="singIn('student')">Sign as student</button>
+    <button class="col-md-1" kendoButton (click)="singIn('proffesor')">Sign as proffesor</button>
+    <button class="col-md-1" kendoButton (click)="route.navigate(['/student-add']);">Register</button>
+</div>
 
-<kendo-menu [items]="items">
-    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
-        <a [kendoMenuItemLink]="index" [routerLink]="item.path">
-            {{ item.text }}
-        </a>
-    </ng-template>
-</kendo-menu>
+<kendo-dialog title="Sign In" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
+    <div class="container">
+        <form [formGroup]="form" >
+            <div class="form-group">
+                <kendo-floatinglabel text="Username">
+                    <input kendoTextBox formControlName="username" />
+                </kendo-floatinglabel>
+            </div>
+            <div class="form-group">
+                <kendo-floatinglabel text="Password">
+                    <input kendoTextBox type="password" formControlName="password" />
+                </kendo-floatinglabel>
+            </div>
+        </form>
+    </div>
+    <kendo-dialog-actions>
+        <button kendoButton (click)="close()">Cancel</button>
+        <button kendoButton [primary]="true" [disabled]="!form.valid" (click)="submit()">Submit</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
+
+<br>
+<br>
+<br>
+
+
 <router-outlet></router-outlet>

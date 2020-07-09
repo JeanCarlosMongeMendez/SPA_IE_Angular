@@ -6,8 +6,9 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
+
 export class CourseService {
-  private _url='http://localhost:8282/spa_war/api/course/';
+  private _url='http://localhost:8282/spa_war/api/course';
 
   constructor(private http: HttpClient) { }
 
@@ -19,4 +20,7 @@ export class CourseService {
     return this.http.get<any>(this._url+"/"+courseId);
   }
 
+  public getCourses(): Observable<any>{
+    return this.http.get(this._url);
+  }
 }
