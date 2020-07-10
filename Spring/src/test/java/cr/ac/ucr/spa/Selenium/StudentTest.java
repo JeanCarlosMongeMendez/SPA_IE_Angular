@@ -55,9 +55,13 @@ class StudentTest {
         Thread.sleep(2000);
 
         driver.findElement(getidUsername).sendKeys("Test");
+        Thread.sleep(2000);
         driver.findElement(getidCard).sendKeys("30267952");
+        Thread.sleep(2000);
         driver.findElement(getidPassword).sendKeys("123");
+        Thread.sleep(2000);
         driver.findElement(getidInterest).sendKeys("Bailar");
+        Thread.sleep(2000);
         driver.findElement(getidEmail).sendKeys("test@mail.com");
         Thread.sleep(4000);
 
@@ -77,13 +81,15 @@ class StudentTest {
 
         Thread.sleep(4000);
 
+
+        Select drpDistrict = new Select(driver.findElement(getidDistrict));
+        drpDistrict.selectByVisibleText("Paraíso");
 /*
 
         Select drpCanton = new Select(driver.findElement(getidCanton)).getOptions().get(2);
         drpCanton.selectByVisibleText("Paraíso");
 
-        Select drpDistrict = new Select(driver.findElement(getidDistrict));
-        drpDistrict.selectByVisibleText("Paraíso");
+
 */
         Thread.sleep(2000);
         driver.findElement(getbtnSubmit).click();

@@ -41,10 +41,15 @@ class CourseTest {
         Thread.sleep(2000);
 
         driver.findElement(getidName).sendKeys("TestCourse");
+        Thread.sleep(2000);
         driver.findElement(getidSemester).sendKeys("1");
+        Thread.sleep(2000);
         driver.findElement(getidDescription).sendKeys("Curso de prueba");
+        Thread.sleep(2000);
         driver.findElement(getidImage).sendKeys("https:testImage");
+        Thread.sleep(2000);
         driver.findElement(getidState).sendKeys("1");
+        Thread.sleep(2000);
         driver.findElement(getidDate).sendKeys("20200709");
 
         Thread.sleep(2000);

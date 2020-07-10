@@ -39,6 +39,7 @@ class LoginStudentTest {
         Thread.sleep(2000);
 
         driver.findElement(getImpUsername).sendKeys("Lyka");
+        Thread.sleep(2000);
         driver.findElement(getImpPassword).sendKeys("123");
 
         Thread.sleep(2000);

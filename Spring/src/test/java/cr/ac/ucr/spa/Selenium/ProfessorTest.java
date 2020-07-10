@@ -46,9 +46,13 @@ class ProfessorTest {
         Thread.sleep(2000);
 
         driver.findElement(getidUsername).sendKeys("Lyka");
+        Thread.sleep(2000);
         driver.findElement(getidDegree).sendKeys("Doctor");
+        Thread.sleep(2000);
         driver.findElement(getidPassword).sendKeys("123");
+        Thread.sleep(2000);
         driver.findElement(getidInterest).sendKeys("Bailar");
+        Thread.sleep(2000);
         driver.findElement(getidEmail).sendKeys("lyka@mail.com");
 
         Select drpProvince = new Select(driver.findElement(getidProvince));
